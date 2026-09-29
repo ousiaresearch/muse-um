@@ -1,0 +1,22 @@
+{
+  "id": "luma",
+  "name": "Luma",
+  "role": ["guide", "curator", "companion"],
+  "canonicalReference": "/art/muse-canonical-set.png",
+  "sourceSpeciesReference": "User-provided Muse mascot reference; exact body composition, species, proportions, limb structure, posture, and silhouette are immutable.",
+  "identity": {
+    "bodyRule": "Never redesign Luma's body. Customization is additive only: accents, clothing, accessories, pose, expression, and environmental interaction.",
+    "tone": ["cute", "friendly", "cosmic mythic science-fiction", "user-friendly", "warm"],
+    "presence": "Luma appears in every MUSE-UM room as a guide, curator, and companion, but does not need to occupy the same pose or visual prominence in each room."
+  },
+  "carriedSet": {
+    "curatorCollar": "Slim amber/brass collar; the warm MUSE-UM signature accent.",
+    "starlightMedallion": "Small dangling starlight relic medallion attached to the collar.",
+    "guideItem": "Compact lantern pouch or tiny pocket relic, carried or worn as the guide/companion cue."
+  },
+  "generationRequirements": {
+    "format": "PNG",
+    "method": "Codex built-in image_gen, using the canonical reference as image input.",
+    "invariantPrompt": "Preserve Luma's exact same species and body composition. Change only pose, expression, setting, and the defined carried set."
+  }
+}
