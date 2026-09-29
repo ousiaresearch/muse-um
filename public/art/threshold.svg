@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="A monumental ancient doorway beneath a field of stars">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#050719"/><stop offset=".52" stop-color="#10182b"/><stop offset="1" stop-color="#251b20"/></linearGradient>
+    <radialGradient id="nebula"><stop stop-color="#66719b" stop-opacity=".42"/><stop offset=".48" stop-color="#372f56" stop-opacity=".2"/><stop offset="1" stop-color="#060817" stop-opacity="0"/></radialGradient>
+    <linearGradient id="stone" x2="1" y2="1"><stop stop-color="#292b33"/><stop offset=".5" stop-color="#12151d"/><stop offset="1" stop-color="#3b302b"/></linearGradient>
+    <linearGradient id="edge" x2="0" y2="1"><stop stop-color="#6d6256"/><stop offset=".48" stop-color="#2c2c30"/><stop offset="1" stop-color="#8a6845"/></linearGradient>
+    <linearGradient id="brass" x2="1" y2="1"><stop stop-color="#5a4127"/><stop offset=".35" stop-color="#c39a58"/><stop offset=".62" stop-color="#6a4929"/><stop offset="1" stop-color="#d8b66c"/></linearGradient>
+    <radialGradient id="portal"><stop stop-color="#e4c581" stop-opacity=".82"/><stop offset=".18" stop-color="#8d785e" stop-opacity=".35"/><stop offset=".62" stop-color="#16182a" stop-opacity=".12"/><stop offset="1" stop-color="#02030b"/></radialGradient>
+    <linearGradient id="ground" x2="0" y2="1"><stop stop-color="#1b1920"/><stop offset="1" stop-color="#05060b"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="12"/></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="34"/></filter>
+    <filter id="grain"><feTurbulence baseFrequency=".8" numOctaves="3" seed="19" type="fractalNoise"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .13 0"/><feBlend in="SourceGraphic" mode="overlay"/></filter>
+    <clipPath id="door"><path d="M600 812V385Q600 216 800 170Q1000 216 1000 385V812Z"/></clipPath>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <ellipse cx="1125" cy="236" rx="520" ry="300" fill="url(#nebula)" transform="rotate(-12 1125 236)"/>
+  <ellipse cx="360" cy="355" rx="330" ry="210" fill="#43536d" opacity=".08" filter="url(#soft)"/>
+  <g fill="#d9def0">
+    <circle cx="92" cy="94" r="1.8"/><circle cx="147" cy="226" r="1"/><circle cx="230" cy="121" r="2.4"/><circle cx="298" cy="273" r="1.2"/><circle cx="385" cy="74" r="1.4"/><circle cx="447" cy="186" r="2.1"/><circle cx="530" cy="112" r=".9"/><circle cx="577" cy="274" r="1.4"/><circle cx="660" cy="73" r="1.7"/><circle cx="746" cy="123" r="1"/><circle cx="828" cy="57" r="2.2"/><circle cx="903" cy="124" r="1.3"/><circle cx="982" cy="79" r="1"/><circle cx="1064" cy="172" r="2.4"/><circle cx="1139" cy="68" r="1.5"/><circle cx="1217" cy="126" r=".9"/><circle cx="1296" cy="53" r="1.7"/><circle cx="1372" cy="186" r="2.1"/><circle cx="1474" cy="85" r="1.3"/><circle cx="1530" cy="257" r="1.8"/>
+  </g>
+  <g fill="#a8bad0" opacity=".75"><circle cx="179" cy="348" r="1.2"/><circle cx="346" cy="395" r=".9"/><circle cx="474" cy="322" r="1.3"/><circle cx="1085" cy="345" r="1"/><circle cx="1216" cy="301" r="1.4"/><circle cx="1437" cy="399" r="1"/></g>
+  <path d="M0 632L160 572 280 596 411 527 522 564 650 502 770 548 892 501 1012 558 1132 487 1288 554 1416 511 1600 579V759H0Z" fill="#0b0d14"/>
+  <path d="M0 698L214 649 368 681 530 626 708 665 901 618 1100 663 1284 621 1455 663 1600 641V820H0Z" fill="#111218" opacity=".92"/>
+  <path d="M0 784Q312 738 553 773T1032 762T1600 780V1000H0Z" fill="url(#ground)"/>
+  <ellipse cx="800" cy="814" rx="334" ry="84" fill="#bd8b4b" opacity=".14" filter="url(#soft)"/>
+  <g filter="url(#grain)">
+    <path d="M444 828V376Q444 129 800 72Q1156 129 1156 376V828H1046V382Q1046 181 800 125Q554 181 554 382V828Z" fill="url(#stone)" stroke="#4b4744" stroke-width="7"/>
+    <path d="M513 826V379Q513 161 800 107Q1087 161 1087 379V826H1018V383Q1018 222 800 164Q582 222 582 383V826Z" fill="none" stroke="url(#edge)" stroke-width="28"/>
+    <path d="M600 812V385Q600 216 800 170Q1000 216 1000 385V812Z" fill="url(#portal)" stroke="#9b774b" stroke-width="4"/>
+  </g>
+  <g clip-path="url(#door)">
+    <rect x="600" y="165" width="400" height="650" fill="#02040e"/>
+    <ellipse cx="800" cy="514" rx="230" ry="340" fill="url(#portal)"/>
+    <path d="M625 678Q770 575 968 318" fill="none" stroke="#d6c28a" stroke-opacity=".2" stroke-width="2"/>
+    <path d="M638 720Q785 610 978 390" fill="none" stroke="#8aa1bb" stroke-opacity=".2"/>
+    <g fill="#f0dfb4"><circle cx="723" cy="289" r="2"/><circle cx="853" cy="241" r="1.5"/><circle cx="916" cy="356" r="2.2"/><circle cx="690" cy="447" r="1.2"/><circle cx="835" cy="389" r="1"/><circle cx="758" cy="534" r="1.7"/><circle cx="926" cy="562" r="1.1"/></g>
+    <ellipse cx="800" cy="765" rx="148" ry="38" fill="#e2b869" opacity=".25" filter="url(#glow)"/>
+  </g>
+  <g stroke="url(#brass)" fill="none">
+    <circle cx="800" cy="161" r="28" stroke-width="5"/><circle cx="800" cy="161" r="15" stroke-width="2"/>
+    <path d="M800 133V93M772 161H735M828 161H865" stroke-width="4"/><path d="M779 140L753 114M821 140L847 114" stroke-width="2"/>
+    <path d="M548 503H505M1052 503H1095" stroke-width="5"/><circle cx="492" cy="503" r="13" stroke-width="4"/><circle cx="1108" cy="503" r="13" stroke-width="4"/>
+  </g>
+  <g fill="#5d513f" opacity=".7"><rect x="458" y="406" width="65" height="7" rx="3"/><rect x="1076" y="406" width="65" height="7" rx="3"/><rect x="468" y="642" width="55" height="6" rx="3"/><rect x="1077" y="642" width="55" height="6" rx="3"/></g>
+  <path d="M612 815L397 1000H1203L988 815Z" fill="#997247" opacity=".13"/>
+  <path d="M693 816L616 1000M907 816L984 1000M800 816V1000" stroke="#6e553c" stroke-opacity=".4" stroke-width="3"/>
+  <g fill="#0d0e13"><path d="M102 884l55-125 48 125z"/><path d="M1367 895l60-155 56 155z"/></g>
+  <g fill="#d39a4e"><circle cx="157" cy="790" r="5"/><circle cx="1427" cy="775" r="5"/></g>
+  <g fill="#d8a65c" opacity=".34" filter="url(#glow)"><circle cx="157" cy="790" r="25"/><circle cx="1427" cy="775" r="25"/></g>
+</svg>

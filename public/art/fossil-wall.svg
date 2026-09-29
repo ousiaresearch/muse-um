@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="A moonlit stone wall embedded with ancient tablets and brass traces">
+  <defs>
+    <linearGradient id="night" x2="0" y2="1"><stop stop-color="#07101d"/><stop offset="1" stop-color="#152028"/></linearGradient>
+    <radialGradient id="moon"><stop stop-color="#edf2e2"/><stop offset=".7" stop-color="#b9c9c7"/><stop offset="1" stop-color="#778a91"/></radialGradient>
+    <linearGradient id="wall" x2="1" y2="1"><stop stop-color="#3c4141"/><stop offset=".38" stop-color="#222b2d"/><stop offset=".72" stop-color="#34322e"/><stop offset="1" stop-color="#171d21"/></linearGradient>
+    <linearGradient id="tablet" x2="1" y2="1"><stop stop-color="#73746a"/><stop offset=".38" stop-color="#3f4440"/><stop offset="1" stop-color="#242b2b"/></linearGradient>
+    <linearGradient id="brass" x2="1" y2="1"><stop stop-color="#49351f"/><stop offset=".26" stop-color="#be9857"/><stop offset=".54" stop-color="#6d4c29"/><stop offset=".82" stop-color="#e1bd70"/><stop offset="1" stop-color="#574025"/></linearGradient>
+    <filter id="grain"><feTurbulence baseFrequency=".55" numOctaves="4" seed="44"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .16 0"/><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+    <filter id="shadow"><feGaussianBlur in="SourceAlpha" stdDeviation="10"/><feOffset dx="7" dy="10"/><feComponentTransfer><feFuncA type="linear" slope=".55"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="16"/></filter>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#night)"/>
+  <circle cx="1300" cy="170" r="108" fill="#c8d9d6" opacity=".18" filter="url(#glow)"/><circle cx="1300" cy="170" r="72" fill="url(#moon)"/>
+  <g fill="#718894" opacity=".35"><circle cx="1322" cy="145" r="13"/><circle cx="1274" cy="193" r="8"/><circle cx="1334" cy="201" r="18"/></g>
+  <g fill="#d5e0dc"><circle cx="93" cy="92" r="1"/><circle cx="235" cy="157" r="1.6"/><circle cx="431" cy="72" r="1"/><circle cx="585" cy="139" r="1.3"/><circle cx="815" cy="69" r="1.8"/><circle cx="1035" cy="126" r="1"/><circle cx="1475" cy="89" r="1.4"/></g>
+  <path d="M0 327Q236 292 429 324T823 301T1196 328T1600 295V1000H0Z" fill="url(#wall)" filter="url(#grain)"/>
+  <path d="M0 375Q241 340 449 369T846 342T1237 371T1600 338" fill="none" stroke="#77817d" stroke-opacity=".35" stroke-width="8"/>
+  <g fill="none" stroke="#101719" stroke-width="5" opacity=".72">
+    <path d="M0 524L244 508 382 542 624 510 813 534 1048 499 1255 535 1600 511"/><path d="M0 719L179 688 355 725 564 699 743 735 962 704 1158 737 1385 699 1600 726"/><path d="M250 347L225 508 255 691 220 1000M556 331L580 513 546 700 571 1000M915 325L888 519 923 707 895 1000M1272 339L1298 525 1264 715 1305 1000"/>
+  </g>
+  <g stroke="#626660" stroke-opacity=".45" stroke-width="3"><path d="M13 593l138 21 70-28 154 25 94-19"/><path d="M1018 591l117 27 142-21 124 33 185-28"/><path d="M39 829l203-25 164 37 108-29"/><path d="M1011 829l191-31 153 38 208-25"/></g>
+  <g filter="url(#shadow)">
+    <path d="M112 430l254-18 18 221-262 20z" fill="url(#tablet)" stroke="#858477" stroke-width="5"/>
+    <path d="M675 389l298 12-9 255-306-8z" fill="url(#tablet)" stroke="#8b8879" stroke-width="6"/>
+    <path d="M1180 442l235-20 24 218-244 23z" fill="url(#tablet)" stroke="#77786f" stroke-width="5"/>
+    <path d="M405 703l270 9-8 205-278-11z" fill="url(#tablet)" stroke="#76766c" stroke-width="5"/>
+    <path d="M941 718l273-13 15 203-280 16z" fill="url(#tablet)" stroke="#79786d" stroke-width="5"/>
+  </g>
+  <g fill="none" stroke="#aab1a4" stroke-opacity=".46" stroke-width="4">
+    <path d="M171 570q32-96 76-78t62 84q-54-28-138-6z"/><path d="M192 538l-25-45m105 44 42-57"/><circle cx="817" cy="521" r="77"/><path d="M745 544q72-106 145-3M817 444v154M761 476l109 91"/><path d="M1236 562q62-92 134 3l-20-79-85 17z"/><path d="M454 826q79-80 149 12-77 51-149-12z"/><circle cx="1054" cy="818" r="52"/><path d="M1007 837l97-41m-99-7 96 57"/>
+  </g>
+  <g fill="#141b1c"><circle cx="143" cy="452" r="8"/><circle cx="350" cy="435" r="7"/><circle cx="701" cy="419" r="8"/><circle cx="938" cy="426" r="7"/><circle cx="1210" cy="464" r="8"/><circle cx="1393" cy="448" r="7"/><circle cx="433" cy="738" r="7"/><circle cx="641" cy="739" r="7"/><circle cx="974" cy="746" r="7"/><circle cx="1185" cy="733" r="7"/></g>
+  <g fill="none" stroke="url(#brass)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M73 773C207 726 236 654 244 574S370 532 508 587 705 683 817 597 1003 508 1092 570 1237 741 1518 676"/>
+    <path d="M303 895C401 846 498 842 584 864S764 898 850 833 1005 811 1100 852 1292 892 1510 808"/>
+  </g>
+  <g fill="url(#brass)" stroke="#271c12" stroke-width="3"><circle cx="73" cy="773" r="12"/><circle cx="244" cy="574" r="11"/><circle cx="508" cy="587" r="11"/><circle cx="817" cy="597" r="13"/><circle cx="1092" cy="570" r="11"/><circle cx="1518" cy="676" r="12"/><circle cx="303" cy="895" r="10"/><circle cx="584" cy="864" r="10"/><circle cx="850" cy="833" r="12"/><circle cx="1100" cy="852" r="10"/><circle cx="1510" cy="808" r="11"/></g>
+  <g fill="#d8b96d" opacity=".2" filter="url(#glow)"><circle cx="817" cy="597" r="35"/><circle cx="850" cy="833" r="28"/></g>
+  <path d="M0 924Q313 881 584 931T1122 918T1600 929V1000H0Z" fill="#0c1316"/>
+  <g fill="#293533"><path d="M66 940l34-85 37 85z"/><path d="M1441 950l43-112 45 112z"/></g>
+</svg>

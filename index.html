@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a12" />
+    <link rel="alternate" type="application/json" href="/agent/pavilion.json" title="MUSE-UM agent traversal layer" />
+    <meta name="muse-um:agent-layer" content="/agent/pavilion.json" />
+    <meta name="description" content="MUSE-UM, a navigable cosmic mythic science-fiction pavilion." />
+    <title>MUSE-UM</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body, #root {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background: #0a0a12;
+        color: #e8e4dc;
+        font-family: 'Georgia', 'Times New Roman', serif;
+      }
+      ::selection { background: #2a2540; color: #f0e8d8; }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #0a0a12; }
+      ::-webkit-scrollbar-thumb { background: #3a3550; border-radius: 3px; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

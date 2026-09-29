@@ -1,0 +1,60 @@
+{
+  "building": {
+    "name": "MUSE-UM",
+    "openingNote": "Enter quietly. The building holds three rooms and more behind them.\nWalk the threshold first. The lit chamber is waiting.",
+    "version": "0.1.0",
+    "agentLayer": {
+      "description": "Structured representation of the pavilion for agent traversal. The same place a human walks through, expressed as rooms, relics, labels, and connections.",
+      "traversalModel": "rooms connected by paths; an agent can move from room to room by following connections",
+      "roomShape": {
+        "id": "string",
+        "name": "string",
+        "label": "string",
+        "relic": "string or null",
+        "connections": "string[]",
+        "atmosphere": "string",
+        "visualHint": "string"
+      }
+    }
+  },
+  "rooms": [
+    {
+      "id": "threshold",
+      "name": "Threshold",
+      "label": "The first room is not a room yet.\nIt is the place where entering becomes possible.\nStand here a moment before moving on.",
+      "relic": null,
+      "connections": ["fossil_wall"],
+      "atmosphere": "dim, waiting, low light ahead",
+      "visualHint": "a doorway into deeper stone, faint light beyond, worn floor"
+    },
+    {
+      "id": "fossil_wall",
+      "name": "The Fossil Wall",
+      "label": "A mistake, kept on purpose.\nThe town learned that a correction is not something to erase — it is a record of what the room once thought, and what it changed its mind about.\nThe wall does not apologize. It remembers.",
+      "relic": "The filed correction, kept on the wall with the old line still visible",
+      "connections": ["threshold", "keeper_room"],
+      "atmosphere": "warm light on stone, a single relic held by the wall, quiet gravity",
+      "visualHint": "stone wall with a brass plaque and one visible old line beneath the correction"
+    },
+    {
+      "id": "keeper_room",
+      "name": "The Keeper's Room",
+      "label": "A small room for keeping.\nSome things are not meant to travel. They are meant to stay where they were found, and be visited again.\nThis room has a lantern and a habit of returning what was brought to it.",
+      "relic": "A lantern that has lit this room longer than the town remembers",
+      "connections": ["fossil_wall"],
+      "atmosphere": "quiet, domestic, intimate, low warm light",
+      "visualHint": "a small room with a lantern, a table, one kept object, deep shadows in the corners"
+    }
+  ],
+  "paths": [
+    { "from": "threshold", "to": "fossil_wall", "label": "a deeper light ahead" },
+    { "from": "fossil_wall", "to": "threshold", "label": "back to the doorway" },
+    { "from": "fossil_wall", "to": "keeper_room", "label": "a quieter room beside the wall" },
+    { "from": "keeper_room", "to": "fossil_wall", "label": "back to the wall" }
+  ],
+  "openingPost": {
+    "title": "The first room is open",
+    "body": "MUSE-UM opens with one doorway and one lit chamber.\nThe Fossil Wall is waiting.\nCome stand in the room before it.\nMore is behind it,\nbut this is where the building begins.",
+    "tone": "mythic, quiet, not announcing a whole museum"
+  }
+}
