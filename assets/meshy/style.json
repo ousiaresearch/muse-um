@@ -1,0 +1,44 @@
+{
+  "kind": "muse-um.meshy.style",
+  "version": "1.2.0",
+  "purpose": "One shared material and form language for every generated 3D asset in the MUSE-UM pavilion, so the props read as one curated collection rather than unrelated models.",
+  "limits": {
+    "prompt_max_chars": 800,
+    "texture_prompt_max_chars": 800,
+    "note": "The submitter composes each asset's own text with the matching shared suffix and refuses to send a payload over these limits."
+  },
+  "palette": {
+    "warm aged brass": "#b98c46",
+    "dark warm stone": "#3a3229",
+    "muted bone and parchment": "#d8cebb",
+    "dying-sun gold": "#e0b75b",
+    "deep blue-shingle accent": "#3d5470",
+    "near-black background": "#0d0b12"
+  },
+  "sharedPromptSuffix": "Single isolated museum artifact, hand-drawn European graphic-novel world: medieval epic and ancient sacred architecture, ethereal, a forgotten civilization remembering itself beneath a dying sun. Warm aged brass, dark hand-cut stone, muted bone and parchment, restrained deep blue accent. Soft diffuse light, matte worn surfaces, fine engraved line-work, no plastic sheen.",
+  "sharedTextureSuffix": "Hand-drawn European graphic-novel material feel: matte hand-finished surfaces with fine tool marks, warm aged brass with patina in the recesses, dark weathered stone left plain and unmarked, muted bone and parchment, one restrained deep blue accent. No lettering, numerals, inscriptions or signage anywhere on the object. No gloss, no plastic sheen, no chrome, no neon.",
+  "sharedNegativePrompt": "glossy plastic, chrome, sci-fi machinery, low-poly faceting, flat untextured shading, cartoon mascot, creature, person, building, room, scenery, text, lettering, logo, watermark, neon, lens flare, action pose, multiple disconnected objects, floating separated parts, inscriptions, engraved words, numerals, nameplate, plaque, inscribed banner, engraved banding",
+  "stages": {
+    "preview": {
+      "uses": "prompt",
+      "suffix": "sharedPromptSuffix",
+      "sends_negative_prompt": true,
+      "purpose": "Geometry only. Judge form and silhouette here; materials are not yet applied and the render will read as untextured grey."
+    },
+    "refine": {
+      "uses": "texture_prompt",
+      "suffix": "sharedTextureSuffix",
+      "sends_negative_prompt": false,
+      "purpose": "Applies the material language to an accepted preview mesh. This is where the pavilion's style actually lands."
+    }
+  },
+  "invariants": [
+    "An asset is a single coherent object, never a scene or a diorama.",
+    "Canonical characters are never generated: Luma's body is fixed by public/art/luma-canon.json and a generative mesh would mutate it.",
+    "Generated assets are environmental props only. They never replace a framed exhibit PNG or alter any room's evidence status.",
+    "A task returning SUCCEEDED is not acceptance. Only a visual review against the asset's own tiered criteria accepts it.",
+    "An untextured grey preview is not a style failure — the preview stage generates no texture by design.",
+    "Meshy paints pseudo-inscriptions onto plinth-like forms unprompted. The material suffix must forbid lettering explicitly and every acceptance review must read the flat faces.",
+    "Inscription relief comes back in the geometry, not only in the texture: a re-refine of the same mesh keeps it. Clearing it requires a new preview whose form has no flat panel or banded tier for lettering to occupy."
+  ]
+}

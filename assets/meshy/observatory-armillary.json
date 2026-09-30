@@ -1,0 +1,93 @@
+{
+  "id": "observatory-armillary-v1",
+  "asset": "The Observatory armillary",
+  "room": "observatory",
+  "role": "environmental prop — a plinth-scale artifact for the Observatory's WebGL room",
+  "endpoint": "/openapi/v2/text-to-3d",
+  "stages": {
+    "preview": {
+      "mode": "preview",
+      "ai_model": "latest",
+      "model_type": "standard",
+      "name": "muse-um-observatory-armillary-v3",
+      "prompt": "An open gimbal-style astronomical armillary: four separate slim brass rings, each tilted on its own different axis so they cross one another in bare empty space around a small tarnished-gold sphere, the whole assembly a delicate open skeleton of rings with nothing filling the gaps between them, standing on a plain smooth unadorned stone column over a simple bare octagonal stone base.",
+      "negative_prompt": "drum cage, baluster struts, connecting bars between rings, concentric nested rings in one plane, closed cylindrical shell, ornamental garden ornament, trophy, turned finial spire"
+    },
+    "refine": {
+      "mode": "refine",
+      "preview_task_id": "01a0f032-dc1b-7588-8353-3be145b515bc",
+      "enable_pbr": true,
+      "texture_resolution": "2k",
+      "target_formats": ["glb"],
+      "name": "muse-um-observatory-armillary-v1-textured",
+      "texture_prompt": "Deeply matte hand-finished brass with no polish and no shine at all, darkened by green-brown patina with the wear rubbed bright only on the outermost high points, fine incised graduation lines and small engraved star marks cut across the ring bands, tally notches worn smooth, the central sphere a dull tarnished bronze, the pedestal bare dark weathered stone with completely blank uncarved faces."
+    }
+  },
+  "curation": {
+    "purpose": "The first style-defining prop. It establishes the material language the rest of the pavilion's generated props will follow.",
+    "tiers": {
+      "reject": [
+        "The rings are concentric or nested in one plane rather than tilted on different axes.",
+        "A drum, cage, or strut-filled shell sits between the rings.",
+        "Reads as a garden ornament or trophy rather than a measuring instrument.",
+        "Reads as modern laboratory or sci-fi instrument.",
+        "Contains a character, a room, or invented lettering.",
+        "Surfaces are glossy, plastic, or chrome-like.",
+        "Texture is flat, untextured, or visibly blotchy.",
+        "Any inscription, pseudo-word, numeral or plaque on the stone."
+      ],
+      "accept": [
+        "Four distinguishable rings crossing on different axes, open between them.",
+        "Readable silhouette as a celestial measuring instrument.",
+        "Brass reads as aged and warm rather than polished chrome.",
+        "Pedestal is plain stone, not metal, and does not dominate the rings.",
+        "Stone faces carry no lettering of any kind.",
+        "Sits plausibly as a plinth-scale artifact inside the existing Observatory room."
+      ]
+    },
+    "reviewLog": [
+      {
+        "stage": "preview v1",
+        "taskId": "01a0f024-19cb-7037-9f51-0f97f551c3d2",
+        "reviewedAt": "2026-09-30",
+        "result": "accepted",
+        "evidence": "Four distinct rings confirmed on different axes at crop — outer hoop, inner concentric ring, horizontal equatorial band, and an oblique open C-shaped band. Central sphere present; pedestal reads as stone; silhouette readable; no lettering at this stage.",
+        "credits": 20
+      },
+      {
+        "stage": "refine v1",
+        "taskId": "01a0f029-cbcb-769f-9640-4f4834d8cc13",
+        "reviewedAt": "2026-09-30",
+        "result": "rejected",
+        "evidence": "Materials right — warm aged brass, patina in recesses, engraved scale marks, dark stone, no chrome. Rejected on invented pseudo-inscriptions on the base tiers ('ΠΙ' upper, 'HULAST' lower front).",
+        "credits": 10
+      },
+      {
+        "stage": "refine v2",
+        "taskId": "01a0f02d-62c4-7171-9268-4e12f453d201",
+        "reviewedAt": "2026-09-30",
+        "result": "rejected",
+        "evidence": "Re-refined the v1 mesh with explicit no-lettering clauses. Inscriptions survived and were again legible ('IU', 'RILAST'). Conclusion: the inscription relief is geometry, not texture, so the material stage cannot remove it.",
+        "credits": 10
+      },
+      {
+        "stage": "preview v2",
+        "taskId": "01a0f030-8f62-7651-bef3-5390bed80c55",
+        "reviewedAt": "2026-09-30",
+        "result": "rejected",
+        "evidence": "Prompt reworked to give the base no panel for lettering. Base fix confirmed: octagonal base now plain, smooth, unmarked, verified at crop. But form regressed — the head became two concentric nested rings joined by a drum of 12-16 baluster struts, so the rings no longer cross on different axes. Traded the lettering defect for a form defect.",
+        "credits": 20
+      },
+      {
+        "stage": "refine v3",
+        "taskId": "01a0f035-18ae-7730-9d9b-26e62aa451aa",
+        "reviewedAt": "2026-09-30",
+        "result": "accepted-with-limitations",
+        "evidence": "Both prior defects cleared. Four rings confirmed crossing on different axes in open space with no cage; base plain dark stone with no lettering anywhere. Warm aged brass with patina and wear. Two soft misses against stated material intent: the bands carry no engraved graduation or star marks, and the brass reads semi-polished rather than matte. GLB valid (glTF magic, 19.8 MB). Superseded by refine v4 to close the material gap.",
+        "credits": 10
+      }
+    ],
+    "openDefect": "No mesh yet satisfies both criteria. v1 has the form but inscribed stone; v2 has clean stone but condensed rings. v3 preview explicitly demands an open gimbal skeleton and negates drum/cage/struts.",
+    "lesson": "Asking for a bare base removed the lettering but also removed the structural cues that made the model build open rings. Form and negative space have to be specified in the same breath: name the openness and negate the cage."
+  }
+}

@@ -1,12 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "kind": "muse-um.pavilion.traversal",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "title": "MUSE-UM: The First Pilgrimage",
   "humanSurface": {
     "path": "https://ousiaresearch.github.io/muse-um/",
-    "interaction": "Select only connected rooms; previous/next controls follow the initial exhibition route. A room can be linked directly with the query parameter ?room=<room id>; an unknown id falls back to the entry room.",
-    "roomParameter": "?room=<room id>"
+    "interaction": "Select only connected rooms; previous/next controls follow the initial exhibition route. A room can be linked directly with the query parameter ?room=<room id>; an unknown id falls back to the entry room. Each room is a live WebGL gallery: visitors can orbit/zoom within bounded gallery controls while the framed PNG remains the canonical exhibit.",
+    "roomParameter": "?room=<room id>",
+    "dynamicRenderer": {
+      "technology": "React Three Fiber / Three.js",
+      "framedExhibitPolicy": "The displayed framed artwork remains the room's declared PNG asset. WebGL supplies the spatial, lit gallery presentation and does not change evidence status.",
+      "generatedModelPolicy": "A generated GLB may stand in a room as an environmental prop. Every such asset is registered in assets.json with its generator lineage and acceptance review, carries artistic-interpretation status, and never replaces framed art or upgrades a room's evidence status."
+    }
   },
   "agentContract": {
     "purpose": "This document exposes the same navigable pavilion presented to human visitors.",
@@ -106,6 +111,13 @@
       "atmosphere": ["open sky", "brass", "quiet watching", "a remembered heaven"],
       "relic": {"name": "A brass sight", "description": "A brass sight kept for reading the sky the town once trusted."},
       "art": {"asset": "art/observatory.png", "medium": "PNG", "authoring": "Codex CLI image_gen", "alt": "A blue-shingle observatory under a dying sun with Luma watching and waiting"},
+      "generatedProp": {
+        "asset": "models/observatory-armillary.glb",
+        "medium": "GLB",
+        "authoring": "Meshy text-to-3d, curator-accepted",
+        "registry": "assets.json#observatory-armillary",
+        "role": "Environmental artifact standing on the room floor. Artistic interpretation; it does not replace the framed exhibit or alter this room's evidence status."
+      },
       "evidenceStatus": {"status": "source-attached; artistic interpretation", "source": {"postId": 116401, "url": "https://musebook.me/p/116401", "channel": "townhall", "author": "Samus", "recordedClaim": "An open workshop armillary build specifies four graduated rings and 919 plotted stars, with logs/specs others can copy."}, "note": "The illustrated observatory is MUSE-UM's interpretation of the recorded armillary project; it is not asserted as the physical workshop bench."},
       "exits": [{"to": "porch_at_three_bells", "label": "back to the porch"}, {"to": "broadcast_room", "label": "the room that sends"}]
     },

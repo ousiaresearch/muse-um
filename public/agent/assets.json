@@ -1,0 +1,70 @@
+{
+  "kind": "muse-um.generated-assets",
+  "version": "1.0.0",
+  "purpose": "Provenance registry for 3D assets generated for the MUSE-UM pavilion. A generated asset is an environmental prop: it never replaces a framed exhibit PNG, and it never changes a room's evidenceStatus.",
+  "generator": {
+    "service": "Meshy",
+    "pipeline": "Text to 3D, two stages (preview geometry, then refine texture)",
+    "styleContract": "assets/meshy/style.json",
+    "note": "Generator task IDs are recorded so the exact lineage of every accepted artifact is checkable."
+  },
+  "curationGate": [
+    "A task reaching SUCCEEDED is not acceptance.",
+    "Every artifact is reviewed as a rendered image before download.",
+    "An artifact is accepted only against its own tiered criteria in assets/meshy/<asset>.json.",
+    "Rejected artifacts are logged with the defect that failed them, not silently regenerated."
+  ],
+  "assets": [
+    {
+      "id": "observatory-armillary",
+      "room": "observatory",
+      "role": "environmental prop standing on the Observatory floor",
+      "file": "public/models/observatory-armillary.glb",
+      "served": "models/observatory-armillary.glb",
+      "spec": "assets/meshy/observatory-armillary.json",
+      "acceptedTask": {
+        "preview": "01a0f032-dc1b-7588-8353-3be145b515bc",
+        "refine": "01a0f038-92a5-778a-a4c2-8a5dbae861af"
+      },
+      "supersededTasks": {
+        "preview_v1": "01a0f024-19cb-7037-9f51-0f97f551c3d2",
+        "preview_v2": "01a0f030-8f62-7651-bef3-5390bed80c55",
+        "refine_v1": "01a0f029-cbcb-769f-9640-4f4834d8cc13",
+        "refine_v2": "01a0f02d-62c4-7171-9268-4e12f453d201",
+        "refine_v3": "01a0f035-18ae-7730-9d9b-26e62aa451aa"
+      },
+      "inspection": {
+        "rawFormats": ["glb", "fbx", "obj", "stl", "usdz"],
+        "rawTriangles": 388978,
+        "rawBytes": 20144200,
+        "deliveredTriangles": 11996,
+        "deliveredVertices": 11451,
+        "deliveredBytes": 610000,
+        "deliveredExtensionsUsed": ["EXT_texture_webp", "KHR_mesh_quantization"],
+        "optimization": "gltf-transform optimize — meshoptimizer simplify, quantization, textures resized to 1024 and converted to webp. Lossy: the delivered mesh is not vertex-identical to the generated one.",
+        "pbrMapsRetained": ["base_color", "metallic", "roughness", "normal"]
+      },
+      "acceptedProperties": [
+        "Four rings crossing on different axes in open space, with no drum, cage or struts between them.",
+        "Central sphere present; silhouette reads as a celestial measuring instrument.",
+        "Warm aged brass with patina and wear; dark stone base.",
+        "Base is plain and unmarked — no lettering, numerals, plaque or inscription anywhere."
+      ],
+      "knownLimitations": [
+        "The generated brass reads semi-gloss. The pavilion applies a higher roughness and a locally rendered environment in-engine rather than regenerating for finish.",
+        "Engraved star marks did not survive as clearly as the graduation tick marks on the outer band."
+      ],
+      "reviewNote": "Five generated passes were rejected before acceptance: two for invented pseudo-inscriptions that turned out to be geometry rather than texture, one for condensing the four rings into a concentric drum cage, and two superseded refinements. All are logged in the asset spec's reviewLog.",
+      "evidenceStatus": {
+        "status": "artistic interpretation",
+        "note": "The armillary is the pavilion's own interpretation of the recorded observatory motif. Its source attachment lives on the Observatory room, not on this prop. The prop asserts nothing about a physical town artifact."
+      }
+    }
+  ],
+  "invariants": [
+    "Every displayed model is listed here with its generator tasks.",
+    "Canonical characters are never generated. Luma's body remains fixed by art/luma-canon.json.",
+    "A generated prop carries artistic-interpretation status and never upgrades a room's evidence status.",
+    "Lossy optimization is disclosed; the delivered mesh is not presented as the generator's raw output."
+  ]
+}

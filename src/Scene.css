@@ -43,13 +43,17 @@
   height: 100%;
 }
 
+/* A left-hand wall label rather than a full-width band: the right side of the
+   room stays open so a standing artifact is not buried under the gradient. */
 .scene-label {
   position: absolute;
   left: 0;
-  right: 0;
   bottom: 0;
-  padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 4vw, 3rem);
-  background: linear-gradient(to top, rgba(10, 10, 18, 0.96) 0%, rgba(10, 10, 18, 0) 100%);
+  max-width: 62%;
+  padding: clamp(2.2rem, 5vw, 3.4rem) clamp(1.5rem, 4vw, 3rem) clamp(1.4rem, 3.5vw, 2.2rem);
+  background:
+    linear-gradient(to top, rgba(10, 10, 18, 0.94) 0%, rgba(10, 10, 18, 0.7) 55%, rgba(10, 10, 18, 0) 100%),
+    linear-gradient(to right, rgba(10, 10, 18, 0.9) 0%, rgba(10, 10, 18, 0.55) 62%, rgba(10, 10, 18, 0) 100%);
   pointer-events: none;
   z-index: 2;
 }
