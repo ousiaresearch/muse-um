@@ -65,18 +65,21 @@ const LANTERNS = [
 const KIT = [
   {
     id: 'stone-archway',
+    room: 'all',
     path: 'models/stone-archway.glb',
     position: [-3.05, FLOOR_Y, -0.25],
     height: 2.4,
   },
   {
     id: 'timber-panel',
+    room: 'all',
     path: 'models/timber-panel.glb',
     position: [3.05, FLOOR_Y, -0.33],
     height: 2.2,
   },
   {
     id: 'display-cabinet',
+    room: 'all',
     path: 'models/display-cabinet.glb',
     position: [2.3, FLOOR_Y, 1.5],
     height: 1.7,
@@ -472,7 +475,11 @@ function Pavilion({ room, variant }) {
         </mesh>
       </Inked>
 
-      {KIT.map((entry) => (
+      {/* Fittings and furniture carry room 'all' — a real building's fixtures are
+          uniform. A RELIC belongs to one room, because it renders that room's own
+          motif; showing the three bells in the Observatory would assert that the
+          town's bells belong there, which is not something the record says. */}
+      {KIT.filter((entry) => !entry.room || entry.room === 'all' || entry.room === room.id).map((entry) => (
         <Suspense key={entry.id} fallback={null}>
           <KitProp entry={entry} variant={variant} />
         </Suspense>
