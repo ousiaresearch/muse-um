@@ -1,0 +1,45 @@
+Use case: 3D reconstruction reference sheet. The two views get fed to a multi-image
+reconstruction service, so they must be the SAME OBJECT seen from two angles, drawn in one image.
+
+Asset type: an object turnaround sheet — two views of one standing display cabinet, in a single row.
+
+Style rules: match the attached reference exactly in material language and atmosphere. This is the
+MUSE-UM pavilion idiom: hand-drawn European graphic-novel rendering, medieval epic and ancient sacred
+architecture, ethereal, a forgotten civilization remembering itself beneath a dying sun. Warm aged
+oak with dark grain, patinated brass fittings, thin engraved linework. Matte hand-finished surfaces,
+no plastic sheen, no chrome, no neon, no gloss.
+
+The object: a tall standing display cabinet of dark aged oak, the kind a small museum keeps relics in.
+A plain rectangular carcass stands on a short plinth base with a simple moulded foot. Above the doors
+runs a small projecting cornice. The front is closed by TWO full-height doors, each divided into
+panelled sections by raised oak mouldings, with a small round patinated brass ring pull on each door
+and a pair of visible brass hinges at the outer edges. A narrow central stile divides the two doors.
+The cabinet is solid and closed — it reads as a heavy piece of joinery, clearly wider across the
+front than it is deep from front to back.
+
+The doors must be SOLID OPAQUE PANELLED OAK with raised mouldings and visible grain. There must be
+no glass, no glazing, no transparency, and nothing to see through anywhere in the object.
+
+Keep the ornament BOLD AND SIMPLE — broad readable mouldings and strong panel shapes, not fine
+filigree or ornate carving. Fine detail smears when the image is reconstructed into geometry.
+
+Views, left to right, all the same object at the same scale and the same height in frame:
+  1. front elevation, looking straight at the two closed doors
+  2. three-quarter view, turned roughly forty degrees so the depth of the carcass, the plinth and the
+     projecting cornice are clearly visible
+
+Composition: the two views evenly spaced across one horizontal sheet, separated by a clear empty gap
+so they can be cut apart. Identical scale and identical lighting in both views. Each view upright,
+fully inside the frame with generous empty margin on all sides. No overlap, no touching edges.
+
+Use the LARGEST canvas you can produce, and make the cabinet as large within the frame as the margins
+allow — every extra pixel of the object survives into the reconstruction.
+
+Background: perfectly uniform pure magenta #FF00FF at every pixel outside the object, with no shadow,
+no floor, no gradient, no vignette. The object must be cleanly separable from the background.
+
+Constraints: one object only. Absolutely no text, lettering, numerals, labels, arrows, measurement
+marks, captions, borders, or watermarks anywhere in the image. No second object, no scenery, no
+figures, no ground, no wall behind it.
+
+Output: save to /Users/johannross/muse-um/assets/meshy/turnarounds/display-cabinet-sheet.png

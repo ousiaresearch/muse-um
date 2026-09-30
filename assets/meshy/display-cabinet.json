@@ -1,0 +1,52 @@
+{
+  "id": "display-cabinet",
+  "asset": "The relic cabinet",
+  "kind": "images",
+  "room": "all",
+  "role": "museum furniture — a closed oak cabinet giving human scale and somewhere for relics to live",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-display-cabinet-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/display-cabinet/01.jpg",
+        "assets/meshy/turnarounds/display-cabinet/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/display-cabinet/01.jpg",
+        "assets/meshy/turnarounds/display-cabinet/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Fourth kit module. Straightforward solid furniture, included because a room of nothing but wall fittings still has no furniture in it.",
+    "tiers": {
+      "reject": [
+        "Doors glazed, transparent, or open — the brief specifies solid panelled oak.",
+        "Carcass reads as a flat slab with no depth or plinth.",
+        "Doors not distinguishable as two leaves with a central stile.",
+        "Any lettering, numerals, or invented inscription.",
+        "Sits implausibly — proportions that cannot stand."
+      ],
+      "accept": [
+        "One closed cabinet: rectangular carcass on a plinth base with a projecting cornice.",
+        "Two full-height doors divided into panels by raised mouldings, with a central stile.",
+        "Brass ring pulls and visible hinges.",
+        "Solid opaque panelled oak with visible grain; no glass anywhere.",
+        "Wider across the front than it is deep."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Angled against the wall clear of the exhibit. Its joinery is what has to survive reconstruction; the brass pulls are the detail that tells you whether the texture pass worked."
+  }
+}

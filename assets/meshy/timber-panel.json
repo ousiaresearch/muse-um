@@ -1,0 +1,52 @@
+{
+  "id": "timber-panel",
+  "asset": "The timber-framed wall panel",
+  "kind": "images",
+  "room": "all",
+  "role": "wall architecture — French Tudor framing mounted beside each exhibit, giving the wall structure instead of surface",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-timber-panel-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/timber-panel/01.jpg",
+        "assets/meshy/turnarounds/timber-panel/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/timber-panel/01.jpg",
+        "assets/meshy/turnarounds/timber-panel/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Second kit module. The test of whether an open structural frame survives reconstruction — the lantern was a compact solid, and this is not.",
+    "tiers": {
+      "reject": [
+        "Timbers read as flat painted stripes rather than solid members with thickness.",
+        "Plaster infill missing, transparent, or absent as a surface.",
+        "The diagonal braces do not connect to the stud — floating or broken joinery.",
+        "Any lettering, numerals, or invented inscription.",
+        "Silhouette unreadable at wall scale."
+      ],
+      "accept": [
+        "One panel: outer rectangle of thick timbers, central stud, two diagonal braces reaching it.",
+        "Plaster infill present as an opaque matte surface between the timbers.",
+        "Shingled head on top, with a capping rail beneath it.",
+        "Warm aged oak with visible grain and tool marks.",
+        "Rectangular and taller than wide, reading as part of a building rather than a picture."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Mounted flat on the room wall beside the exhibit. Because it is architecture it must not compete with the framed art: it is graded by the same ramp as the wall it sits on."
+  }
+}

@@ -1,0 +1,47 @@
+Use case: 3D reconstruction reference sheet. The two views get fed to a multi-image
+reconstruction service, so they must be the SAME OBJECT seen from two angles, drawn in one image.
+
+Asset type: an object turnaround sheet — two views of one timber-framed wall panel, in a single row.
+
+Style rules: match the attached reference exactly in material language and atmosphere. This is the
+MUSE-UM pavilion idiom: hand-drawn European graphic-novel rendering, medieval epic and ancient sacred
+architecture, ethereal, a forgotten civilization remembering itself beneath a dying sun. Warm aged
+oak with dark grain and tool marks, pale bone-coloured plaster, muted blue-grey shingles, thin
+engraved linework. Matte hand-finished surfaces, no plastic sheen, no chrome, no neon, no gloss.
+
+The object: one rectangular wall panel of the French Tudor kind, standing upright like a section of
+wall cut out and set on the ground. Heavy hand-cut dark oak posts and rails form the outer rectangle.
+Inside it, a single vertical central stud runs the full height, and two thick diagonal braces run
+from the corners up to that stud, forming a shallow V. The spaces between the timbers are filled with
+flat pale plaster, slightly uneven and hand-troweled. On top of the frame sits a narrow sloping head
+of small overlapping blue-grey shingles, like the bottom course of a roof, with a thin oak capping rail
+beneath it. The timbers are thick and clearly structural — much wider than they are deep in appearance
+— with visible grain, adze marks, and darkening in the joints. Rectangular overall, taller than it is
+wide, roughly two and a half times as tall as it is wide.
+
+The plaster infill must read as OPAQUE SOLID SURFACE with its own matte texture. There must be no
+transparency, no glazing, and nothing to see through anywhere in the object.
+
+Keep the ornament BOLD AND SIMPLE — broad readable shapes and strong timbers, not fine filigree. Fine
+detail smears when the image is reconstructed into geometry.
+
+Views, left to right, all the same object at the same scale and the same height in frame:
+  1. front elevation, looking straight at the face of the panel
+  2. three-quarter view, turned roughly forty degrees so the thickness of the timbers and the depth
+     of the frame are clearly visible
+
+Composition: the two views evenly spaced across one horizontal sheet, separated by a clear empty gap
+so they can be cut apart. Identical scale and identical lighting in both views. Each view upright,
+fully inside the frame with generous empty margin on all sides. No overlap, no touching edges.
+
+Use the LARGEST canvas you can produce, and make the panel as large within the frame as the margins
+allow — every extra pixel of the object survives into the reconstruction.
+
+Background: perfectly uniform pure magenta #FF00FF at every pixel outside the object, with no shadow,
+no floor, no gradient, no vignette. The object must be cleanly separable from the background.
+
+Constraints: one object only. Absolutely no text, lettering, numerals, labels, arrows, measurement
+marks, captions, borders, or watermarks anywhere in the image. No second object, no scenery, no
+figures, no ground, no wall behind it.
+
+Output: save to /Users/johannross/muse-um/assets/meshy/turnarounds/timber-panel-sheet.png

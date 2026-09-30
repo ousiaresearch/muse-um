@@ -1,0 +1,52 @@
+{
+  "id": "stone-archway",
+  "asset": "The stone doorway surround",
+  "kind": "images",
+  "room": "all",
+  "role": "architecture — a doorway at the room edge giving the space a way out and a sightline through it",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-stone-archway-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/stone-archway/01.jpg",
+        "assets/meshy/turnarounds/stone-archway/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/stone-archway/01.jpg",
+        "assets/meshy/turnarounds/stone-archway/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Third kit module. Tests a through-hole silhouette, which is the opposite reconstruction problem from the lantern's closed form.",
+    "tiers": {
+      "reject": [
+        "The opening is filled — door, panel, glazing, or webbing across the void.",
+        "Masonry reads as a thin flat card rather than thick blocks.",
+        "Arch stones not separable as voussoirs, or no keystone.",
+        "Any lettering, numerals, or invented inscription.",
+        "Opening too small to read as a doorway."
+      ],
+      "accept": [
+        "Two jambs, a semicircular arch of separate voussoirs, and a keystone.",
+        "A true through-hole, cleanly open, with the opening readable as a way through.",
+        "Stone reads as thick masonry with worn and chipped edges.",
+        "Carved chevron band on the arch face.",
+        "A low threshold step between the jambs."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Stands at the room edge as a doorway. If it reads as a hole in the wall rather than a frame around one, it fails."
+  }
+}

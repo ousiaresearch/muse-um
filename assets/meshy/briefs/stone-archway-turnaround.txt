@@ -1,0 +1,47 @@
+Use case: 3D reconstruction reference sheet. The two views get fed to a multi-image
+reconstruction service, so they must be the SAME OBJECT seen from two angles, drawn in one image.
+
+Asset type: an object turnaround sheet — two views of one stone doorway surround, in a single row.
+
+Style rules: match the attached reference exactly in material language and atmosphere. This is the
+MUSE-UM pavilion idiom: hand-drawn European graphic-novel rendering, medieval epic and ancient sacred
+architecture, ethereal, a forgotten civilization remembering itself beneath a dying sun. Dark
+hand-cut stone with chisel marks and worn edges, thin engraved linework, muted bone and warm umber
+highlights. Matte hand-finished surfaces, no plastic sheen, no chrome, no neon, no gloss.
+
+The object: a freestanding doorway surround carved from dark hand-cut stone, standing upright on its
+own. Two thick rectangular jambs stand vertically, and a semicircular arch of separate wedge-shaped
+voussoir stones spans between them, with a slightly larger and more prominent keystone at the top
+centre of the arch. A shallow band of simple carved chevrons runs along the face of the arch stones.
+A low threshold step of the same stone sits at the base between the jambs. The stone is thick —
+clearly much deeper front-to-back than a thin panel — with the arch and jambs reading as solid blocks
+of masonry with worn, chipped edges.
+
+The door opening in the middle is a TRUE THROUGH-HOLE: the background must be visible straight
+through it, with no door, no panel, no glazing, and nothing filling the opening. The hole should be a
+clean unambiguous void with a clear silhouette.
+
+Keep the ornament BOLD AND SIMPLE — broad readable shapes, not fine filigree. Fine detail smears when
+the image is reconstructed into geometry.
+
+Views, left to right, all the same object at the same scale and the same height in frame:
+  1. front elevation, looking straight through the opening
+  2. three-quarter view, turned roughly forty degrees so the thickness of the masonry and the depth
+     of the opening are clearly visible
+
+Composition: the two views evenly spaced across one horizontal sheet, separated by a clear empty gap
+so they can be cut apart. Identical scale and identical lighting in both views. Each view upright,
+fully inside the frame with generous empty margin on all sides. No overlap, no touching edges.
+
+Use the LARGEST canvas you can produce, and make the object as large within the frame as the margins
+allow — every extra pixel of the object survives into the reconstruction.
+
+Background: perfectly uniform pure magenta #FF00FF at every pixel outside the object AND at every
+pixel visible through the opening, with no shadow, no floor, no gradient, no vignette. The object
+must be cleanly separable from the background.
+
+Constraints: one object only. Absolutely no text, lettering, numerals, labels, arrows, measurement
+marks, captions, borders, or watermarks anywhere in the image. No second object, no scenery, no
+figures, no ground, no wall behind it.
+
+Output: save to /Users/johannross/muse-um/assets/meshy/turnarounds/stone-archway-sheet.png

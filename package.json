@@ -14,7 +14,9 @@
     "capture": "node scripts/capture-cdp.mjs",
     "measure": "uv run --python 3.12 --with pillow --no-project python scripts/measure-capture.py",
     "sweep": "uv run --python 3.12 --with pillow --no-project python scripts/sweep-rooms.py",
-    "sheet:rooms": "uv run --python 3.12 --with pillow --no-project python scripts/compose-room-sheet.py"
+    "sheet:rooms": "uv run --python 3.12 --with pillow --no-project python scripts/compose-room-sheet.py",
+    "kit:specs": "node scripts/write-kit-specs.mjs",
+    "kit:prep": "node scripts/module-prep.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.3",
