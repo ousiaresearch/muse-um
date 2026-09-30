@@ -1,0 +1,63 @@
+{
+  "id": "luma",
+  "name": "Luma",
+  "role": [
+    "guide",
+    "curator",
+    "companion"
+  ],
+  "canonicalReference": "art/luma-canonical.jpg",
+  "canonicalReferenceResolvesAgainst": "https://ousiaresearch.github.io/muse-um/",
+  "canonicalReferenceFile": "public/art/luma-canonical.jpg",
+  "canonicalReferenceSha256": "4de0f04127bb42e208135d441976aaca4857fe30f7d27f9a743613d9f28132de",
+  "canonicalReferenceStatus": "User-confirmed canonical image, 2026-09-29.",
+  "sourceSpeciesReference": "User-provided Muse mascot reference; exact body composition, species, proportions, limb structure, posture, and silhouette are immutable.",
+  "identity": {
+    "bodyRule": "Never redesign Luma's body. Preserve the canonical rounded cream plush silhouette, hood-like outer fur ring, soft peach face, black oval eyes, rosy cheeks, small open smile, short rounded arms, and short rounded feet. Customization is additive only: pose, expression, setting, and the defined carried set.",
+    "tone": [
+      "cute",
+      "friendly",
+      "cosmic mythic science-fiction",
+      "user-friendly",
+      "warm"
+    ],
+    "presence": "Luma appears in every MUSE-UM room as a guide, curator, and companion, but does not need to occupy the same pose or visual prominence in each room."
+  },
+  "carriedSet": {
+    "curatorCollar": "Slim warm brass/amber collar around the lower hood; visible central loop and small brass studs.",
+    "starlightMedallion": "Round gold-brass dangling starlight medallion attached at the collar's center.",
+    "guideItem": "Small brown leather side pouch with a compact glowing brass lantern inside. It hangs at Luma's left side; Luma does not carry a different handheld item."
+  },
+  "generationRequirements": {
+    "format": "PNG for framed exhibits; JPEG retained only for this canonical source reference.",
+    "method": "Codex built-in image_gen, using the canonical reference as image input.",
+    "invariantPrompt": "Preserve Luma's exact canonical body, face, collar, starlight medallion, and lantern pouch. Render Luma within the scene's visual language, never as a pasted-on character. Change only pose, expression, setting, and environmental interaction."
+  },
+  "threeDimensional": {
+    "authorized": true,
+    "authorizedBy": "Operator ruling, 2026-09-29: Luma and the other Muse companions are to be generated in 3D.",
+    "method": "Meshy multi-image-to-3D, conditioned on a canonical turnaround sheet derived from this reference. Text-to-3D is NOT an acceptable method for a canon character: with prose alone the generator invents what it cannot infer.",
+    "requiredTurnaround": "public/art/luma-turnaround/{front,three-quarter,profile}.png, each reviewed against the part inventory below before use.",
+    "partInventory": [
+      "rounded cream plush body",
+      "hood-like outer fur ring",
+      "soft peach face",
+      "two black oval eyes",
+      "rosy cheeks",
+      "small open smile",
+      "short rounded arms",
+      "short rounded feet",
+      "brass collar with central loop and studs",
+      "round starlight medallion at the collar centre",
+      "brown leather side pouch at the left side, containing a compact glowing brass lantern"
+    ],
+    "admissionGates": "See the MUSE-UM visual congruency plan, gates 10-14: silhouette IoU >= 0.80 against this reference, proportion drift <= 8%, complete part inventory, accessory palette within the token set, and body-silhouette IoU >= 0.75 for companions against Luma's accepted mesh.",
+    "rejectionRule": "A generated character that fails any gate is rejected and logged with the failing measurement. It is never displayed with a caveat, and the canon is never adjusted to accommodate a mesh."
+  },
+  "generated": {
+    "generatedAt": "2026-09-30T17:35:34Z",
+    "generator": "scripts/publish.sh (vite build + scripts/stamp.py)",
+    "sourceRepository": "https://github.com/ousiaresearch/muse-um",
+    "sourceRevision": "main@8299c19cb2416b626bf60238b405949f15b4ccd7"
+  }
+}

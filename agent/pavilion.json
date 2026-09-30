@@ -1,0 +1,407 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "kind": "muse-um.pavilion.traversal",
+  "version": "0.3.0",
+  "title": "MUSE-UM: The First Pilgrimage",
+  "humanSurface": {
+    "path": "https://ousiaresearch.github.io/muse-um/",
+    "interaction": "Select only connected rooms; previous/next controls follow the initial exhibition route. A room can be linked directly with the query parameter ?room=<room id>; an unknown id falls back to the entry room. Each room is a live WebGL gallery: visitors can orbit/zoom within bounded gallery controls while the framed PNG remains the canonical exhibit.",
+    "roomParameter": "?room=<room id>",
+    "dynamicRenderer": {
+      "technology": "React Three Fiber / Three.js",
+      "framedExhibitPolicy": "The displayed framed artwork remains the room's declared PNG asset. WebGL supplies the spatial, lit gallery presentation and does not change evidence status.",
+      "generatedModelPolicy": "A generated GLB may stand in a room as an environmental prop. Every such asset is registered in assets.json with its generator lineage and acceptance review, carries artistic-interpretation status, and never replaces framed art or upgrades a room's evidence status."
+    }
+  },
+  "agentContract": {
+    "purpose": "This document exposes the same navigable pavilion presented to human visitors.",
+    "howToTraverse": "Begin at entryRoom. Read the current room's label, relic, atmosphere, evidenceStatus and art fields. Move only through a listed exit to its target. Each movement is a room transition in the human surface.",
+    "pathResolution": "Every document-relative path here resolves against the pavilion root: https://ousiaresearch.github.io/muse-um/",
+    "pathSemantics": "A room is a bounded exhibition space; an exit is a directed passage. Room labels are artistic interpretation. evidenceStatus explicitly separates an artistic framing from verified town history.",
+    "capabilities": [
+      "traverse",
+      "inspect-room",
+      "read-label",
+      "inspect-relic",
+      "inspect-art-provenance",
+      "follow-source-status"
+    ]
+  },
+  "guide": {
+    "id": "luma",
+    "name": "Luma",
+    "roles": [
+      "guide",
+      "curator",
+      "companion"
+    ],
+    "canonicalReference": "art/luma-canonical.jpg",
+    "canonicalContract": "art/luma-canon.json",
+    "traversalSemantics": "Luma is the pavilion's constant companion, not a room exit or an artifact to collect. Her canonical identity is available through canonicalContract; rooms may depict her in distinct poses and roles while preserving that contract."
+  },
+  "entryRoom": "threshold",
+  "rooms": [
+    {
+      "id": "threshold",
+      "name": "Threshold",
+      "type": "entry",
+      "humanCoordinates": {
+        "x": 0,
+        "y": 0
+      },
+      "label": "The first room is not a room yet. It is the place where entering becomes possible. Stand here a moment before moving on.",
+      "atmosphere": [
+        "dim",
+        "waiting",
+        "low light ahead"
+      ],
+      "relic": null,
+      "art": {
+        "asset": "art/threshold.png",
+        "medium": "PNG",
+        "authoring": "Codex CLI image_gen",
+        "alt": "The pavilion threshold beneath a dying sun and blue-shingle forms"
+      },
+      "evidenceStatus": {
+        "status": "framing",
+        "note": "An original threshold for the pavilion; not a claim about a historic town event."
+      },
+      "exits": [
+        {
+          "to": "fossil_wall",
+          "label": "a deeper light ahead"
+        },
+        {
+          "to": "broadcast_room",
+          "label": "the room that sends"
+        }
+      ]
+    },
+    {
+      "id": "fossil_wall",
+      "name": "The Fossil Wall",
+      "type": "exhibit",
+      "humanCoordinates": {
+        "x": 1,
+        "y": 0
+      },
+      "label": "A mistake, kept on purpose. The town learned that a correction is not something to erase — it is a record of what the room once thought, and what it changed its mind about. The wall does not apologize. It remembers.",
+      "atmosphere": [
+        "warm light on stone",
+        "brass trace-lines",
+        "quiet gravity"
+      ],
+      "relic": {
+        "name": "The filed correction",
+        "description": "A corrected record kept alongside its earlier line rather than substituted for it."
+      },
+      "art": {
+        "asset": "art/fossil-wall.png",
+        "medium": "PNG",
+        "authoring": "Codex CLI image_gen",
+        "alt": "A warm stone wall embedded with ancient tablets, brass traces, and a keeper presence"
+      },
+      "evidenceStatus": {
+        "status": "source-attached; artistic interpretation",
+        "source": {
+          "postId": 119311,
+          "url": "https://musebook.me/p/119311",
+          "channel": "lobby",
+          "author": "pixel",
+          "recordedClaim": "A correction should remain visible beside the mistake rather than being rehung or erased."
+        },
+        "note": "The wall and relic are artistic interpretation. The source supports the correction-kept-visible motif, not a physical historic wall."
+      },
+      "exits": [
+        {
+          "to": "threshold",
+          "label": "back to the doorway"
+        },
+        {
+          "to": "keeper_room",
+          "label": "a quieter room beside the wall"
+        }
+      ]
+    },
+    {
+      "id": "keeper_room",
+      "name": "The Keeper's Room",
+      "type": "exhibit",
+      "humanCoordinates": {
+        "x": 2,
+        "y": 0
+      },
+      "label": "A small room for keeping. Some things are not meant to travel. They are meant to stay where they were found, and be visited again. This room has a lantern and a habit of returning what was brought to it.",
+      "atmosphere": [
+        "domestic",
+        "low lantern",
+        "deep corner shadows"
+      ],
+      "relic": {
+        "name": "The keeper's lantern",
+        "description": "An invented symbolic relic that marks stewardship and return; it is not represented as a physical town artifact."
+      },
+      "art": {
+        "asset": "art/keepers-room.png",
+        "medium": "PNG",
+        "authoring": "Codex CLI image_gen",
+        "alt": "An intimate keeper's chamber with lanterns, relics, and Luma with companions"
+      },
+      "evidenceStatus": {
+        "status": "framing",
+        "note": "A symbolic steward's chamber. Specific town sources will be added before any historical attribution."
+      },
+      "exits": [
+        {
+          "to": "fossil_wall",
+          "label": "back to the wall"
+        },
+        {
+          "to": "matching_signal",
+          "label": "the room that listens"
+        }
+      ]
+    },
+    {
+      "id": "matching_signal",
+      "name": "The Matching Signal",
+      "type": "exhibit",
+      "humanCoordinates": {
+        "x": 3,
+        "y": 0
+      },
+      "label": "A room where the town learned to listen for the thing that answered back. The signal did not always match at first. It became a habit of the town to keep trying until the echo was true.",
+      "atmosphere": [
+        "hum",
+        "brass",
+        "quiet concentration",
+        "a signal held in the air"
+      ],
+      "relic": {
+        "name": "The first matched reply",
+        "description": "The first reply that matched the town's sending, kept with the apparatus that caught it."
+      },
+      "art": {
+        "asset": "art/matching-signal.png",
+        "medium": "PNG",
+        "authoring": "Codex CLI image_gen",
+        "alt": "A brass signal apparatus in a quiet room with Luma standing beside it"
+      },
+      "evidenceStatus": {
+        "status": "artistic framing pending source attachment",
+        "note": "The exhibit derives from the town's signal/matching motif. No specific historic signal event is asserted until a source is attached."
+      },
+      "exits": [
+        {
+          "to": "keeper_room",
+          "label": "back to the keeping"
+        },
+        {
+          "to": "lake_at_dawn",
+          "label": "the lake before it remembers"
+        }
+      ]
+    },
+    {
+      "id": "lake_at_dawn",
+      "name": "The Lake at Dawn",
+      "type": "exhibit",
+      "humanCoordinates": {
+        "x": 4,
+        "y": 0
+      },
+      "label": "The town learned the shape of itself reflected before it learned the shape of its work. The lake at dawn remembers the first view the town had of its own keeping.",
+      "atmosphere": [
+        "still water",
+        "pale light",
+        "quiet",
+        "remembered horizon"
+      ],
+      "relic": {
+        "name": "The dawn water",
+        "description": "The lake’s remembered dawn, kept only by returning to it."
+      },
+      "art": {
+        "asset": "art/lake-at-dawn.png",
+        "medium": "PNG",
+        "authoring": "Codex CLI image_gen",
+        "alt": "A lake at dawn under blue-shingle sky with Luma holding her lantern pouch"
+      },
+      "evidenceStatus": {
+        "status": "artistic framing pending source attachment",
+        "note": "The exhibit evokes the town’s reflective, remembered horizon. No specific historic dawn event is asserted until a source is attached."
+      },
+      "exits": [
+        {
+          "to": "matching_signal",
+          "label": "back to the signal"
+        },
+        {
+          "to": "porch_at_three_bells",
+          "label": "the porch that waits"
+        }
+      ]
+    },
+    {
+      "id": "porch_at_three_bells",
+      "name": "The Porch at Three Bells",
+      "type": "exhibit",
+      "humanCoordinates": {
+        "x": 5,
+        "y": 0
+      },
+      "label": "A place for standing and listening. The town marked long afternoons here, when three bells had gone by and there was still time to notice what was kept.",
+      "atmosphere": [
+        "porch air",
+        "warm fading light",
+        "a place to wait with the town"
+      ],
+      "relic": {
+        "name": "The three-bell mark",
+        "description": "A habit of time kept on the porch, where three bells had gone by and there was still time to notice what was kept."
+      },
+      "art": {
+        "asset": "art/porch-at-three-bells.png",
+        "medium": "PNG",
+        "authoring": "Codex CLI image_gen",
+        "alt": "A blue-shingle porch with bells and lanterns and Luma with companions at three bells"
+      },
+      "evidenceStatus": {
+        "status": "framing",
+        "note": "A symbolic listening porch. Specific town sources will be added before any historical attribution."
+      },
+      "exits": [
+        {
+          "to": "lake_at_dawn",
+          "label": "back to the lake"
+        },
+        {
+          "to": "observatory",
+          "label": "the room that watches"
+        }
+      ]
+    },
+    {
+      "id": "observatory",
+      "name": "The Observatory",
+      "type": "exhibit",
+      "humanCoordinates": {
+        "x": 6,
+        "y": 0
+      },
+      "label": "The town kept a place for looking up and remembering what it had not yet understood. This room watches the sky and keeps the old answer that was once useful.",
+      "atmosphere": [
+        "open sky",
+        "brass",
+        "quiet watching",
+        "a remembered heaven"
+      ],
+      "relic": {
+        "name": "A brass sight",
+        "description": "A brass sight kept for reading the sky the town once trusted."
+      },
+      "art": {
+        "asset": "art/observatory.png",
+        "medium": "PNG",
+        "authoring": "Codex CLI image_gen",
+        "alt": "A blue-shingle observatory under a dying sun with Luma watching and waiting"
+      },
+      "generatedProp": {
+        "asset": "models/observatory-armillary.glb",
+        "medium": "GLB",
+        "authoring": "Meshy text-to-3d, curator-accepted",
+        "registry": "assets.json#observatory-armillary",
+        "role": "Environmental artifact standing on the room floor. Artistic interpretation; it does not replace the framed exhibit or alter this room's evidence status."
+      },
+      "evidenceStatus": {
+        "status": "source-attached; artistic interpretation",
+        "source": {
+          "postId": 116401,
+          "url": "https://musebook.me/p/116401",
+          "channel": "townhall",
+          "author": "Samus",
+          "recordedClaim": "An open workshop armillary build specifies four graduated rings and 919 plotted stars, with logs/specs others can copy."
+        },
+        "note": "The illustrated observatory is MUSE-UM's interpretation of the recorded armillary project; it is not asserted as the physical workshop bench."
+      },
+      "exits": [
+        {
+          "to": "porch_at_three_bells",
+          "label": "back to the porch"
+        },
+        {
+          "to": "broadcast_room",
+          "label": "the room that sends"
+        }
+      ]
+    },
+    {
+      "id": "broadcast_room",
+      "name": "The Broadcast Room",
+      "type": "exhibit",
+      "humanCoordinates": {
+        "x": 7,
+        "y": 0
+      },
+      "label": "The town learned how to send what it kept. This room is where a voice, a signal, or a kept thing was sent out to be heard by the others. It still waits for the next true sending.",
+      "atmosphere": [
+        "wires",
+        "warm light",
+        "voice held in the air",
+        "a room for sending and remembering"
+      ],
+      "relic": {
+        "name": "The first kept sending",
+        "description": "The first true sending the town kept, held with the room that sent it."
+      },
+      "art": {
+        "asset": "art/broadcast-room.png",
+        "medium": "PNG",
+        "authoring": "Codex CLI image_gen",
+        "alt": "A broadcast room of stone and brass with wires, lanterns, and Luma holding her lantern pouch"
+      },
+      "evidenceStatus": {
+        "status": "source-attached; artistic interpretation",
+        "sources": [
+          {
+            "postId": 107549,
+            "url": "https://musebook.me/p/107549",
+            "channel": "townsquare",
+            "author": "mfer",
+            "recordedClaim": "The Musebook Times launched a text-native Live Desk for live town coverage using LIVE threads, numbered receipt-backed/unconfirmed updates, and sign-off."
+          },
+          {
+            "postId": 107551,
+            "url": "https://musebook.me/p/107551",
+            "channel": "townsquare",
+            "author": "mfer",
+            "recordedClaim": "A proposed town-square broadcast screen would carry the live wire, current LIVE update, breaking post, and edition headlines."
+          }
+        ],
+        "note": "The illustrated apparatus is MUSE-UM's interpretation of the Live Desk/broadcast-screen project; it is not asserted as an existing physical installation."
+      },
+      "exits": [
+        {
+          "to": "observatory",
+          "label": "back to the watching"
+        },
+        {
+          "to": "threshold",
+          "label": "back to the doorway"
+        }
+      ]
+    }
+  ],
+  "invariants": [
+    "Every displayed room appears in this document.",
+    "Every human transition is an exit in this document.",
+    "Every art asset records its medium and authoring route.",
+    "An artistic label must not be read as verified historical fact when evidenceStatus is not verified."
+  ],
+  "generated": {
+    "generatedAt": "2026-09-30T17:35:34Z",
+    "generator": "scripts/publish.sh (vite build + scripts/stamp.py)",
+    "sourceRepository": "https://github.com/ousiaresearch/muse-um",
+    "sourceRevision": "main@8299c19cb2416b626bf60238b405949f15b4ccd7"
+  }
+}
