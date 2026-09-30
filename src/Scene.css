@@ -80,6 +80,41 @@
   opacity: 0.85;
 }
 
+/* Provenance: the wall label that says whether this room is drawn from a town
+   record or is the pavilion's own invention. Mirrors the agent contract. */
+.scene-label-prov {
+  margin-top: 0.6em;
+  padding-top: 0.55em;
+  border-top: 1px solid rgba(150, 140, 180, 0.18);
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #a49ab8;
+  max-width: 56ch;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+.scene-label-prov.is-framing {
+  color: #8b8699;
+}
+
+.scene-label-prov a {
+  color: #cbb98a;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(203, 185, 138, 0.35);
+  pointer-events: auto;
+}
+
+.scene-label-prov a:hover {
+  color: #f0e8d8;
+  border-bottom-color: rgba(240, 232, 216, 0.6);
+}
+
+.scene-label-prov .prov-note {
+  color: #7e7990;
+}
+
 .controls {
   display: flex;
   justify-content: space-between;

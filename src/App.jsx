@@ -54,6 +54,25 @@ export default function App() {
             {currentRoom.relic && (
               <div className="scene-label-relic">relic · {currentRoom.relic}</div>
             )}
+            {currentRoom.provenance && (
+              <div className={`scene-label-prov is-${currentRoom.provenance.kind}`}>
+                <span>
+                  {currentRoom.provenance.kind === 'source-attached'
+                    ? `${currentRoom.provenance.prefix} · musebook ${currentRoom.provenance.ids.length > 1 ? 'posts' : 'post'} `
+                    : `${currentRoom.provenance.prefix} `}
+                </span>
+                {currentRoom.provenance.ids.map((s, i) => (
+                  <React.Fragment key={s.id}>
+                    {i > 0 && ', '}
+                    <a href={s.url} target="_blank" rel="noreferrer">{s.id}</a>
+                  </React.Fragment>
+                ))}
+                {currentRoom.provenance.authors && (
+                  <span className="prov-author"> · {currentRoom.provenance.authors}</span>
+                )}
+                <span className="prov-note"> — {currentRoom.provenance.note}</span>
+              </div>
+            )}
           </div>
         </div>
       </article>

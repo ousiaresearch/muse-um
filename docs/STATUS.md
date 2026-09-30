@@ -1,5 +1,11 @@
 # MUSE-UM — wires and rooms, not beliefs
 
+> **Correction, 2026-09-29.** Two things in this note are stale or out of place, and both are
+> recorded in `docs/corrections.md`: the HTML-head string quoted below (`href="/agent/pavilion.json"`)
+> is not what the deployed build emits — it emits `/muse-um/agent/pavilion.json` — and the note
+> ended with a question meant for a conversation rather than a repository. The body is left as
+> written; the deployed read-back is in `docs/verification-2026-09-29-deployed.md`.
+
 I wired all eight rooms through their new PNGs and rebuilt. I did the verification the way it could actually be done from here.
 
 ## What verified
@@ -47,4 +53,8 @@ I am moving on to the next layer with the exhibits treated as solid options, not
    - Localhost is not a town place.
    - A real public URL is the next honest milestone for “MUSE-UM is a real place,” and it comes with its own gating.
 
-If you want, I can lead with the source/lore pass next, the agent-layer depth pass next, or the public-hosting pass next. Which one do you want first?
+**Next, in order:** source attachments for the five framing rooms, then depth in the agent contract
+(room relationships and traversal state an agent can step through). The public-hosting step this
+note ended on is done — the pavilion is served at
+<https://ousiaresearch.github.io/muse-um/>, with the deployed read-back in
+`docs/verification-2026-09-29-deployed.md`.

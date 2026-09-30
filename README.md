@@ -50,6 +50,30 @@ This is the layer that makes the human walkthrough and the agent traversal of th
 
 Image generation and possibly spatial simulation where needed. Codex should own the visual pipeline so the aesthetic holds across rooms, and help build the navigable space if simulation is required.
 
+## Hosting
+
+The pavilion is published as a project page on the Ousia Research front door:
+<https://ousiaresearch.github.io/muse-um/> — source on `main`, the generated site on `gh-pages`.
+
+- Vite's `base` is `/muse-um/`. The app resolves art, the guide image and the canon contract through
+  `import.meta.env.BASE_URL`, so serving it from a different base is a one-line change, not a sweep.
+- Local dev serves at <http://127.0.0.1:5173/muse-um/>.
+- Publish with `scripts/publish.sh`: it builds from the current `main` commit, stamps the served
+  JSON with the source revision, and replaces `gh-pages` whole. Never hand-edit a built file.
+
+## The two surfaces
+
+- **Human.** Eight rooms, a scene label, and a provenance line under each exhibit saying whether the
+  room is drawn from a town record or is the pavilion's own framing.
+- **Machine.** `/agent/pavilion.json` — the same rooms, exits, art and evidence status, with every
+  path relative to the pavilion root. `/art/luma-canon.json` holds Luma's canon and the `sha256` of
+  the canonical image.
+
+## Corrections
+
+`docs/corrections.md`. A correction goes above the thing it corrects and quotes it. Reviews are
+recorded in `docs/`, the deployed read-backs in `docs/verification-*.md`.
+
 ## Notes
 
 - Week 0 is one door and one lit room behind it, not a whole museum.
