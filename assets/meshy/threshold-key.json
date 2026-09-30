@@ -1,0 +1,52 @@
+{
+  "id": "threshold-key",
+  "asset": "The threshold key",
+  "kind": "images",
+  "room": "threshold",
+  "role": "the Threshold's relic — a large ceremonial iron-and-brass key standing upright on a stone block",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-threshold-key-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/threshold-key/01.jpg",
+        "assets/meshy/turnarounds/threshold-key/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/threshold-key/01.jpg",
+        "assets/meshy/turnarounds/threshold-key/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Tenth kit module, and the first of the closing four. The Threshold is the room where entering becomes possible, so its relic is the thing that permits entry: a key, not a door. Renders that room's motif as an object.",
+    "tiers": {
+      "reject": [
+        "Bow, shank and bit fused into one unreadable lump.",
+        "Key too thin to carry a silhouette — reading as a wire rather than forged metal.",
+        "Wards drawn as line art with no depth.",
+        "Any lettering, numerals, or invented inscription.",
+        "Cannot stand — base smaller than the object above it."
+      ],
+      "accept": [
+        "A large forged key standing upright in a small dark stone block, displayed as an object.",
+        "Heavy open bow at the top, thick straight shank, broad bit with two or three square wards clearly cut.",
+        "Dark pitted iron against warm brass at the bow and a collar band.",
+        "Generously thick throughout, so the silhouette reads from across a room.",
+        "No key-colour contamination; stable narrow base."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Stands in the Threshold. The thin silhouette is this module's real risk — a key is the least volumetric object in the kit — so thickness is specified explicitly rather than left to the reconstruction."
+  }
+}

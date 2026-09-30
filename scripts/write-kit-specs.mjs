@@ -217,6 +217,106 @@ const MODULES = [
     note:
       'Stands in the Broadcast Room. Its horn is the room\'s sourced motif rendered as an object, so it is source-attached rather than invented.',
   },
+  {
+    id: 'threshold-key',
+    asset: 'The threshold key',
+    room: 'threshold',
+    role: 'the Threshold\'s relic — a large ceremonial iron-and-brass key standing upright on a stone block',
+    name: 'muse-um-threshold-key-v1',
+    purpose:
+      'Tenth kit module, and the first of the closing four. The Threshold is the room where entering becomes possible, so its relic is the thing that permits entry: a key, not a door. Renders that room\'s motif as an object.',
+    reject: [
+      'Bow, shank and bit fused into one unreadable lump.',
+      'Key too thin to carry a silhouette — reading as a wire rather than forged metal.',
+      'Wards drawn as line art with no depth.',
+      'Any lettering, numerals, or invented inscription.',
+      'Cannot stand — base smaller than the object above it.',
+    ],
+    accept: [
+      'A large forged key standing upright in a small dark stone block, displayed as an object.',
+      'Heavy open bow at the top, thick straight shank, broad bit with two or three square wards clearly cut.',
+      'Dark pitted iron against warm brass at the bow and a collar band.',
+      'Generously thick throughout, so the silhouette reads from across a room.',
+      'No key-colour contamination; stable narrow base.',
+    ],
+    note:
+      'Stands in the Threshold. The thin silhouette is this module\'s real risk — a key is the least volumetric object in the kit — so thickness is specified explicitly rather than left to the reconstruction.',
+  },
+  {
+    id: 'keepers-ledger',
+    asset: 'The keeper\'s ledger',
+    room: 'keeper_room',
+    role: 'the Keeper\'s Room relic — a thick closed leather ledger on a low sloped reading stand',
+    name: 'muse-um-keepers-ledger-v1',
+    purpose:
+      'Eleventh kit module. The Keeper\'s Room is about the labour of keeping a record, so its relic is the record itself: a closed book, deliberately shut, because the room is about what is kept rather than what is shown.',
+    reject: [
+      'Book open, or with pages fanned — the brief specifies closed.',
+      'Boards too thin to read as a chunky volume.',
+      'Clasps migrated onto the boards as decoration rather than holding the fore-edge shut.',
+      'Stand fused into the book.',
+      'Any lettering, title, numerals, or invented inscription on the cover or spine.',
+    ],
+    accept: [
+      'A thick closed ledger of dark worn leather resting closed on a low sloped wooden stand.',
+      'Visibly thick boards and a layered page block along the fore-edge.',
+      'Two warm brass clasps holding it shut across the fore-edge, plus brass corner-pieces.',
+      'Simple blind-tooled border, no lettering of any kind.',
+      'Plain dark oak stand on two short angled supports; no key-colour contamination.',
+    ],
+    note:
+      'Stands in the Keeper\'s Room. No lettering is permitted anywhere on it: invented inscription is a recurring failure in this pipeline and a book is the most tempting surface for it.',
+  },
+  {
+    id: 'matching-pair',
+    asset: 'The matching pair',
+    room: 'matching_signal',
+    role: 'the Matching Signal\'s relic — two identical brass signal plates facing one another on one oak base',
+    name: 'muse-um-matching-pair-v1',
+    purpose:
+      'Twelfth kit module. The Matching Signal is about two things recognising each other, so its relic is a matched pair turned toward one another — the room\'s idea carried by the object\'s arrangement rather than by decoration.',
+    reject: [
+      'The two plates unequal in size or finish — the whole point is that they match.',
+      'Plates fused together, or both facing the same way.',
+      'Posts or cross-bar missing so the pair reads as one object.',
+      'Dished faces drawn flat, losing the sense of a receiver.',
+      'Any lettering, numerals, or invented inscription.',
+    ],
+    accept: [
+      'Exactly two identical brass plates with shallow dished faces and rolled rims.',
+      'Each carried on a short brass post rising from a single low oak base, tilted slightly inward toward its twin.',
+      'One short horizontal brass bar joining the two posts.',
+      'Base is a plain chamfered oak block; overall the object is symmetric.',
+      'Warm patinated brass against dark oak; no key-colour contamination.',
+    ],
+    note:
+      'Stands in the Matching Signal. Symmetry is the acceptance criterion here, so the brief states the mirror arrangement explicitly rather than trusting it to emerge.',
+  },
+  {
+    id: 'lake-basin',
+    asset: 'The lake basin',
+    room: 'lake_at_dawn',
+    role: 'the Lake at Dawn\'s relic — a wide shallow hammered brass basin on a low stone foot',
+    name: 'muse-um-lake-basin-v1',
+    purpose:
+      'Thirteenth kit module, closing the kit. The Lake at Dawn is about still water seen early, so its relic is a vessel that holds water — wide and shallow, echoing the lake\'s proportion rather than depicting it.',
+    reject: [
+      'Basin modelled as a closed or lidded form.',
+      'Rim so thick or irregular that the bowl loses its wide-shallow proportion.',
+      'Foot wider than the basin, making it a pedestal with a dish on top.',
+      'Hammer marks smoothed into a generic glossy surface.',
+      'Any lettering, numerals, or invented inscription.',
+    ],
+    accept: [
+      'A broad open bowl of warm hammered brass with a gently flared rim, much wider than it is tall.',
+      'Visible hammer marks across the outside; a narrow band of simple repeated chevrons engraved below the rim.',
+      'A short squat pedestal foot of dark hand-cut stone, wider at its base than at its top, with chipped edges.',
+      'Open mouth — the bowl is empty and its interior is readable from a three-quarter view.',
+      'No key-colour contamination; stands level on its foot.',
+    ],
+    note:
+      'Stands in the Lake at Dawn. The width-to-height ratio is the acceptance criterion, so the brief states the proportion explicitly: this is the widest, shallowest object in the kit.',
+  },
 ]
 
 const dir = path.join(ROOT, 'assets/meshy')

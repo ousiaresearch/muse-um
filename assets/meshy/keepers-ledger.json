@@ -1,0 +1,52 @@
+{
+  "id": "keepers-ledger",
+  "asset": "The keeper's ledger",
+  "kind": "images",
+  "room": "keeper_room",
+  "role": "the Keeper's Room relic — a thick closed leather ledger on a low sloped reading stand",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-keepers-ledger-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/keepers-ledger/01.jpg",
+        "assets/meshy/turnarounds/keepers-ledger/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/keepers-ledger/01.jpg",
+        "assets/meshy/turnarounds/keepers-ledger/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Eleventh kit module. The Keeper's Room is about the labour of keeping a record, so its relic is the record itself: a closed book, deliberately shut, because the room is about what is kept rather than what is shown.",
+    "tiers": {
+      "reject": [
+        "Book open, or with pages fanned — the brief specifies closed.",
+        "Boards too thin to read as a chunky volume.",
+        "Clasps migrated onto the boards as decoration rather than holding the fore-edge shut.",
+        "Stand fused into the book.",
+        "Any lettering, title, numerals, or invented inscription on the cover or spine."
+      ],
+      "accept": [
+        "A thick closed ledger of dark worn leather resting closed on a low sloped wooden stand.",
+        "Visibly thick boards and a layered page block along the fore-edge.",
+        "Two warm brass clasps holding it shut across the fore-edge, plus brass corner-pieces.",
+        "Simple blind-tooled border, no lettering of any kind.",
+        "Plain dark oak stand on two short angled supports; no key-colour contamination."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Stands in the Keeper's Room. No lettering is permitted anywhere on it: invented inscription is a recurring failure in this pipeline and a book is the most tempting surface for it."
+  }
+}

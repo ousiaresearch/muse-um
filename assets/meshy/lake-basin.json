@@ -1,0 +1,52 @@
+{
+  "id": "lake-basin",
+  "asset": "The lake basin",
+  "kind": "images",
+  "room": "lake_at_dawn",
+  "role": "the Lake at Dawn's relic — a wide shallow hammered brass basin on a low stone foot",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-lake-basin-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/lake-basin/01.jpg",
+        "assets/meshy/turnarounds/lake-basin/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/lake-basin/01.jpg",
+        "assets/meshy/turnarounds/lake-basin/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Thirteenth kit module, closing the kit. The Lake at Dawn is about still water seen early, so its relic is a vessel that holds water — wide and shallow, echoing the lake's proportion rather than depicting it.",
+    "tiers": {
+      "reject": [
+        "Basin modelled as a closed or lidded form.",
+        "Rim so thick or irregular that the bowl loses its wide-shallow proportion.",
+        "Foot wider than the basin, making it a pedestal with a dish on top.",
+        "Hammer marks smoothed into a generic glossy surface.",
+        "Any lettering, numerals, or invented inscription."
+      ],
+      "accept": [
+        "A broad open bowl of warm hammered brass with a gently flared rim, much wider than it is tall.",
+        "Visible hammer marks across the outside; a narrow band of simple repeated chevrons engraved below the rim.",
+        "A short squat pedestal foot of dark hand-cut stone, wider at its base than at its top, with chipped edges.",
+        "Open mouth — the bowl is empty and its interior is readable from a three-quarter view.",
+        "No key-colour contamination; stands level on its foot."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Stands in the Lake at Dawn. The width-to-height ratio is the acceptance criterion, so the brief states the proportion explicitly: this is the widest, shallowest object in the kit."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "id": "matching-pair",
+  "asset": "The matching pair",
+  "kind": "images",
+  "room": "matching_signal",
+  "role": "the Matching Signal's relic — two identical brass signal plates facing one another on one oak base",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-matching-pair-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/matching-pair/01.jpg",
+        "assets/meshy/turnarounds/matching-pair/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/matching-pair/01.jpg",
+        "assets/meshy/turnarounds/matching-pair/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Twelfth kit module. The Matching Signal is about two things recognising each other, so its relic is a matched pair turned toward one another — the room's idea carried by the object's arrangement rather than by decoration.",
+    "tiers": {
+      "reject": [
+        "The two plates unequal in size or finish — the whole point is that they match.",
+        "Plates fused together, or both facing the same way.",
+        "Posts or cross-bar missing so the pair reads as one object.",
+        "Dished faces drawn flat, losing the sense of a receiver.",
+        "Any lettering, numerals, or invented inscription."
+      ],
+      "accept": [
+        "Exactly two identical brass plates with shallow dished faces and rolled rims.",
+        "Each carried on a short brass post rising from a single low oak base, tilted slightly inward toward its twin.",
+        "One short horizontal brass bar joining the two posts.",
+        "Base is a plain chamfered oak block; overall the object is symmetric.",
+        "Warm patinated brass against dark oak; no key-colour contamination."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Stands in the Matching Signal. Symmetry is the acceptance criterion here, so the brief states the mirror arrangement explicitly rather than trusting it to emerge."
+  }
+}
