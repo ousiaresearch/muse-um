@@ -171,6 +171,30 @@ const KIT = [
     height: 1.35,
     rotation: -0.25,
   },
+  {
+    id: 'keepers-ledger',
+    room: 'keeper_room',
+    path: 'models/keepers-ledger.glb',
+    position: [1.75, FLOOR_Y, 2.1],
+    height: 0.78,
+    rotation: 0.22,
+  },
+  {
+    id: 'matching-pair',
+    room: 'matching_signal',
+    path: 'models/matching-pair.glb',
+    position: [1.75, FLOOR_Y, 2.1],
+    height: 1.0,
+    rotation: 0.1,
+  },
+  {
+    id: 'lake-basin',
+    room: 'lake_at_dawn',
+    path: 'models/lake-basin.glb',
+    position: [1.75, FLOOR_Y, 2.1],
+    height: 0.68,
+    rotation: 0.18,
+  },
 ]
 // Props stand right of centre, clear of the wall label panel.
 const PROP_X = 1.45
