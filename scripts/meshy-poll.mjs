@@ -73,7 +73,13 @@ const summary = {
   status: task.status,
   finishedAt: new Date().toISOString(),
   formats: Object.keys(urls),
+  // Signed URLs, kept so --download stays reproducible after the fact. Meshy's
+  // asset URLs expire, so a receipt that omits them means a SUCCEEDED task can
+  // only be fetched again by re-querying the API and hoping the URL still works.
+  modelUrls: urls,
+  textureUrls: task.texture_urls ?? null,
   thumbnail: task.thumbnail_url ? task.thumbnail_url.split('?')[0] : null,
+  thumbnailUrl: task.thumbnail_url ?? null,
   consumedCredits: task.consumed_credits ?? null,
   note: shouldDownload ? 'downloaded' : 'not downloaded — pending visual review',
 }

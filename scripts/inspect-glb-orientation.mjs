@@ -73,10 +73,36 @@ for (const file of process.argv.slice(2)) {
   console.log(rotations.length ? `  node transforms:\n${rotations.join('\n')}` : '  node transforms:    none (identity)')
 
   // The actionable judgement for a mesh that must stand upright and face +z.
-  const depthIsThinnest = extent[2] <= extent[0] && extent[2] <= extent[1]
-  const heightIsTallest = extent[1] >= extent[0] && extent[1] >= extent[2]
+  //
+  // "Upright" does NOT mean y is the tallest axis. A three-bell frame is genuinely
+  // wider than it is tall (x 65534 vs y 31474), and an earlier version of this
+  // check called that "NOT upright" — a false alarm that would have had me
+  // rotating a correctly-oriented mesh. What actually matters is which axis is
+  // DEPTH: a standing object can never have its height as the thinnest dimension.
+  const thinnest = extent.indexOf(Math.min(...extent))
+  const thinnestAxis = ['x', 'y', 'z'][thinnest]
+  const upright = thinnest !== 1
+  const facesForward = thinnest === 2
+  const widest = extent.indexOf(Math.max(...extent))
+
   console.log(
-    `  verdict            ${heightIsTallest ? 'stands upright (y tallest)' : 'NOT upright — y is not the tallest axis'}` +
-      `, ${depthIsThinnest ? 'faces +z (z thinnest)' : `NOT facing +z — thinnest axis is ${extent.indexOf(Math.min(...extent)) === 0 ? 'x' : 'z'}`}`,
+    `  verdict            ${
+      upright ? 'upright — y is not the depth axis' : 'LYING DOWN — y is the thinnest axis, needs a rotation'
+    }, ${
+      facesForward
+        ? 'faces +z (z is depth)'
+        : `faces ±${thinnestAxis} (depth is ${thinnestAxis}) — needs a y-rotation to face +z`
+    }`,
+  )
+  console.log(
+    `  proportions        ${['x', 'y', 'z'][widest]} is the widest axis` +
+      `${widest === 0 ? ' (wide object — taller-than-wide is NOT expected here)' : ''}`,
+  )
+  console.log(
+    `  fitProp note       ${
+      facesForward
+        ? 'no rotation needed before fitting'
+        : `rotate ${thinnest === 0 ? 'y=+90° or -90°' : 'none — check the mesh'} then fit`
+    }`,
   )
 }

@@ -143,6 +143,7 @@ def trim_to_content(view: Image.Image, background):
 
 
 def normalise(view: Image.Image, target: str) -> tuple[tuple[int, int], int, float]:
+    """Normalise one view onto a square canvas, key, and verify."""
     trimmed = view
     width, height = trimmed.size
     longest = max(width, height)

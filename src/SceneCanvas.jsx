@@ -85,6 +85,59 @@ const KIT = [
     height: 1.7,
     rotation: -0.38,
   },
+  {
+    id: 'reading-table',
+    room: 'all',
+    path: 'models/reading-table.glb',
+    position: [-1.5, FLOOR_Y, 1.45],
+    height: 0.78,
+    rotation: 0.2,
+  },
+  {
+    // The sconce is the one module whose depth axis is x, not z — it arrives
+    // facing sideways, per inspect-glb-orientation.mjs. The y-rotation is what
+    // turns its back plate to the wall. Placed clear of the frame, which spans
+    // x +/-2.12.
+    id: 'wall-sconce-left',
+    room: 'all',
+    path: 'models/wall-sconce.glb',
+    position: [-2.5, FLOOR_Y + 1.05, -0.5],
+    height: 0.6,
+    rotation: -Math.PI / 2,
+  },
+  {
+    id: 'wall-sconce-right',
+    room: 'all',
+    path: 'models/wall-sconce.glb',
+    position: [2.5, FLOOR_Y + 1.05, -0.5],
+    height: 0.6,
+    rotation: -Math.PI / 2,
+  },
+  // Relics. One per room, carrying that room's own sourced motif as a physical
+  // object. Placed right of centre and forward, clear of the table's span.
+  {
+    id: 'fossil-slab',
+    room: 'fossil_wall',
+    path: 'models/fossil-slab.glb',
+    position: [0.6, FLOOR_Y, 0.85],
+    height: 1.15,
+    rotation: 0.12,
+  },
+  {
+    id: 'three-bells',
+    room: 'porch_at_three_bells',
+    path: 'models/three-bells.glb',
+    position: [0.65, FLOOR_Y, 0.7],
+    height: 1.05,
+  },
+  {
+    id: 'broadcast-transmitter',
+    room: 'broadcast_room',
+    path: 'models/broadcast-transmitter.glb',
+    position: [0.7, FLOOR_Y, 0.75],
+    height: 1.35,
+    rotation: -0.25,
+  },
 ]
 // Props stand right of centre, clear of the wall label panel.
 const PROP_X = 1.45
@@ -100,7 +153,11 @@ function ResetCamera({ roomId }) {
   useEffect(() => {
     // Angled and elevated rather than straight-on: this is what reveals the
     // floor, the wall junction, and the depth of the room.
-    camera.position.set(1.1, 1.55, 7.2)
+    // Pulled back far enough to hold the whole 8.6m room: at z=9.8 the visible
+    // half-width at wall depth is ~4.5m against a room half-width of 4.3m, so
+    // nothing is clipped at the frame edges. The previous distance showed only
+    // ~6.8m of an 8.6m room and every outer prop was cut off.
+    camera.position.set(0.9, 1.55, 9.8)
     camera.lookAt(0.05, 0.15, -0.2)
   }, [camera, roomId])
   return null

@@ -17,7 +17,8 @@
     "sheet:rooms": "uv run --python 3.12 --with pillow --no-project python scripts/compose-room-sheet.py",
     "kit:specs": "node scripts/write-kit-specs.mjs",
     "kit:prep": "node scripts/module-prep.mjs",
-    "kit:briefs": "node scripts/write-kit-briefs.mjs"
+    "kit:briefs": "node scripts/write-kit-briefs.mjs",
+    "check:assets": "node scripts/check-asset-registry.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.3",

@@ -88,6 +88,10 @@ function connect(wsUrl) {
     const socket = new WebSocket(wsUrl)
     let id = 0
     const pending = new Map()
+    // CDP events (Runtime.consoleAPICalled and friends) arrive on the same socket
+    // as replies. Without dispatch they were parsed and dropped, which is why the
+    // harness could not see the scene's own logging.
+    const listeners = new Map()
 
     socket.addEventListener('open', () => {
       resolve({
@@ -98,6 +102,10 @@ function connect(wsUrl) {
             pending.set(messageId, { res, rej })
             socket.send(JSON.stringify({ id: messageId, method, params }))
           })
+        },
+        on(method, handler) {
+          if (!listeners.has(method)) listeners.set(method, [])
+          listeners.get(method).push(handler)
         },
         close: () => socket.close(),
       })
@@ -110,6 +118,10 @@ function connect(wsUrl) {
         pending.delete(message.id)
         if (message.error) rej(new Error(message.error.message))
         else res(message.result)
+        return
+      }
+      if (message.method) {
+        for (const handler of listeners.get(message.method) ?? []) handler(message.params)
       }
     })
   })
@@ -124,7 +136,28 @@ let exitCode = 0
 try {
   const target = await findTarget()
   const client = await connect(target.webSocketDebuggerUrl)
+
+  // Collect console output. The scene logs each generated prop's measured fit in
+  // DEV, and that line is the only hard evidence a prop actually loaded and was
+  // scaled — a screenshot cannot distinguish "the table is missing" from "the
+  // table is behind the framed painting", because the unlit painting dominates
+  // the frame.
+  const consoleLines = []
+  client.on('Runtime.consoleAPICalled', (params) => {
+    const text = (params.args ?? [])
+      .map((a) => a.value ?? a.description ?? '')
+      .join(' ')
+    consoleLines.push(`[${params.type}] ${text}`)
+  })
+  client.on('Runtime.exceptionThrown', (params) => {
+    consoleLines.push(`[exception] ${params.exceptionDetails?.text ?? ''} ${params.exceptionDetails?.exception?.description ?? ''}`)
+  })
+
+  // Enable first, then reload: the app logs its prop fits during load, and those
+  // messages are not replayed to a listener that attaches afterwards.
   await client.send('Runtime.enable')
+  await client.send('Page.enable')
+  await client.send('Page.reload', { ignoreCache: false })
 
   const evaluate = async (expression) => {
     const result = await client.send('Runtime.evaluate', {
@@ -150,10 +183,56 @@ try {
     exitCode = 1
   }
 
+  // Capture the WebGL canvas only, and measure the label that sits on top of it.
+  // The full page includes sidebars and captions, and a reviewer reading the page
+  // tends to describe those — including the unlit framed painting — as if they were
+  // objects in the room. Cropping to the canvas removes that ambiguity at the source.
+  let clip
+  const rectJson = await evaluate(
+    '(() => { const c = document.querySelector("canvas"); if (!c) return null;' +
+      ' const r = c.getBoundingClientRect();' +
+      ' return JSON.stringify({ x: Math.round(r.x), y: Math.round(r.y), width: Math.round(r.width), height: Math.round(r.height) }); })()',
+  )
+  if (rectJson) {
+    const rect = JSON.parse(rectJson)
+    if (rect.width > 0 && rect.height > 0) {
+      clip = { ...rect, scale: 1 }
+      console.log(`canvas:   ${rect.width}x${rect.height} at ${rect.x},${rect.y} (capturing canvas only)`)
+    }
+  }
+
+  // Measure the wall-label's covered zone, and optionally hide it. The label is an
+  // absolutely-positioned panel anchored bottom-left at max-width 62%, so it sits
+  // ON TOP of the canvas and hides whatever is behind it — floor-level furniture on
+  // the left disappears under it. That is an occlusion to place against, not a
+  // rendering bug, and it cannot be judged from a screenshot without measuring it.
+  const labelRectJson = await evaluate(
+    '(() => { const el = document.querySelector(".scene-label"); if (!el) return null;' +
+      ' const r = el.getBoundingClientRect(); const c = document.querySelector("canvas").getBoundingClientRect();' +
+      ' return JSON.stringify({ x: Math.round(r.x - c.x), y: Math.round(r.y - c.y), width: Math.round(r.width), height: Math.round(r.height) }); })()',
+  )
+  if (labelRectJson) {
+    const r = JSON.parse(labelRectJson)
+    const canvasW = clip ? clip.width : 720
+    const canvasH = clip ? clip.height : 720
+    console.log(
+      `label:    covers ${r.width}x${r.height} at ${r.x},${r.y} of the canvas → ` +
+        `left ${((r.width / canvasW) * 100).toFixed(0)}% of width, bottom ${((r.height / canvasH) * 100).toFixed(0)}% of height`,
+    )
+    if (process.env.MUSE_CLEAN === '1') {
+      await evaluate('(() => { const el = document.querySelector(".scene-label"); if (el) el.style.display = "none"; return true; })()')
+      console.log('label:    hidden for this capture (MUSE_CLEAN=1)')
+    }
+  }
+
   // One more frame so the compositor has something to hand over.
   await evaluate('new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))')
 
-  const shot = await client.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false })
+  const shot = await client.send('Page.captureScreenshot', {
+    format: 'png',
+    captureBeyondViewport: false,
+    ...(clip ? { clip } : {}),
+  })
   await fs.writeFile(output, Buffer.from(shot.data, 'base64'))
   const stats = await fs.stat(output)
 
@@ -161,6 +240,13 @@ try {
   console.log(`query:    ${query.join('&')}`)
   console.log(`ready:    ${ready}`)
   console.log(`browser:  ${diagnostics}`)
+  const kitLines = consoleLines.filter((l) => /\[kit\]|exception|error/i.test(l))
+  if (kitLines.length) {
+    console.log(`page log (${kitLines.length} line(s) matching kit/errors):`)
+    for (const line of kitLines) console.log(`  ${line}`)
+  } else {
+    console.log('page log: no kit or error lines captured')
+  }
   if (stats.size < 60000) {
     console.log('warning: the file is small for a 1440x900 frame — the scene may be blank')
   }
