@@ -43,14 +43,22 @@
   height: 100%;
 }
 
-/* A left-hand wall label rather than a full-width band: the right side of the
-   room stays open so a standing artifact is not buried under the gradient. */
+/* A left-hand wall label, sized against measurement rather than taste.
+   Measured before this change: it covered 446x495px of the 720x720 canvas — 62% of
+   the width and 69% of the height, about 43% of the room's area. Because a floor
+   object's screen position always falls below the panel's top edge, anything on the
+   left 62% was invisible at ANY depth, which is a structural fact and not something
+   placement could work around. Two costs were measurable: a floor object at screen
+   y 475-543 was fully covered, and the wall sconces at y~369 were covered too.
+   Narrowing to 38% frees the floor objects horizontally; shortening the panel pushes
+   its top edge below the sconces, which frees them because they are then above the
+   rectangle rather than inside it. Both changes keep every line of the label. */
 .scene-label {
   position: absolute;
   left: 0;
   bottom: 0;
-  max-width: 62%;
-  padding: clamp(2.2rem, 5vw, 3.4rem) clamp(1.5rem, 4vw, 3rem) clamp(1.4rem, 3.5vw, 2.2rem);
+  max-width: 38%;
+  padding: clamp(1.4rem, 3vw, 2rem) clamp(1.4rem, 3vw, 2.2rem) clamp(1.1rem, 2.5vw, 1.6rem);
   background:
     linear-gradient(to top, rgba(10, 10, 18, 0.94) 0%, rgba(10, 10, 18, 0.7) 55%, rgba(10, 10, 18, 0) 100%),
     linear-gradient(to right, rgba(10, 10, 18, 0.9) 0%, rgba(10, 10, 18, 0.55) 62%, rgba(10, 10, 18, 0) 100%);
@@ -59,17 +67,17 @@
 }
 
 .scene-label-name {
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-size: clamp(1.15rem, 2.2vw, 1.7rem);
   font-weight: 400;
   letter-spacing: 0.04em;
   color: #f0e8d8;
-  margin-bottom: 0.6em;
+  margin-bottom: 0.45em;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
 }
 
 .scene-label-text {
-  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
-  line-height: 1.55;
+  font-size: clamp(0.88rem, 1.5vw, 1.05rem);
+  line-height: 1.45;
   color: #cdcaa8;
   max-width: 48ch;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);

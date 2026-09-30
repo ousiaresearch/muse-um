@@ -89,9 +89,13 @@ const KIT = [
     id: 'reading-table',
     room: 'all',
     path: 'models/reading-table.glb',
-    position: [-1.5, FLOOR_Y, 1.45],
-    height: 0.78,
-    rotation: 0.2,
+    // Placed in the zone the wall label does not cover. At the previous x=-1.5 the
+    // table sat under the label's opaque core and was invisible in the running app,
+    // which is a placement error rather than a rendering one: the label is a
+    // rectangle, so a floor object on the left is covered at any depth.
+    position: [0.35, FLOOR_Y, 1.5],
+    height: 0.72,
+    rotation: 0.18,
   },
   {
     // The sconce is the one module whose depth axis is x, not z — it arrives
@@ -114,12 +118,13 @@ const KIT = [
     rotation: -Math.PI / 2,
   },
   // Relics. One per room, carrying that room's own sourced motif as a physical
-  // object. Placed right of centre and forward, clear of the table's span.
+  // object. Placed in the visible zone right of the wall label, behind the table so
+  // the table reads as foreground.
   {
     id: 'fossil-slab',
     room: 'fossil_wall',
     path: 'models/fossil-slab.glb',
-    position: [0.6, FLOOR_Y, 0.85],
+    position: [2.2, FLOOR_Y, 0.85],
     height: 1.15,
     rotation: 0.12,
   },
@@ -127,14 +132,14 @@ const KIT = [
     id: 'three-bells',
     room: 'porch_at_three_bells',
     path: 'models/three-bells.glb',
-    position: [0.65, FLOOR_Y, 0.7],
-    height: 1.05,
+    position: [2.45, FLOOR_Y, 0.75],
+    height: 1.0,
   },
   {
     id: 'broadcast-transmitter',
     room: 'broadcast_room',
     path: 'models/broadcast-transmitter.glb',
-    position: [0.7, FLOOR_Y, 0.75],
+    position: [2.25, FLOOR_Y, 0.9],
     height: 1.35,
     rotation: -0.25,
   },

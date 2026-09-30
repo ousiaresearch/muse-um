@@ -219,6 +219,24 @@ try {
       `label:    covers ${r.width}x${r.height} at ${r.x},${r.y} of the canvas → ` +
         `left ${((r.width / canvasW) * 100).toFixed(0)}% of width, bottom ${((r.height / canvasH) * 100).toFixed(0)}% of height`,
     )
+    console.log(`label top edge sits at canvas y=${r.y}; anything below that inside x<${r.x + r.width} is covered`)
+
+    // Which child actually drives the height. Shrinking a text panel by trial is
+    // guesswork when one element may be most of it.
+    const breakdown = await evaluate(
+      '(() => { const el = document.querySelector(".scene-label"); if (!el) return null;' +
+        ' const rows = [...el.children].map((c) => ({ cls: c.className, h: Math.round(c.getBoundingClientRect().height) }));' +
+        ' const cs = getComputedStyle(el);' +
+        ' rows.push({ cls: "PADDING", h: Math.round(parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) });' +
+        ' return JSON.stringify({ rows, total: Math.round(el.getBoundingClientRect().height) }); })()',
+    )
+    if (breakdown) {
+      const { rows, total } = JSON.parse(breakdown)
+      for (const row of rows.sort((a, b) => b.h - a.h)) {
+        console.log(`  ${String(row.h).padStart(4)}px  ${((row.h / total) * 100).toFixed(0).padStart(3)}%  ${row.cls}`)
+      }
+    }
+
     if (process.env.MUSE_CLEAN === '1') {
       await evaluate('(() => { const el = document.querySelector(".scene-label"); if (el) el.style.display = "none"; return true; })()')
       console.log('label:    hidden for this capture (MUSE_CLEAN=1)')
