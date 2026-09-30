@@ -162,9 +162,11 @@ def main() -> int:
         f"- ink-line share {ink_band[0]:.0%}–{ink_band[1]:.0%} (exhibit range 12.5–24.5%)",
         "",
         f"**Failing gates across the sweep: {failures}.** "
-        "Ink-line is expected to fail everywhere at this stage: the rooms are bare"
-        " planes with three inked objects each, and Phase 2 gives them architecture"
-        " to draw.",
+        "Ink-line is the one gate that fails in every room, and the kit did not"
+        " move it: the props are furniture standing on a floor, and a room with"
+        " one decorated face has almost no inked geometry for the measure to"
+        " find. More objects will not close it. Surfaces will — side walls, a"
+        " ceiling, openings — which is the next wave, not this one.",
         "",
     ]
 
