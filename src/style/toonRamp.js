@@ -35,6 +35,12 @@ export const SURFACE_RAMPS = {
   wall: ['shadow_warm', 'stone', 'brass_mid', 'bone'],
   dado: ['stone', 'brass_mid', 'brass_lit'],
   frame: ['ink', 'brass_mid', 'brass_lit', 'highlight'],
+  // Small brass fittings need their own slice. On the frame ramp an unlit face
+  // falls to `ink`, which against a dark wall is indistinguishable from nothing —
+  // four lanterns rendered, measured as red pixels, and were invisible in the
+  // room. Starting at `shadow_warm` keeps an unlit face reading as warm dark
+  // metal, and the top stops carry the lit brass.
+  brass: ['shadow_warm', 'brass_mid', 'brass_lit', 'highlight'],
 }
 
 export function rampFor(surface, variant) {

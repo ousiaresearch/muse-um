@@ -15,14 +15,14 @@
       "should_remesh": true,
       "target_polycount": 12000,
       "topology": "triangle",
-      "name": "muse-um-pavilion-lantern-v1",
+      "name": "muse-um-pavilion-lantern-v3",
       "image_files": [
-        "assets/meshy/turnarounds/lantern/01.jpg",
-        "assets/meshy/turnarounds/lantern/03.jpg"
+        "assets/meshy/turnarounds/lantern-v2/01.jpg",
+        "assets/meshy/turnarounds/lantern-v2/02.jpg"
       ],
       "texture_image_files": [
-        "assets/meshy/turnarounds/lantern/01.jpg",
-        "assets/meshy/turnarounds/lantern/03.jpg"
+        "assets/meshy/turnarounds/lantern-v2/01.jpg",
+        "assets/meshy/turnarounds/lantern-v2/02.jpg"
       ]
     }
   },
@@ -72,5 +72,5 @@
       }
     ]
   },
-  "viewSelection": "The sheet produced three panels but only two DISTINCT angles: panels 1 and 2 trimmed to an identical 337x799 (measured mean pixel difference 9.05, the smallest of the three pairs), while panel 3 trimmed to 289x799 and is a genuinely narrower view. Submitting all three would weight one angle 2:1, so only 01 and 03 are sent. Primary view first."
+  "viewSelection": "v2 sheet re-sliced after the generation process exited. First slice read the sheet at 09:13 while codex was still running (it exited at 911s and rewrote the file at 09:15), so the submitted views were stale and carried 22.3% magenta-family pixels - which baked into the material and returned a pink lantern. Re-sliced views measure 0.0% magenta. Slicer now refuses an input modified in the last 12 seconds."
 }

@@ -119,14 +119,15 @@ function assertApiFields(payload) {
 async function buildImagesPayload(stage) {
   const { uris: geometryUris, report: geometryReport } = await toDataUris(stage.image_files, 'stage.image_files')
   const payload = { ...stage }
+  const report = [...geometryReport]
   delete payload.image_files
   delete payload.__comment
   payload.image_urls = geometryUris
 
   // Fused path: when the stage declares separate texture inputs, send them as
-  // the texture_image_urls so the same views drive both geometry and texture.
-  // Fall back to geometry inputs as the texture source when no separate texture
-  // set is declared.
+  // texture_image_urls so the same views drive both geometry and texture. The
+  // texture set is reported separately, because "which images drove the material"
+  // is a provenance question someone will ask later.
   if (stage.texture_image_files && stage.texture_image_files.length) {
     const texture = await toDataUris(stage.texture_image_files, 'stage.texture_image_files')
     payload.texture_image_urls = texture.uris
@@ -137,7 +138,7 @@ async function buildImagesPayload(stage) {
   }
 
   assertApiFields(payload)
-  return { payload, report: geometryReport }
+  return { payload, report }
 }
 
 let payload

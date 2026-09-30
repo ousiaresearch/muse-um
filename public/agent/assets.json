@@ -4,9 +4,10 @@
   "purpose": "Provenance registry for 3D assets generated for the MUSE-UM pavilion. A generated asset is an environmental prop: it never replaces a framed exhibit PNG, and it never changes a room's evidenceStatus.",
   "generator": {
     "service": "Meshy",
-    "pipeline": "Text to 3D, two stages (preview geometry, then refine texture)",
+    "pipeline": "Two routes. Text to 3D (two stages: preview geometry, then refine texture) for props that can be described. Multi-image to 3D (fused: geometry and texture from the same reference views) for props whose material language has to come from the pavilion's own art rather than from a prompt, since that endpoint accepts no prompt at all.",
     "styleContract": "assets/meshy/style.json",
-    "note": "Generator task IDs are recorded so the exact lineage of every accepted artifact is checkable."
+    "note": "Generator task IDs are recorded so the exact lineage of every accepted artifact is checkable.",
+    "referencePipeline": "docs/image-set-pipeline.md"
   },
   "curationGate": [
     "A task reaching SUCCEEDED is not acceptance.",
@@ -34,15 +35,29 @@
         "refine_v3": "01a0f035-18ae-7730-9d9b-26e62aa451aa"
       },
       "inspection": {
-        "rawFormats": ["glb", "fbx", "obj", "stl", "usdz"],
+        "rawFormats": [
+          "glb",
+          "fbx",
+          "obj",
+          "stl",
+          "usdz"
+        ],
         "rawTriangles": 388978,
         "rawBytes": 20144200,
         "deliveredTriangles": 11996,
         "deliveredVertices": 11451,
         "deliveredBytes": 610000,
-        "deliveredExtensionsUsed": ["EXT_texture_webp", "KHR_mesh_quantization"],
+        "deliveredExtensionsUsed": [
+          "EXT_texture_webp",
+          "KHR_mesh_quantization"
+        ],
         "optimization": "gltf-transform optimize — meshoptimizer simplify, quantization, textures resized to 1024 and converted to webp. Lossy: the delivered mesh is not vertex-identical to the generated one.",
-        "pbrMapsRetained": ["base_color", "metallic", "roughness", "normal"]
+        "pbrMapsRetained": [
+          "base_color",
+          "metallic",
+          "roughness",
+          "normal"
+        ]
       },
       "acceptedProperties": [
         "Four rings crossing on different axes in open space, with no drum, cage or struts between them.",
@@ -59,12 +74,73 @@
         "status": "artistic interpretation",
         "note": "The armillary is the pavilion's own interpretation of the recorded observatory motif. Its source attachment lives on the Observatory room, not on this prop. The prop asserts nothing about a physical town artifact."
       }
+    },
+    {
+      "id": "pavilion-lantern",
+      "room": "all",
+      "role": "recurring hanging fitting, identical in every room — provides pooled warm light and the pavilion's primary depth cue",
+      "file": "public/models/pavilion-lantern.glb",
+      "served": "models/pavilion-lantern.glb",
+      "spec": "assets/meshy/pavilion-lantern.json",
+      "acceptedTask": {
+        "build": "01a0f27b-cae6-70bc-a4cf-95f57e82e4ef"
+      },
+      "supersededTasks": {
+        "build_v1": "01a0f268-923d-745d-8f50-b37a4f7ca592",
+        "build_v2": "01a0f275-13ba-7409-bfa5-6da1ca650c16"
+      },
+      "inputLineage": {
+        "route": "multi-image-to-3D, fused texture (should_texture with texture_image_urls)",
+        "sheet": "assets/meshy/turnarounds/lantern-sheet-v2.png",
+        "brief": "assets/meshy/briefs/lantern-turnaround.txt",
+        "views": [
+          "assets/meshy/turnarounds/lantern-v2/01.jpg",
+          "assets/meshy/turnarounds/lantern-v2/02.jpg"
+        ],
+        "styleAnchor": "public/art/keepers-room.png — the exhibits' own lanterns, so the fitting is congruent with the art rather than merely plausible",
+        "note": "The endpoint accepts no prompt. These reference views are the entire style input; the brief and the anchor image are therefore part of the asset's provenance."
+      },
+      "inspection": {
+        "rawBytes": 12058060,
+        "deliveredTriangles": 9362,
+        "deliveredVertices": 12774,
+        "deliveredBytes": 870064,
+        "deliveredExtensionsUsed": [
+          "EXT_texture_webp",
+          "KHR_mesh_quantization"
+        ],
+        "optimization": "gltf-transform optimize — simplify, quantization, textures resized to 1024 and converted to webp. Lossy: the delivered mesh is not vertex-identical to the generated one.",
+        "pbrMapsRetained": [
+          "base_color",
+          "metallic",
+          "roughness",
+          "normal"
+        ]
+      },
+      "acceptedProperties": [
+        "One coherent lantern — no merged blobs, doubled parts or exploded geometry.",
+        "Hexagonal cage with six vertical corner posts, tapered hexagonal roof, base finial, top hanging ring.",
+        "Warm aged brass with patina; no magenta contamination in the baked base-colour texture (measured 0.00%).",
+        "Panels read as solid opaque frosted surfaces, not open frames.",
+        "No lettering, numerals or invented inscription."
+      ],
+      "knownLimitations": [
+        "Reads as a clean mid-level game asset rather than a photographed relic: the hanging ring and finials are thin, and the panes are flat.",
+        "The reconstruction carries no flame or inner light — glazing is opaque and no candle was modelled. The pavilion supplies the glow in-engine with an emissive lift and a point light below each body.",
+        "The warm gold of the lamp light measures as slightly off-token: room palette share fell from 83.6% to 79.8% with the fittings lit, still above the 77% floor. Warmth was chosen over a marginally higher share."
+      ],
+      "reviewNote": "Three build passes. v1 was rejected on material: briefed translucent glazing reconstructs as nothing, so the panes arrived as open air. v2 was rejected as a pink lantern — the sheet was delivered with transparency, the slicer flattened it onto the briefed magenta, and 22.3% magenta-family pixels survived into the submitted views and were baked into the texture. Both the slicer and the sheet brief were corrected: magenta is now keyed out and the written file is re-measured before submission, and the slicer refuses an input modified in the last 12 seconds because v2 was sliced while the generator was still writing it.",
+      "evidenceStatus": {
+        "status": "artistic interpretation",
+        "note": "A pavilion fitting, not a claim about any recorded town artifact. It carries no source attachment and asserts nothing historical; the rooms' own source attachments are unaffected."
+      }
     }
   ],
   "invariants": [
     "Every displayed model is listed here with its generator tasks.",
     "Canonical characters are never generated. Luma's body remains fixed by art/luma-canon.json.",
     "A generated prop carries artistic-interpretation status and never upgrades a room's evidence status.",
-    "Lossy optimization is disclosed; the delivered mesh is not presented as the generator's raw output."
+    "Lossy optimization is disclosed; the delivered mesh is not presented as the generator's raw output.",
+    "A generated asset records its input reference views, not only its task IDs, where the material language came from images rather than a prompt."
   ]
 }
