@@ -35,7 +35,17 @@ MANIFEST = os.path.join(ROOT, "src", "pavilion.manifest.json")
 TOKENS = os.path.join(ROOT, "src", "style.tokens.json")
 OUT_DIR = os.path.join(ROOT, "artifacts", "sweep")
 DOC = os.path.join(ROOT, "docs", "room-gate-sweep.md")
-CANVAS = (360, 28, 1080, 748)
+
+# The capture harness now clips the screenshot to the WebGL canvas, so the canvas IS
+# the whole image and the measured region must be derived from the file. This was
+# previously a hardcoded page-relative box (360, 28, 1080, 748) from when captures
+# were full-page 1440x900 screenshots. Once captures became 720x720 canvas crops,
+# that box ran 360px off the right edge, PIL filled the overhang with black, and the
+# sweep duly reported every room as far darker than it is — luminance 46 against a
+# true 75. A stale measurement region is indistinguishable from a real regression
+# until you compare the number against a differently-derived one.
+def canvas_region(image) -> tuple[int, int, int, int]:
+    return (0, 0, image.size[0], image.size[1])
 
 
 def room_ids() -> list[str]:
@@ -92,7 +102,8 @@ def main() -> int:
             rows.append({"room": room, "error": "capture failed"})
             continue
 
-        m = _measure.metrics(Image.open(out), CANVAS, palette)
+        image = Image.open(out)
+        m = _measure.metrics(image, canvas_region(image), palette)
         rows.append({"room": room, **m})
 
     lines = [
