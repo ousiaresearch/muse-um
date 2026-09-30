@@ -1,0 +1,52 @@
+{
+  "id": "reading-table",
+  "asset": "The reading table",
+  "kind": "images",
+  "room": "all",
+  "role": "museum furniture — a long trestle table giving the room a working centre at human height",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-reading-table-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/reading-table/01.jpg",
+        "assets/meshy/turnarounds/reading-table/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/reading-table/01.jpg",
+        "assets/meshy/turnarounds/reading-table/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Fifth kit module. The kit's first object wider than it is tall, which is a different reconstruction problem from every upright module so far.",
+    "tiers": {
+      "reject": [
+        "Top reads as a flat plane with no thickness.",
+        "Trestle ends fused into a solid slab instead of splayed legs with a stretcher.",
+        "Legs floating, detached, or not reaching the floor plane.",
+        "Any lettering, numerals, or invented inscription.",
+        "Proportions that could not stand — top much wider than the leg span."
+      ],
+      "accept": [
+        "One table: thick top plank on two trestle ends with splayed legs and a long stretcher.",
+        "A drawer and brass pull readable in the apron.",
+        "Warm aged oak with visible grain, splits and tool marks.",
+        "Clearly longer than wide or tall.",
+        "Legs splayed so it reads as standing solidly."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Placed across the room clear of the exhibit and the cabinet, at table height. A low wide object reads as furniture scale rather than as clutter."
+  }
+}

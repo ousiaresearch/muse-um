@@ -1,0 +1,40 @@
+Use case: 3D reconstruction reference sheet. The two views get fed to a multi-image
+reconstruction service, so they must be the SAME OBJECT seen from two angles, drawn in one image.
+
+Asset type: an object turnaround sheet — two views of one stone fossil slab on a low stand, in a single row.
+
+Style rules: match the attached reference exactly in material language and atmosphere. This is
+the MUSE-UM pavilion idiom: hand-drawn European graphic-novel rendering, medieval epic and ancient
+sacred architecture, ethereal, a forgotten civilization remembering itself beneath a dying sun. Warm
+aged materials with dark patina in the recesses, muted bone and parchment, thin engraved linework.
+Matte hand-finished surfaces, no plastic sheen, no chrome, no neon, no glossy highlights.
+
+The object: a thick rectangular slab of dark hand-cut stone, standing upright on a small low stone
+foot, like a specimen mounted for display. Its broad front face carries a single large spiral fossil
+cast prominently in raised relief — a ribbed ammonite-style spiral shell, unmistakable and bold,
+occupying most of the face. Around the slab's edge runs a shallow carved border of simple repeated
+chevrons. The stone is chipped and weathered along the edges, and the slab is clearly thick, with
+visible side faces.
+
+Keep the ornament BOLD AND SIMPLE — broad readable shapes with strong silhouettes, not fine filigree
+or fussy carving. Fine detail smears when the image is reconstructed into geometry.
+
+Views, left to right, all the same object at the same scale and the same height in frame:
+  1. front elevation, looking straight at the object
+  2. three-quarter view, turned roughly forty degrees so its thickness and depth are clearly visible
+
+Composition: the two views evenly spaced across one horizontal sheet, separated by a clear empty gap
+so they can be cut apart. Identical scale and identical lighting in both views. Each view upright,
+fully inside the frame with generous empty margin on all sides. No overlap, no touching edges.
+
+Use the LARGEST canvas you can produce, and make the object as large within the frame as the margins
+allow — every extra pixel of the object survives into the reconstruction.
+
+Background: perfectly uniform pure magenta #FF00FF at every pixel outside the object, with no shadow,
+no floor, no gradient, no vignette. The object must be cleanly separable from the background.
+
+Constraints: one object only. Absolutely no text, lettering, numerals, labels, arrows, measurement
+marks, captions, borders, or watermarks anywhere in the image. No second object, no scenery, no
+figures, no ground, no wall behind it.
+
+Output: save to /Users/johannross/muse-um/assets/meshy/turnarounds/fossil-slab-sheet.png

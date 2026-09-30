@@ -16,7 +16,8 @@
     "sweep": "uv run --python 3.12 --with pillow --no-project python scripts/sweep-rooms.py",
     "sheet:rooms": "uv run --python 3.12 --with pillow --no-project python scripts/compose-room-sheet.py",
     "kit:specs": "node scripts/write-kit-specs.mjs",
-    "kit:prep": "node scripts/module-prep.mjs"
+    "kit:prep": "node scripts/module-prep.mjs",
+    "kit:briefs": "node scripts/write-kit-briefs.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.3",

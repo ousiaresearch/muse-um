@@ -1,0 +1,52 @@
+{
+  "id": "three-bells",
+  "asset": "The three bells",
+  "kind": "images",
+  "room": "porch_at_three_bells",
+  "role": "the Porch's relic — three brass bells hung in an oak frame",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-three-bells-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/three-bells/01.jpg",
+        "assets/meshy/turnarounds/three-bells/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/three-bells/01.jpg",
+        "assets/meshy/turnarounds/three-bells/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Eighth kit module. The kit's first genuinely OPEN object: you must be able to see the background between the posts under the beam.",
+    "tiers": {
+      "reject": [
+        "The frame closed in — infilled, panelled or webbed between the posts.",
+        "Bells fused into the beam or into each other.",
+        "No visible clappers below the rims.",
+        "Any lettering, numerals, or invented inscription.",
+        "Three bells not distinguishable as three."
+      ],
+      "accept": [
+        "A beam on two short posts, open beneath, with the background visible through it.",
+        "Three cast bells in a row, largest in the middle, each with a visible clapper.",
+        "Bells hung from the beam by small brass loops.",
+        "Warm brass bells and dark oak posts.",
+        "Reads as a frame that could be walked past."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Stands in the Porch room. The open frame is the point — a closed version would defeat the room's motif."
+  }
+}

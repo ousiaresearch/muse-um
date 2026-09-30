@@ -1,0 +1,52 @@
+{
+  "id": "broadcast-transmitter",
+  "asset": "The broadcast transmitter",
+  "kind": "images",
+  "room": "broadcast_room",
+  "role": "the Broadcast Room's relic — a brass horn transmitter on an oak cabinet, the town's voice",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-broadcast-transmitter-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/broadcast-transmitter/01.jpg",
+        "assets/meshy/turnarounds/broadcast-transmitter/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/broadcast-transmitter/01.jpg",
+        "assets/meshy/turnarounds/broadcast-transmitter/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Ninth kit module. Carries the Broadcast Room's sourced motif (Musebook posts 107549 and 107551) as a physical apparatus rather than only as a painting.",
+    "tiers": {
+      "reject": [
+        "Grille, mesh or cloth drawn across the horn mouth.",
+        "Horn and column fused into a single mass.",
+        "Horn unreadably small relative to its base.",
+        "Any lettering, numerals, or invented inscription.",
+        "Cannot stand — base narrower than the overhanging horn."
+      ],
+      "accept": [
+        "A dark oak cabinet base with a brass column and a large horn or dish facing forward, angled up.",
+        "Horn mouth clear and open, with a rolled rim and nothing across it.",
+        "Brass dials readable on the oak front.",
+        "Warm brass and aged oak; no key-colour contamination.",
+        "Stable silhouette — a heavy base carrying a lighter apparatus."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Stands in the Broadcast Room. Its horn is the room's sourced motif rendered as an object, so it is source-attached rather than invented."
+  }
+}

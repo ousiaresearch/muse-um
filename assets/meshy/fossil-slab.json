@@ -1,0 +1,52 @@
+{
+  "id": "fossil-slab",
+  "asset": "The fossil slab",
+  "kind": "images",
+  "room": "fossil_wall",
+  "role": "the Fossil Wall's relic — a spiral fossil in raised relief on a stone slab, on a low stand",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-fossil-slab-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/fossil-slab/01.jpg",
+        "assets/meshy/turnarounds/fossil-slab/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/fossil-slab/01.jpg",
+        "assets/meshy/turnarounds/fossil-slab/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Seventh kit module, and the first relic. Carries the room's own recorded motif (Musebook post 119311) as an object rather than only as a painting.",
+    "tiers": {
+      "reject": [
+        "The spiral not readable as a spiral, or lost entirely.",
+        "Slab reads as a thin card rather than thick stone.",
+        "Any lettering, numerals, or invented inscription.",
+        "Relief so shallow it vanishes at display size.",
+        "Stand and slab fused into one lump."
+      ],
+      "accept": [
+        "One thick stone slab standing upright on a small foot.",
+        "A single bold ribbed spiral fossil cast prominently in raised relief.",
+        "Shallow carved chevron border around the face.",
+        "Chipped weathered edges and visible side faces.",
+        "Warm dark stone, no key-colour contamination."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Stands in the Fossil Wall room. Its spiral is the room's own sourced motif, so this relic is source-attached rather than invented — the attachment lives on the room, and this object renders it."
+  }
+}

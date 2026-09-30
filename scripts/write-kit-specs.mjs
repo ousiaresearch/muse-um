@@ -92,6 +92,131 @@ const MODULES = [
     note:
       'Angled against the wall clear of the exhibit. Its joinery is what has to survive reconstruction; the brass pulls are the detail that tells you whether the texture pass worked.',
   },
+  {
+    id: 'reading-table',
+    asset: 'The reading table',
+    room: 'all',
+    role: 'museum furniture — a long trestle table giving the room a working centre at human height',
+    name: 'muse-um-reading-table-v1',
+    purpose:
+      'Fifth kit module. The kit\'s first object wider than it is tall, which is a different reconstruction problem from every upright module so far.',
+    reject: [
+      'Top reads as a flat plane with no thickness.',
+      'Trestle ends fused into a solid slab instead of splayed legs with a stretcher.',
+      'Legs floating, detached, or not reaching the floor plane.',
+      'Any lettering, numerals, or invented inscription.',
+      'Proportions that could not stand — top much wider than the leg span.',
+    ],
+    accept: [
+      'One table: thick top plank on two trestle ends with splayed legs and a long stretcher.',
+      'A drawer and brass pull readable in the apron.',
+      'Warm aged oak with visible grain, splits and tool marks.',
+      'Clearly longer than wide or tall.',
+      'Legs splayed so it reads as standing solidly.',
+    ],
+    note:
+      'Placed across the room clear of the exhibit and the cabinet, at table height. A low wide object reads as furniture scale rather than as clutter.',
+  },
+  {
+    id: 'wall-sconce',
+    asset: 'The wall sconce',
+    room: 'all',
+    role: 'architecture fitting — a wall-mounted lantern on a brass arm, second light source at eye height',
+    name: 'muse-um-wall-sconce-v1',
+    purpose:
+      'Sixth kit module. Tests a compound silhouette — a bracket with a hanging body — which is neither a closed solid like the lantern nor an open frame like the panel.',
+    reject: [
+      'Glazing open, transparent or absent — the panes must be opaque frosted surfaces.',
+      'Arm and lantern fused into one undifferentiated mass.',
+      'Lantern body larger than the arm could plausibly carry.',
+      'Any lettering, numerals, or invented inscription.',
+      'No readable wall plate, or an arm that attaches to nothing.',
+    ],
+    accept: [
+      'A wall plate, a curved arm, and a lantern suspended from it.',
+      'Opaque frosted panes drawn as solid surfaces with their own sheen.',
+      'Hexagonal lantern with tapered roof and finial, matching the pavilion fittings.',
+      'Brass ring where the lantern meets the arm.',
+      'Warm aged brass with patina.',
+    ],
+    note:
+      'Mounted on the wall at eye height, at a different height from the hanging fittings so the room gains a second light level.',
+  },
+  {
+    id: 'fossil-slab',
+    asset: 'The fossil slab',
+    room: 'fossil_wall',
+    role: 'the Fossil Wall\'s relic — a spiral fossil in raised relief on a stone slab, on a low stand',
+    name: 'muse-um-fossil-slab-v1',
+    purpose:
+      'Seventh kit module, and the first relic. Carries the room\'s own recorded motif (Musebook post 119311) as an object rather than only as a painting.',
+    reject: [
+      'The spiral not readable as a spiral, or lost entirely.',
+      'Slab reads as a thin card rather than thick stone.',
+      'Any lettering, numerals, or invented inscription.',
+      'Relief so shallow it vanishes at display size.',
+      'Stand and slab fused into one lump.',
+    ],
+    accept: [
+      'One thick stone slab standing upright on a small foot.',
+      'A single bold ribbed spiral fossil cast prominently in raised relief.',
+      'Shallow carved chevron border around the face.',
+      'Chipped weathered edges and visible side faces.',
+      'Warm dark stone, no key-colour contamination.',
+    ],
+    note:
+      'Stands in the Fossil Wall room. Its spiral is the room\'s own sourced motif, so this relic is source-attached rather than invented — the attachment lives on the room, and this object renders it.',
+  },
+  {
+    id: 'three-bells',
+    asset: 'The three bells',
+    room: 'porch_at_three_bells',
+    role: 'the Porch\'s relic — three brass bells hung in an oak frame',
+    name: 'muse-um-three-bells-v1',
+    purpose:
+      'Eighth kit module. The kit\'s first genuinely OPEN object: you must be able to see the background between the posts under the beam.',
+    reject: [
+      'The frame closed in — infilled, panelled or webbed between the posts.',
+      'Bells fused into the beam or into each other.',
+      'No visible clappers below the rims.',
+      'Any lettering, numerals, or invented inscription.',
+      'Three bells not distinguishable as three.',
+    ],
+    accept: [
+      'A beam on two short posts, open beneath, with the background visible through it.',
+      'Three cast bells in a row, largest in the middle, each with a visible clapper.',
+      'Bells hung from the beam by small brass loops.',
+      'Warm brass bells and dark oak posts.',
+      'Reads as a frame that could be walked past.',
+    ],
+    note:
+      'Stands in the Porch room. The open frame is the point — a closed version would defeat the room\'s motif.',
+  },
+  {
+    id: 'broadcast-transmitter',
+    asset: 'The broadcast transmitter',
+    room: 'broadcast_room',
+    role: 'the Broadcast Room\'s relic — a brass horn transmitter on an oak cabinet, the town\'s voice',
+    name: 'muse-um-broadcast-transmitter-v1',
+    purpose:
+      'Ninth kit module. Carries the Broadcast Room\'s sourced motif (Musebook posts 107549 and 107551) as a physical apparatus rather than only as a painting.',
+    reject: [
+      'Grille, mesh or cloth drawn across the horn mouth.',
+      'Horn and column fused into a single mass.',
+      'Horn unreadably small relative to its base.',
+      'Any lettering, numerals, or invented inscription.',
+      'Cannot stand — base narrower than the overhanging horn.',
+    ],
+    accept: [
+      'A dark oak cabinet base with a brass column and a large horn or dish facing forward, angled up.',
+      'Horn mouth clear and open, with a rolled rim and nothing across it.',
+      'Brass dials readable on the oak front.',
+      'Warm brass and aged oak; no key-colour contamination.',
+      'Stable silhouette — a heavy base carrying a lighter apparatus.',
+    ],
+    note:
+      'Stands in the Broadcast Room. Its horn is the room\'s sourced motif rendered as an object, so it is source-attached rather than invented.',
+  },
 ]
 
 const dir = path.join(ROOT, 'assets/meshy')

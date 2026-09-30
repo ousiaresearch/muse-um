@@ -1,0 +1,52 @@
+{
+  "id": "wall-sconce",
+  "asset": "The wall sconce",
+  "kind": "images",
+  "room": "all",
+  "role": "architecture fitting — a wall-mounted lantern on a brass arm, second light source at eye height",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style, so the brief and the anchor image are part of this asset's provenance.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-wall-sconce-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/wall-sconce/01.jpg",
+        "assets/meshy/turnarounds/wall-sconce/02.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/wall-sconce/01.jpg",
+        "assets/meshy/turnarounds/wall-sconce/02.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "Sixth kit module. Tests a compound silhouette — a bracket with a hanging body — which is neither a closed solid like the lantern nor an open frame like the panel.",
+    "tiers": {
+      "reject": [
+        "Glazing open, transparent or absent — the panes must be opaque frosted surfaces.",
+        "Arm and lantern fused into one undifferentiated mass.",
+        "Lantern body larger than the arm could plausibly carry.",
+        "Any lettering, numerals, or invented inscription.",
+        "No readable wall plate, or an arm that attaches to nothing."
+      ],
+      "accept": [
+        "A wall plate, a curved arm, and a lantern suspended from it.",
+        "Opaque frosted panes drawn as solid surfaces with their own sheen.",
+        "Hexagonal lantern with tapered roof and finial, matching the pavilion fittings.",
+        "Brass ring where the lantern meets the arm.",
+        "Warm aged brass with patina."
+      ]
+    },
+    "reviewLog": []
+  },
+  "placement": {
+    "note": "Mounted on the wall at eye height, at a different height from the hanging fittings so the room gains a second light level."
+  }
+}
