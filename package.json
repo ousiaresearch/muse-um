@@ -13,7 +13,8 @@
     "art:tokens": "uv run --python 3.12 --with pillow --no-project python scripts/assert-token-agreement.py",
     "capture": "node scripts/capture-cdp.mjs",
     "measure": "uv run --python 3.12 --with pillow --no-project python scripts/measure-capture.py",
-    "sweep": "uv run --python 3.12 --with pillow --no-project python scripts/sweep-rooms.py"
+    "sweep": "uv run --python 3.12 --with pillow --no-project python scripts/sweep-rooms.py",
+    "sheet:rooms": "uv run --python 3.12 --with pillow --no-project python scripts/compose-room-sheet.py"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.3",

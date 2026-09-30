@@ -1,0 +1,76 @@
+{
+  "id": "pavilion-lantern-v1",
+  "asset": "The pavilion lantern",
+  "kind": "images",
+  "room": "all",
+  "role": "environmental prop — a hanging lantern, repeated across rooms to give the spaces depth and pooled light",
+  "endpoint": "/openapi/v1/multi-image-to-3d",
+  "note": "Multi-image conditioning, NOT text. This request has no prompt field: the turnaround views carry the entire style. The views were generated from the pavilion's own exhibit art, which is what makes a generated prop congruent rather than merely plausible.",
+  "stages": {
+    "build": {
+      "ai_model": "latest",
+      "should_texture": true,
+      "enable_pbr": true,
+      "remove_lighting": true,
+      "should_remesh": true,
+      "target_polycount": 12000,
+      "topology": "triangle",
+      "name": "muse-um-pavilion-lantern-v1",
+      "image_files": [
+        "assets/meshy/turnarounds/lantern/01.jpg",
+        "assets/meshy/turnarounds/lantern/03.jpg"
+      ],
+      "texture_image_files": [
+        "assets/meshy/turnarounds/lantern/01.jpg",
+        "assets/meshy/turnarounds/lantern/03.jpg"
+      ]
+    }
+  },
+  "curation": {
+    "purpose": "First module of the pavilion kit. Proves the image-set pipeline end to end before it is spent on architecture.",
+    "tiers": {
+      "reject": [
+        "Not a single coherent lantern — merged blobs, doubled parts, or exploded geometry.",
+        "Contains lettering, numerals, or invented inscription.",
+        "Glossy, chrome-like, or neon surfaces.",
+        "Glass panes absent as distinct faces.",
+        "Silhouette unreadable at room scale."
+      ],
+      "accept": [
+        "One lantern with a readable hexagonal cage, tapered roof, and base finial.",
+        "Warm aged brass with visible patina.",
+        "Dim warm glass held as a distinct material from the metal.",
+        "Hangs plausibly from a ceiling and reads at room scale.",
+        "Sits in the measured palette without fighting the exhibit art."
+      ]
+    },
+    "reviewLog": [
+      {
+        "attempt": 1,
+        "taskId": "01a0f268-923d-745d-8f50-b37a4f7ca592",
+        "stage": "build (multi-image, 2 distinct views, fused texture)",
+        "verdict": "REJECTED on one accept criterion",
+        "credits": 30,
+        "passed": [
+          "One coherent lantern — no merged blobs, doubled parts, or exploded geometry.",
+          "Readable hexagonal cage with six vertical corner posts.",
+          "Tapered hexagonal roof present, base finial present.",
+          "Warm aged brass with patina in the recesses; not chrome, not neon.",
+          "No text, lettering, numeral, or invented inscription.",
+          "Hanging ring present and legible."
+        ],
+        "failed": [
+          "Glass panes read as OPEN AIR — no visible surface, thickness, or tint. Directly violates the accept tier requirement that glass be a distinct material from the metal. Retained geometry, lost material."
+        ],
+        "observations": [
+          "PBR set confirmed produced: base_color, metallic, roughness, normal.",
+          "Fine ornament on the roof and upper band is smeared, consistent with reconstructing from two views.",
+          "Input views were only ~300-800 px before upscaling, which is the likely cause of the smearing. The sheet split a 1774 px width three ways; briefing TWO views instead gives each roughly half the width."
+        ],
+        "rootCause": "Transparency is invisible in a still image, so translucent glazing arrives as nothing and reconstructs as nothing. The brief asked for translucent glass and therefore asked for this failure.",
+        "correctionApplied": "Brief v2 demands OPAQUE FROSTED glass drawn as a solid matte surface, bolder simpler ornament, and two views instead of three for more pixels per view."
+      }
+    ]
+  },
+  "viewSelection": "The sheet produced three panels but only two DISTINCT angles: panels 1 and 2 trimmed to an identical 337x799 (measured mean pixel difference 9.05, the smallest of the three pairs), while panel 3 trimmed to 289x799 and is a genuinely narrower view. Submitting all three would weight one angle 2:1, so only 01 and 03 are sent. Primary view first."
+}

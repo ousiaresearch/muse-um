@@ -1,0 +1,48 @@
+Use case: 3D reconstruction reference sheet. The two views get fed to a multi-image
+reconstruction service, so they must be the SAME OBJECT seen from two angles, drawn in one image.
+
+Asset type: an object turnaround sheet — two views of one hanging lantern, in a single row.
+
+Style rules: match the attached reference exactly in material language and atmosphere. This is
+the MUSE-UM pavilion idiom: hand-drawn European graphic-novel rendering, medieval epic and ancient
+sacred architecture, ethereal, a forgotten civilization remembering itself beneath a dying sun.
+Warm aged brass with dark patina in the recesses, muted bone and parchment, thin engraved linework.
+Matte hand-finished surfaces, no plastic sheen, no chrome, no neon, no glossy highlights.
+
+The object: a single hanging lantern of the kind carried through this pavilion. A hexagonal cage of
+slim warm-brass uprights with a large circular hanging ring at the top, a narrow tapered hexagonal
+roof, a short brass finial at the base, and a narrow band of fine engraved hatch marks around the
+widest part of the frame. Aged and hand-made, not machine-perfect.
+
+CRITICAL — the glazing: the six body panels must be OPAQUE FROSTED GLASS, milky and cloudy, like
+hammered or aged glass that you cannot see through. Draw them as SOLID VISIBLE SURFACES with their
+own soft matte sheen and slightly irregular hand-made edges, clearly a different material from the
+brass. Do NOT draw them as open frames, bare openings, or clear transparent panes: a still image
+cannot show transparency, so transparent or empty glazing is lost entirely when the image is
+reconstructed into 3D geometry.
+
+Keep the ornament BOLD AND SIMPLE — broad readable shapes, not fine filigree. Fine detail smears
+when the image is reconstructed into geometry.
+
+Views, left to right, all the same object at the same scale and the same height in frame:
+  1. front elevation, showing one full frosted panel centred
+  2. three-quarter view, turned roughly forty-five degrees, showing a corner post near the centre
+     and two frosted panels receding
+
+Composition: the two views evenly spaced across one horizontal sheet, separated by a clear empty
+gap so they can be cut apart. Identical scale and identical lighting in both views. Each view
+upright and fully inside the frame with room to spare, leaving generous empty margin on all sides.
+No overlap, no touching edges.
+
+Use the LARGEST canvas you can produce, and make the lantern as large within the frame as the
+margins allow — every extra pixel of the object survives into the reconstruction.
+
+Background: perfectly uniform pure magenta #FF00FF at every pixel outside the lantern, with no
+shadow, no floor, no gradient, and no vignette. The lantern must be cleanly separable from the
+background.
+
+Constraints: one object only. Absolutely no text, lettering, numerals, labels, arrows, measurement
+marks, captions, borders, or watermarks anywhere in the image. No second object, no scenery, no
+figures, no floor, no wall, no candle flame.
+
+Output: save to /Users/johannross/muse-um/assets/meshy/turnarounds/lantern-sheet-v2.png
