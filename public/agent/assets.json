@@ -134,6 +134,171 @@
         "status": "artistic interpretation",
         "note": "A pavilion fitting, not a claim about any recorded town artifact. It carries no source attachment and asserts nothing historical; the rooms' own source attachments are unaffected."
       }
+    },
+    {
+      "id": "stone-archway",
+      "room": "all",
+      "file": "public/models/stone-archway.glb",
+      "served": "models/stone-archway.glb",
+      "spec": "assets/meshy/stone-archway.json",
+      "role": "architecture — a doorway at the room edge giving the space a way out and a sightline through it",
+      "acceptedTask": {
+        "build": "01a0f292-afe3-73d0-8aec-532335f18c21"
+      },
+      "inputLineage": {
+        "route": "multi-image-to-3D, fused texture",
+        "sheet": "assets/meshy/turnarounds/stone-archway-sheet.png",
+        "brief": "assets/meshy/briefs/stone-archway-turnaround.txt",
+        "views": [
+          "assets/meshy/turnarounds/stone-archway/01.jpg",
+          "assets/meshy/turnarounds/stone-archway/02.jpg"
+        ],
+        "styleAnchor": "public/art/threshold.png — the pavilion exhibit that already contains an archway"
+      },
+      "inspection": {
+        "rawBytes": 11367860,
+        "deliveredTriangles": 8893,
+        "deliveredVertices": 13815,
+        "deliveredBytes": 802092,
+        "deliveredExtensionsUsed": [
+          "EXT_texture_webp",
+          "KHR_mesh_quantization"
+        ],
+        "optimization": "gltf-transform optimize — simplify, quantization, 1024px webp textures. Lossy.",
+        "pbrMapsRetained": [
+          "base_color",
+          "metallic",
+          "roughness",
+          "normal"
+        ]
+      },
+      "acceptedProperties": [
+        "True through-hole with the backdrop visible through it, not a filled panel.",
+        "Jambs, a semicircular arch of separate voussoirs, and a prominent keystone.",
+        "Thick masonry with visible side faces; not a flat card.",
+        "Carved chevron band on the arch face; low threshold step.",
+        "Warm tan/umber stone, no key-colour contamination, no lettering."
+      ],
+      "knownLimitations": [
+        "Carvings are repetitive and simplified.",
+        "Reads as a freestanding surround rather than part of a full building.",
+        "Placed at the room edge, where it is partly clipped by the viewport."
+      ],
+      "reviewNote": "Accepted on the first build. The first view keyed 28.2% to the studio backdrop, which IS the through-hole; a filled opening would have keyed near the cabinet 5-7%.",
+      "evidenceStatus": {
+        "status": "artistic interpretation",
+        "note": "A pavilion fitting, not a claim about a recorded town artifact."
+      }
+    },
+    {
+      "id": "timber-panel",
+      "room": "all",
+      "file": "public/models/timber-panel.glb",
+      "served": "models/timber-panel.glb",
+      "spec": "assets/meshy/timber-panel.json",
+      "role": "wall architecture — French Tudor framing mounted beside each exhibit",
+      "acceptedTask": {
+        "build": "01a0f293-960f-706f-b1ac-e76bc17b7752"
+      },
+      "inputLineage": {
+        "route": "multi-image-to-3D, fused texture",
+        "sheet": "assets/meshy/turnarounds/timber-panel-sheet.png",
+        "brief": "assets/meshy/briefs/timber-panel-turnaround.txt",
+        "views": [
+          "assets/meshy/turnarounds/timber-panel/01.jpg",
+          "assets/meshy/turnarounds/timber-panel/02.jpg"
+        ],
+        "styleAnchor": "public/art/fossil-wall.png — the pavilion exhibit carrying its timber architecture"
+      },
+      "inspection": {
+        "rawBytes": 9689872,
+        "deliveredTriangles": 7835,
+        "deliveredVertices": 12194,
+        "deliveredBytes": 647784,
+        "deliveredExtensionsUsed": [
+          "EXT_texture_webp",
+          "KHR_mesh_quantization"
+        ],
+        "optimization": "gltf-transform optimize — simplify, quantization, 1024px webp textures. Lossy.",
+        "pbrMapsRetained": [
+          "base_color",
+          "metallic",
+          "roughness",
+          "normal"
+        ]
+      },
+      "acceptedProperties": [
+        "One coherent panel; timbers kept their thickness as solid members rather than flattening into painted stripes.",
+        "Both diagonal braces genuinely meet the central stud.",
+        "Opaque plaster infill, recessed with the timbers standing proud.",
+        "Shingled head present.",
+        "Warm brown oak, no key-colour contamination, no lettering."
+      ],
+      "knownLimitations": [
+        "The central brace/stud joint is fused rather than showing clear joinery.",
+        "The shingled head is simplified.",
+        "At the size it renders in-room (~70px wide) the timber detail does not resolve: it reads as a framed rectangular panel rather than as a timber frame. This is a placement and scale problem, not a reconstruction defect — a solid-colour probe confirmed it renders at full size, upright and facing the camera."
+      ],
+      "reviewNote": "The kit highest-risk module and it passed on the first build: an open structural frame reconstructs like a flat surface far more easily than a closed body does.",
+      "evidenceStatus": {
+        "status": "artistic interpretation",
+        "note": "A pavilion fitting, not a claim about a recorded town artifact."
+      }
+    },
+    {
+      "id": "display-cabinet",
+      "room": "all",
+      "file": "public/models/display-cabinet.glb",
+      "served": "models/display-cabinet.glb",
+      "spec": "assets/meshy/display-cabinet.json",
+      "role": "museum furniture — a closed oak cabinet giving human scale and somewhere for relics to live",
+      "acceptedTask": {
+        "build": "01a0f292-bdbf-743e-9b56-c9c29836ac80"
+      },
+      "inputLineage": {
+        "route": "multi-image-to-3D, fused texture",
+        "sheet": "assets/meshy/turnarounds/display-cabinet-sheet.png",
+        "brief": "assets/meshy/briefs/display-cabinet-turnaround.txt",
+        "views": [
+          "assets/meshy/turnarounds/display-cabinet/01.jpg",
+          "assets/meshy/turnarounds/display-cabinet/02.jpg"
+        ],
+        "styleAnchor": "public/art/keepers-room.png — the pavilion exhibit carrying its furniture joinery"
+      },
+      "inspection": {
+        "rawBytes": 9472512,
+        "deliveredTriangles": 4198,
+        "deliveredVertices": 7398,
+        "deliveredBytes": 519740,
+        "deliveredExtensionsUsed": [
+          "EXT_texture_webp",
+          "KHR_mesh_quantization"
+        ],
+        "optimization": "gltf-transform optimize — simplify, quantization, 1024px webp textures. Lossy.",
+        "pbrMapsRetained": [
+          "base_color",
+          "metallic",
+          "roughness",
+          "normal"
+        ]
+      },
+      "acceptedProperties": [
+        "One coherent closed carcass; no merged blobs or doubled parts.",
+        "Solid opaque panelled oak doors; no glazing and no opening where a door should be.",
+        "Projecting cornice and moulded plinth base.",
+        "Brass ring pulls and visible hinges.",
+        "Warm brown wood with pronounced grain, no lettering."
+      ],
+      "knownLimitations": [
+        "Hardware reads as soft lumpy approximations rather than crisp brass fittings.",
+        "Texture smearing at the plinth and some glossy streaks in the grain.",
+        "The far side of the carcass is unresolved — it is placed angled against the wall, which hides that side."
+      ],
+      "reviewNote": "Accepted on the first build.",
+      "evidenceStatus": {
+        "status": "artistic interpretation",
+        "note": "A pavilion fitting, not a claim about a recorded town artifact."
+      }
     }
   ],
   "invariants": [
