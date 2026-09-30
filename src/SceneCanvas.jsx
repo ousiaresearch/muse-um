@@ -3,6 +3,8 @@ import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, useTexture, useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js'
+import StylePass from './style/StylePass'
+import { captureFlags } from './style/captureFlags'
 
 // The framed exhibit is always the room's canonical PNG. WebGL supplies the
 // living gallery around it. An optional generated prop stands on the gallery
@@ -124,7 +126,7 @@ function GalleryProp({ path, scale = 0.85, spin = 0.045 }) {
   const placedY = FLOOR_Y - scale * model.minY
 
   useFrame((_, delta) => {
-    if (group.current) group.current.rotation.y += delta * spin
+    if (group.current && captureFlags.animate) group.current.rotation.y += delta * spin
   })
 
   return (
@@ -201,7 +203,7 @@ function Pavilion({ room }) {
       <directionalLight position={[-4, 5, 5]} color="#d8b365" intensity={1.6} />
       <pointLight position={[-3.3, -0.6, 2]} color="#4a6baf" intensity={16} distance={10} />
       <pointLight position={[3.3, -0.6, 2]} color="#805186" intensity={11} distance={10} />
-      <Stars radius={28} depth={16} count={900} factor={1.7} saturation={0.35} fade speed={0.22} />
+      <Stars radius={28} depth={16} count={900} factor={1.7} saturation={0.35} fade speed={captureFlags.animate ? 0.22 : 0} />
 
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, FLOOR_Y, 0]}>
         <planeGeometry args={[20, 20]} />
@@ -251,6 +253,7 @@ export default function SceneCanvas({ room }) {
           maxPolarAngle={Math.PI * 0.68}
           target={[0, 0.35, 0]}
         />
+        {captureFlags.post && <StylePass />}
       </Suspense>
     </Canvas>
   )
