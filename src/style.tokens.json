@@ -1,0 +1,72 @@
+{
+  "kind": "muse-um.style.tokens",
+  "version": "1.0.0",
+  "derivedFrom": "docs/measured-exhibit-palette.md — the eight approved exhibits, sampled 2026-09-29",
+  "rule": "These tokens are measured from the artwork, not chosen. The 3D renderer consumes them and the Meshy style contract references them, so the room and its generator share one palette. Changing a token means the exhibits moved; re-measure before editing.",
+
+  "palette": {
+    "ink":         "#1b1512",
+    "shadow_warm": "#2f1f1c",
+    "mid_warm":    "#4d3425",
+    "stone":       "#5b3c28",
+    "pouch_brown": "#583a2a",
+    "brass_mid":   "#8b644d",
+    "brass_lit":   "#bd8b61",
+    "bone":        "#b09e94",
+    "highlight":   "#d8a273",
+    "accent_cool": "#74737b",
+    "glow_gold":   "#e0b75b",
+    "sky_deep":    "#232030"
+  },
+
+  "roles": {
+    "outline": "ink",
+    "deepest_shadow": "shadow_warm",
+    "modal_field": "mid_warm",
+    "architecture_stone": "stone",
+    "metal_dark": "brass_mid",
+    "metal_lit": "brass_lit",
+    "paper": "bone",
+    "key_highlight": "highlight",
+    "only_sanctioned_cool": "accent_cool",
+    "emission": "glow_gold",
+    "night_field": "sky_deep"
+  },
+
+  "lightRig": {
+    "key":    {"token": "glow_gold",   "role": "dying-sun key, low and warm"},
+    "fill":   {"token": "accent_cool", "role": "cold fill, used sparingly"},
+    "rim":    {"token": "highlight",   "role": "pale bone rim on hero silhouettes"},
+    "ambient":{"token": "sky_deep",    "role": "night field, low intensity"}
+  },
+
+  "stylization": {
+    "variant": "painterly",
+    "variantRuledBy": "Operator, 2026-09-29",
+    "rampStops": ["shadow_warm", "mid_warm", "brass_lit", "highlight"],
+    "outlineWidthPx": 2.0,
+    "outlineColor": "ink",
+    "paletteLockStrength": 0.75,
+    "grainOpacity": 0.08,
+    "lineBoilAmplitudePx": 0.6
+  },
+
+  "contract": {
+    "note": "Bands a captured room must land inside to be congruent with the exhibit set.",
+    "luminance": [70, 115],
+    "saturation": [55, 130],
+    "edge_density": [24, 46],
+    "paletteShare": 0.92,
+    "modalColourDeltaE": 12,
+    "maxCoolShareExceptLake": 0.10
+  },
+
+  "character": {
+    "note": "Gates a generated Muse figure must pass before entering a room. See public/art/luma-canon.json.",
+    "silhouetteIou": 0.80,
+    "companionBodyIou": 0.75,
+    "proportionDrift": 0.08,
+    "accessoryDeltaE": 10,
+    "pouchDeltaE": 12
+  }
+}

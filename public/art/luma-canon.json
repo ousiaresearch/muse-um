@@ -22,5 +22,26 @@
     "format": "PNG for framed exhibits; JPEG retained only for this canonical source reference.",
     "method": "Codex built-in image_gen, using the canonical reference as image input.",
     "invariantPrompt": "Preserve Luma's exact canonical body, face, collar, starlight medallion, and lantern pouch. Render Luma within the scene's visual language, never as a pasted-on character. Change only pose, expression, setting, and environmental interaction."
+  },
+  "threeDimensional": {
+    "authorized": true,
+    "authorizedBy": "Operator ruling, 2026-09-29: Luma and the other Muse companions are to be generated in 3D.",
+    "method": "Meshy multi-image-to-3D, conditioned on a canonical turnaround sheet derived from this reference. Text-to-3D is NOT an acceptable method for a canon character: with prose alone the generator invents what it cannot infer.",
+    "requiredTurnaround": "public/art/luma-turnaround/{front,three-quarter,profile}.png, each reviewed against the part inventory below before use.",
+    "partInventory": [
+      "rounded cream plush body",
+      "hood-like outer fur ring",
+      "soft peach face",
+      "two black oval eyes",
+      "rosy cheeks",
+      "small open smile",
+      "short rounded arms",
+      "short rounded feet",
+      "brass collar with central loop and studs",
+      "round starlight medallion at the collar centre",
+      "brown leather side pouch at the left side, containing a compact glowing brass lantern"
+    ],
+    "admissionGates": "See the MUSE-UM visual congruency plan, gates 10-14: silhouette IoU >= 0.80 against this reference, proportion drift <= 8%, complete part inventory, accessory palette within the token set, and body-silhouette IoU >= 0.75 for companions against Luma's accepted mesh.",
+    "rejectionRule": "A generated character that fails any gate is rejected and logged with the failing measurement. It is never displayed with a caveat, and the canon is never adjusted to accommodate a mesh."
   }
 }

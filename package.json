@@ -8,7 +8,9 @@
     "preview": "vite preview",
     "meshy:dry-run": "node scripts/meshy-submit.mjs assets/meshy/observatory-armillary.json",
     "meshy:submit": "node scripts/meshy-submit.mjs assets/meshy/observatory-armillary.json --submit",
-    "meshy:poll": "node scripts/meshy-poll.mjs"
+    "meshy:poll": "node scripts/meshy-poll.mjs",
+    "art:palette": "uv run --python 3.12 --with pillow --no-project python scripts/art-palette-report.py",
+    "art:tokens": "uv run --python 3.12 --with pillow --no-project python scripts/assert-token-agreement.py"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.3",
