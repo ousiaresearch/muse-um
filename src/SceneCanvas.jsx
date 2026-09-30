@@ -81,9 +81,12 @@ const KIT = [
     id: 'display-cabinet',
     room: 'all',
     path: 'models/display-cabinet.glb',
-    position: [2.3, FLOOR_Y, 1.5],
+    // Pushed back toward the wall so the foreground belongs to the table and the
+    // relic. At x=2.3, z=1.5 it stood directly in front of the relics (same x, nearer
+    // the camera, and taller) and occluded every one of them.
+    position: [3.15, FLOOR_Y, 0.3],
     height: 1.7,
-    rotation: -0.38,
+    rotation: -0.3,
   },
   {
     id: 'reading-table',
@@ -93,7 +96,10 @@ const KIT = [
     // table sat under the label's opaque core and was invisible in the running app,
     // which is a placement error rather than a rendering one: the label is a
     // rectangle, so a floor object on the left is covered at any depth.
-    position: [0.35, FLOOR_Y, 1.5],
+    // Shifted left to open the centre-right band for the relics. At x=0.35 the table's
+    // on-screen span reached px 493 while the relics at x=1.5 sat at px 467-515, so the
+    // two overlapped and the relic read as cluttered against the table's end.
+    position: [0.0, FLOOR_Y, 1.5],
     height: 0.72,
     rotation: 0.18,
   },
@@ -118,28 +124,50 @@ const KIT = [
     rotation: -Math.PI / 2,
   },
   // Relics. One per room, carrying that room's own sourced motif as a physical
-  // object. Placed in the visible zone right of the wall label, behind the table so
-  // the table reads as foreground.
+  // object.
+  //
+  // Placed nearest the camera (z=2.1) and at a common x, after two failed layouts.
+  // First attempt put them behind the display cabinet, which is taller and nearer, so
+  // none showed; second attempt put them behind the table, where they rendered but
+  // read as anonymous dark wood. Standing nearest the camera means the relic occludes
+  // the furniture rather than the reverse, which is the only arrangement that works
+  // for all seven. x is common because at this depth every relic clears the wall
+  // label whatever its width — the relics differ in width by a factor of four, from
+  // the 0.46m key to the 2.08m three-bells frame.
+  {
+    // The one relic whose base had to be supplied in-engine. Reconstruction kept the
+    // key's volume, open bow and cut wards but dropped the stone block, leaving it
+    // ending in a finial with nothing beneath it.
+    id: 'threshold-key',
+    room: 'threshold',
+    path: 'models/threshold-key.glb',
+    position: [1.75, FLOOR_Y, 2.1],
+    height: 1.25,
+    rotation: 0.15,
+    plinth: { width: 0.52, depth: 0.34, height: 0.3 },
+  },
   {
     id: 'fossil-slab',
     room: 'fossil_wall',
     path: 'models/fossil-slab.glb',
-    position: [2.2, FLOOR_Y, 0.85],
+    position: [1.75, FLOOR_Y, 2.1],
     height: 1.15,
     rotation: 0.12,
   },
   {
+    // The widest relic at 2.08m, so it gets its own x: at x=2.2 its on-screen span
+    // reached px 456 against the table's 464, overlapping by 8px.
     id: 'three-bells',
     room: 'porch_at_three_bells',
     path: 'models/three-bells.glb',
-    position: [2.45, FLOOR_Y, 0.75],
+    position: [1.75, FLOOR_Y, 2.1],
     height: 1.0,
   },
   {
     id: 'broadcast-transmitter',
     room: 'broadcast_room',
     path: 'models/broadcast-transmitter.glb',
-    position: [2.25, FLOOR_Y, 0.9],
+    position: [1.75, FLOOR_Y, 2.1],
     height: 1.35,
     rotation: -0.25,
   },
@@ -459,7 +487,26 @@ function KitProp({ entry, variant }) {
   }, [scene, variant, entry])
 
   return (
-    <group position={entry.position} rotation={[0, entry.rotation ?? 0, 0]}>
+    <group
+      position={[
+        entry.position[0],
+        entry.position[1] + (entry.plinth?.height ?? 0),
+        entry.position[2],
+      ]}
+      rotation={[0, entry.rotation ?? 0, 0]}
+    >
+      {/* An in-engine plinth, for meshes that arrived without their own base. The
+          threshold key is the first: its turnaround sheet showed it standing in a
+          stone block, and reconstruction dropped the block and left the key ending
+          in a finial. A stone block is exact simple structure, which is the half of
+          the work code does better than generation — and regenerating it would cost
+          credits to get back geometry a box already describes exactly. */}
+      {entry.plinth && (
+        <mesh position={[0, -(entry.plinth.height / 2), 0]}>
+          <boxGeometry args={[entry.plinth.width, entry.plinth.height, entry.plinth.depth]} />
+          <meshToonMaterial color="#ffffff" gradientMap={rampFor('dado', variant)} />
+        </mesh>
+      )}
       <Inked>
         <primitive object={model} />
       </Inked>
