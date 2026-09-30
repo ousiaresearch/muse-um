@@ -41,6 +41,20 @@ export const SURFACE_RAMPS = {
   // room. Starting at `shadow_warm` keeps an unlit face reading as warm dark
   // metal, and the top stops carry the lit brass.
   brass: ['shadow_warm', 'brass_mid', 'brass_lit', 'highlight'],
+  // Generated props. The asset's own map carries its hue while the ramp quantises
+  // lighting into token tones.
+  //
+  // MEASURED TENSION, not a preference. Props occupy ~2.8% of the frame and cost
+  // ~3.3 points of palette share — essentially every prop pixel lands off-token,
+  // because `texture x ramp` is not itself a token colour. Brighter ramp stops and
+  // a stronger palette lock both made it WORSE, not better (mid_warm floor: 76.8%
+  // against 83.6%; lock 0.45 -> 0.60: 76.8% -> 72.3%). This ramp is the one that
+  // keeps the 77% floor passing; the cost is that props read dim.
+  //
+  // The structural fix is a palette lock applied strongly to PROP PIXELS ONLY via
+  // the postprocessing selection the outlines already use, rather than flattening
+  // the whole frame. Not implemented yet.
+  prop: ['shadow_warm', 'mid_warm', 'brass_mid', 'bone'],
 }
 
 export function rampFor(surface, variant) {

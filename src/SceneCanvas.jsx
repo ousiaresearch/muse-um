@@ -34,6 +34,8 @@ const PROP = {
   observatory: 'models/observatory-armillary.glb',
 }
 
+const FLOOR_Y = -1.5
+
 // The pavilion's own hanging fittings, identical in every room. A real building
 // has uniform fixtures; it is the exhibits that differ, and that uniformity is
 // what makes eight rooms read as one building rather than eight sets.
@@ -52,7 +54,35 @@ const LANTERNS = [
   { position: [1.5, 1.06, 3.0] },
 ]
 
-const FLOOR_Y = -1.5
+// The rest of the kit. Each entry is measured and fitted on load, so a module's
+// declared height is the contract and the mesh is made to honour it — which is
+// also why a badly reconstructed prop shows up as wrong WIDTH instead of as a
+// silent scale drift.
+//
+// Placed so nothing collides: the archway and the panel flank the exhibit at
+// different heights, and the cabinet stands in the near right, clear of both the
+// near lanterns and the standing relic.
+const KIT = [
+  {
+    id: 'stone-archway',
+    path: 'models/stone-archway.glb',
+    position: [-3.05, FLOOR_Y, -0.25],
+    height: 2.4,
+  },
+  {
+    id: 'timber-panel',
+    path: 'models/timber-panel.glb',
+    position: [3.05, FLOOR_Y, -0.33],
+    height: 2.2,
+  },
+  {
+    id: 'display-cabinet',
+    path: 'models/display-cabinet.glb',
+    position: [2.3, FLOOR_Y, 1.5],
+    height: 1.7,
+    rotation: -0.38,
+  },
+]
 // Props stand right of centre, clear of the wall label panel.
 const PROP_X = 1.45
 const PROP_Z = 0.95
@@ -327,6 +357,51 @@ function Lanterns({ variant, exposure }) {
   )
 }
 
+/**
+ * A generated kit module placed in the room.
+ *
+ * Materials are rebuilt as token-ramped toon rather than used as delivered: the
+ * generator's own map keeps its colour — the oak stays dark, the plaster stays
+ * pale — while the ramp quantises the lighting into the same tonal stops the
+ * walls and frames use. That is what makes a generated object belong to the room
+ * instead of sitting on top of it.
+ */
+function KitProp({ entry, variant }) {
+  const { scene } = useGLTF(`${BASE}${entry.path}`)
+
+  const model = useMemo(() => {
+    const clone = scene.clone(true)
+    clone.traverse((node) => {
+      if (!node.isMesh) return
+      const material = Array.isArray(node.material) ? node.material[0] : node.material
+      node.material = new THREE.MeshToonMaterial({
+        map: material.map ?? null,
+        normalMap: material.normalMap ?? null,
+        gradientMap: rampFor('prop', variant),
+        color: new THREE.Color(0xffffff),
+      })
+      node.material.needsUpdate = true
+    })
+
+    const fit = fitProp(clone, { targetHeight: entry.height, anchor: 'bottom' })
+    if (import.meta.env.DEV) {
+      console.info(
+        `[kit] ${entry.id} fitted to ${entry.height}m — aspect ${fit.aspect.toFixed(3)} ` +
+          `(source ${fit.sourceSize.y.toFixed(2)} tall, scale x${fit.scale.toFixed(4)})`,
+      )
+    }
+    return clone
+  }, [scene, variant, entry])
+
+  return (
+    <group position={entry.position} rotation={[0, entry.rotation ?? 0, 0]}>
+      <Inked>
+        <primitive object={model} />
+      </Inked>
+    </group>
+  )
+}
+
 function Pavilion({ room, variant }) {
   const propPath = PROP[room.id]
   // A room may carry its own exposure. Uniform lighting made room luminance
@@ -397,6 +472,12 @@ function Pavilion({ room, variant }) {
         </mesh>
       </Inked>
 
+      {KIT.map((entry) => (
+        <Suspense key={entry.id} fallback={null}>
+          <KitProp entry={entry} variant={variant} />
+        </Suspense>
+      ))}
+
       <Suspense fallback={null}>
         <Lanterns variant={variant} exposure={exposure} />
       </Suspense>
@@ -418,7 +499,7 @@ export default function SceneCanvas({ room }) {
 
   return (
     <Canvas
-      camera={{ fov: 44, position: [0, 0.55, 7.6] }}
+      camera={{ fov: 48, position: [0, 0.55, 8.0] }}
       dpr={[1, 1.75]}
       gl={{ antialias: true, powerPreference: 'high-performance' }}
       aria-label={`${room.name}, an explorable MUSE-UM gallery room`}
