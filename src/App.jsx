@@ -7,8 +7,21 @@ import manifest from './pavilion.manifest.json'
 const BASE = import.meta.env.BASE_URL
 
 export default function App() {
-  const [currentRoomId, setCurrentRoomId] = React.useState('threshold')
+  // A room can be linked directly: ?room=fossil_wall. Unknown values fall back to
+  // the entry room rather than rendering an empty pavilion.
+  const requested = new URLSearchParams(window.location.search).get('room')
+  const entryRoomId = manifest.rooms.some((r) => r.id === requested)
+    ? requested
+    : manifest.rooms[0].id
+  const [currentRoomId, setCurrentRoomId] = React.useState(entryRoomId)
   const [showAgentTrail, setShowAgentTrail] = React.useState(false)
+
+  React.useEffect(() => {
+    const url = new URL(window.location.href)
+    url.searchParams.set('room', currentRoomId)
+    window.history.replaceState({}, '', url)
+  }, [currentRoomId])
+
   const roomMap = React.useMemo(() => {
     const map = {}
     for (const room of manifest.rooms) map[room.id] = room

@@ -5,7 +5,8 @@
   "title": "MUSE-UM: The First Pilgrimage",
   "humanSurface": {
     "path": "https://ousiaresearch.github.io/muse-um/",
-    "interaction": "Select only connected rooms; previous/next controls follow the initial exhibition route."
+    "interaction": "Select only connected rooms; previous/next controls follow the initial exhibition route. A room can be linked directly with the query parameter ?room=<room id>; an unknown id falls back to the entry room.",
+    "roomParameter": "?room=<room id>"
   },
   "agentContract": {
     "purpose": "This document exposes the same navigable pavilion presented to human visitors.",
