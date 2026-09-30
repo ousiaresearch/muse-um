@@ -38,6 +38,9 @@ RESAMPLE_LANCZOS = getattr(getattr(Image, "Resampling", Image), "LANCZOS")
 TOKENS_PATH = os.path.join(os.path.dirname(__file__), "..", "src", "style.tokens.json")
 EDGE_THRESHOLD = 4
 NEAR_DELTA_E = 12.0
+INK_DELTA_E = 8.0
+INK_LUM_MAX = 70
+INK_EDGE_MIN = 25
 
 
 def load_rgb(path: str) -> Image.Image:
@@ -88,11 +91,31 @@ def gates(image: Image.Image, canvas, label: str) -> int:
 
     luminance = ImageStat.Stat(region.convert("L")).mean[0]
     saturation = ImageStat.Stat(small.convert("HSV")).mean[1]
-    edge_density = ImageStat.Stat(region.convert("L").filter(ImageFilter.FIND_EDGES)).mean[0]
+    grey = region.convert("L")
+    edge_density = ImageStat.Stat(grey.filter(ImageFilter.FIND_EDGES)).mean[0]
+
+    # Ink is a LINE, not a dark AREA. Counting pixels near the ink colour alone
+    # reported 20%+ for a room whose frame is mostly dark fog and shadow, against
+    # an exhibit range of 4-14%. What distinguishes a drawn line is that the dark
+    # pixel sits ON an edge — so both conditions are required.
+    sampled = 192
+    grey_small = grey.resize((sampled, sampled), RESAMPLE_LANCZOS)
+    edge_small = grey.filter(ImageFilter.FIND_EDGES).resize((sampled, sampled), RESAMPLE_LANCZOS)
+    grey_values = list(grey_small.getdata())
+    edge_values = list(edge_small.getdata())
+    ink_line_share = sum(
+        1
+        for g, e in zip(grey_values, edge_values)
+        if g < INK_LUM_MAX and e > INK_EDGE_MIN
+    ) / len(grey_values)
 
     token_labs = [srgb_to_lab(hex_to_rgb(v)) for v in palette.values()]
+    ink_lab = srgb_to_lab(hex_to_rgb(palette["ink"]))
     labs = [srgb_to_lab(p) for p in small.convert("RGB").getdata()]
-    share = sum(1 for lab in labs if min(delta_e(lab, t) for t in token_labs) <= NEAR_DELTA_E) / len(labs)
+    palette_share = sum(
+        1 for lab in labs if min(delta_e(lab, t) for t in token_labs) <= NEAR_DELTA_E
+    ) / len(labs)
+    ink_share = sum(1 for lab in labs if delta_e(lab, ink_lab) <= INK_DELTA_E) / len(labs)
 
     quant = small.quantize(colors=6).convert("RGB")
     dominant = [
@@ -112,17 +135,19 @@ def gates(image: Image.Image, canvas, label: str) -> int:
     print("CONTRACT GATES (canvas only)")
     lum_band = contract["luminance"]
     sat_band = contract["saturation"]
-    edge_band = contract["edge_density"]
+    ink_band = contract["inkLineShare"]
     results = [
         row("luminance", lum_band[0], lum_band[1], luminance),
         row("saturation", sat_band[0], sat_band[1], saturation),
-        row("edge_density", edge_band[0], edge_band[1], edge_density),
-        row("palette_share", contract["paletteShare"], 1.0, share, True),
+        row("palette_share", contract["paletteShare"], 1.0, palette_share, True),
+        row("ink_line_share", ink_band[0], ink_band[1], ink_line_share, True),
     ]
     for _, line in results:
         print("  " + line)
     print()
     print(f"  dominant tones: {' '.join(dominant)}")
+    print(f"  edge density (informational, no gate): {edge_density:.1f}")
+    print(f"  ink-area share (informational): {ink_share:.1%}")
     print(f"  measured on {region.size[0] * region.size[1]:,} canvas pixels "
           f"of {image.size[0] * image.size[1]:,} in frame")
 

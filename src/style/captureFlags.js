@@ -30,4 +30,5 @@ export const captureFlags = {
   still: flag('still'),
   post: flag('post', true),
   animate: !flag('still'),
+  variant: params.get('variant') || null,
 }

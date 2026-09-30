@@ -52,13 +52,20 @@
   },
 
   "contract": {
-    "note": "Bands a captured room must land inside to be congruent with the exhibit set.",
+    "note": "Bands a captured room must land inside to be congruent with the exhibit set. Derived from measurement (see docs/measured-exhibit-palette.md and scripts/recalibrate-gates.py), not chosen.",
+    "derivation": "Exhibit means, measured 2026-09-30: palette share 77.3% (range 65.1-86.2), ink share 8.3% (range 3.9-14.2), luminance 74-111, saturation 60-130.",
     "luminance": [70, 115],
     "saturation": [55, 130],
-    "edge_density": [24, 46],
-    "paletteShare": 0.92,
+    "paletteShare": 0.77,
+    "inkLineShare": [0.12, 0.25],
+    "derivedInkLine": "Exhibit ink-line share, measured with the same method: mean 20.6%, range 12.5-24.5%. The painted rooms measure 20.3-23.4%, i.e. inside the artwork's own range.",
+    "edge_density_info": [8, 46],
     "modalColourDeltaE": 12,
-    "maxCoolShareExceptLake": 0.10
+    "maxCoolShareExceptLake": 0.1,
+    "corrections": [
+      "paletteShare was first set to 92%, which is unreachable: the exhibits themselves average 77.3% because a painting contains endless intermediate tones. The gate is now the artwork's own mean.",
+      "edge_density was first a gate at 24-46. It is not comparable between a painting and a rendered room: a painting is textured in every square inch, a room has large flat surfaces, so the mean tracks geometry rather than style. It is now informational only, and inkShare is the real ink gate."
+    ]
   },
 
   "character": {
