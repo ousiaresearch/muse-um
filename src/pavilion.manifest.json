@@ -1,8 +1,16 @@
 {
   "building": {
     "name": "MUSE-UM",
-    "openingNote": "Enter quietly. The building holds three rooms and more behind them.\nWalk the threshold first. The lit chamber is waiting.",
-    "version": "0.1.0",
+    "openingNote": "Enter quietly. The building holds eight rooms and the path between them.\nWalk the threshold first. The rest is waiting.",
+    "version": "0.2.0",
+    "guide": {
+      "id": "luma",
+      "name": "Luma",
+      "role": ["guide", "curator", "companion"],
+      "canonicalReference": "art/luma-canonical.jpg",
+      "canonicalContract": "art/luma-canon.json",
+      "presence": "Luma is the pavilion's constant companion. She is named in the human surface and the agent contract; individual exhibits may place her differently while preserving the canonical body and carried set."
+    },
     "agentLayer": {
       "description": "Structured representation of the pavilion for agent traversal. The same place a human walks through, expressed as rooms, relics, labels, and connections.",
       "traversalModel": "rooms connected by paths; an agent can move from room to room by following connections",
@@ -23,7 +31,7 @@
       "name": "Threshold",
       "label": "The first room is not a room yet.\nIt is the place where entering becomes possible.\nStand here a moment before moving on.",
       "relic": null,
-      "connections": ["fossil_wall"],
+      "connections": ["fossil_wall", "broadcast_room"],
       "atmosphere": "dim, waiting, low light ahead",
       "visualHint": "a doorway into deeper stone, faint light beyond, worn floor"
     },
@@ -41,20 +49,77 @@
       "name": "The Keeper's Room",
       "label": "A small room for keeping.\nSome things are not meant to travel. They are meant to stay where they were found, and be visited again.\nThis room has a lantern and a habit of returning what was brought to it.",
       "relic": "A lantern that has lit this room longer than the town remembers",
-      "connections": ["fossil_wall"],
+      "connections": ["fossil_wall", "matching_signal"],
       "atmosphere": "quiet, domestic, intimate, low warm light",
       "visualHint": "a small room with a lantern, a table, one kept object, deep shadows in the corners"
+    },
+    {
+      "id": "matching_signal",
+      "name": "The Matching Signal",
+      "label": "A room where the town learned to listen for the thing that answered back.\nThe signal did not always match at first. It became a habit of the town to keep trying until the echo was true.",
+      "relic": "The first matched reply, kept with the apparatus that caught it",
+      "connections": ["keeper_room", "lake_at_dawn"],
+      "atmosphere": "hum, brass, quiet concentration, a signal held in the air",
+      "visualHint": "an apparatus of brass and wire catching a faint matched signal in a quiet room"
+    },
+    {
+      "id": "lake_at_dawn",
+      "name": "The Lake at Dawn",
+      "label": "The town learned the shape of itself reflected before it learned the shape of its work.\nThe lake at dawn remembers the first view the town had of its own keeping.",
+      "relic": "The dawn water, kept only by returning to it",
+      "connections": ["matching_signal", "porch_at_three_bells"],
+      "atmosphere": "still water, pale light, quiet, remembered horizon",
+      "visualHint": "a lake at dawn with a kept shore, pale sky, and distant blue-shingle forms"
+    },
+    {
+      "id": "porch_at_three_bells",
+      "name": "The Porch at Three Bells",
+      "label": "A place for standing and listening.\nThe town marked long afternoons here, when three bells had gone by and there was still time to notice what was kept.",
+      "relic": "The three-bell mark, kept on the porch as a habit of time",
+      "connections": ["lake_at_dawn", "observatory"],
+      "atmosphere": "porch air, warm fading light, a place to wait with the town",
+      "visualHint": "a porch under blue shingles with bells, lanterns, and the three-bell habit of waiting"
+    },
+    {
+      "id": "observatory",
+      "name": "The Observatory",
+      "label": "The town kept a place for looking up and remembering what it had not yet understood.\nThis room watches the sky and keeps the old answer that was once useful.",
+      "relic": "A brass sight kept for reading the sky the town once trusted",
+      "connections": ["porch_at_three_bells", "broadcast_room"],
+      "atmosphere": "open sky, brass, quiet watching, a remembered heaven",
+      "visualHint": "an observatory of stone and brass under a dying sun, with a keeper watching and waiting"
+    },
+    {
+      "id": "broadcast_room",
+      "name": "The Broadcast Room",
+      "label": "The town learned how to send what it kept.\nThis room is where a voice, a signal, or a kept thing was sent out to be heard by the others.\nIt still waits for the next true sending.",
+      "relic": "The first kept sending, held with the room that sent it",
+      "connections": ["observatory", "threshold"],
+      "atmosphere": "wires, warm light, voice held in the air, a room for sending and remembering",
+      "visualHint": "a broadcast room of stone and brass with wires, lanterns, and the kept sending"
     }
   ],
   "paths": [
     { "from": "threshold", "to": "fossil_wall", "label": "a deeper light ahead" },
+    { "from": "threshold", "to": "broadcast_room", "label": "the room that sends" },
     { "from": "fossil_wall", "to": "threshold", "label": "back to the doorway" },
     { "from": "fossil_wall", "to": "keeper_room", "label": "a quieter room beside the wall" },
-    { "from": "keeper_room", "to": "fossil_wall", "label": "back to the wall" }
+    { "from": "keeper_room", "to": "fossil_wall", "label": "back to the wall" },
+    { "from": "keeper_room", "to": "matching_signal", "label": "the room that listens" },
+    { "from": "matching_signal", "to": "keeper_room", "label": "back to the keeping" },
+    { "from": "matching_signal", "to": "lake_at_dawn", "label": "the lake before it remembers" },
+    { "from": "lake_at_dawn", "to": "matching_signal", "label": "back to the signal" },
+    { "from": "lake_at_dawn", "to": "porch_at_three_bells", "label": "the porch that waits" },
+    { "from": "porch_at_three_bells", "to": "lake_at_dawn", "label": "back to the lake" },
+    { "from": "porch_at_three_bells", "to": "observatory", "label": "the room that watches" },
+    { "from": "observatory", "to": "porch_at_three_bells", "label": "back to the porch" },
+    { "from": "observatory", "to": "broadcast_room", "label": "the room that sends" },
+    { "from": "broadcast_room", "to": "observatory", "label": "back to the watching" },
+    { "from": "broadcast_room", "to": "threshold", "label": "back to the doorway" }
   ],
   "openingPost": {
     "title": "The first room is open",
-    "body": "MUSE-UM opens with one doorway and one lit chamber.\nThe Fossil Wall is waiting.\nCome stand in the room before it.\nMore is behind it,\nbut this is where the building begins.",
+    "body": "MUSE-UM opens with one doorway and eight rooms.\nThe Fossil Wall is waiting.\nCome stand in the room before it.\nMore is behind it,\nbut this is where the building begins.",
     "tone": "mythic, quiet, not announcing a whole museum"
   }
 }

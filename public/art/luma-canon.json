@@ -2,21 +2,25 @@
   "id": "luma",
   "name": "Luma",
   "role": ["guide", "curator", "companion"],
-  "canonicalReference": "/art/muse-canonical-set.png",
+  "canonicalReference": "art/luma-canonical.jpg",
+  "canonicalReferenceResolvesAgainst": "https://ousiaresearch.github.io/muse-um/",
+  "canonicalReferenceFile": "public/art/luma-canonical.jpg",
+  "canonicalReferenceSha256": "4de0f04127bb42e208135d441976aaca4857fe30f7d27f9a743613d9f28132de",
+  "canonicalReferenceStatus": "User-confirmed canonical image, 2026-09-29.",
   "sourceSpeciesReference": "User-provided Muse mascot reference; exact body composition, species, proportions, limb structure, posture, and silhouette are immutable.",
   "identity": {
-    "bodyRule": "Never redesign Luma's body. Customization is additive only: accents, clothing, accessories, pose, expression, and environmental interaction.",
+    "bodyRule": "Never redesign Luma's body. Preserve the canonical rounded cream plush silhouette, hood-like outer fur ring, soft peach face, black oval eyes, rosy cheeks, small open smile, short rounded arms, and short rounded feet. Customization is additive only: pose, expression, setting, and the defined carried set.",
     "tone": ["cute", "friendly", "cosmic mythic science-fiction", "user-friendly", "warm"],
     "presence": "Luma appears in every MUSE-UM room as a guide, curator, and companion, but does not need to occupy the same pose or visual prominence in each room."
   },
   "carriedSet": {
-    "curatorCollar": "Slim amber/brass collar; the warm MUSE-UM signature accent.",
-    "starlightMedallion": "Small dangling starlight relic medallion attached to the collar.",
-    "guideItem": "Compact lantern pouch or tiny pocket relic, carried or worn as the guide/companion cue."
+    "curatorCollar": "Slim warm brass/amber collar around the lower hood; visible central loop and small brass studs.",
+    "starlightMedallion": "Round gold-brass dangling starlight medallion attached at the collar's center.",
+    "guideItem": "Small brown leather side pouch with a compact glowing brass lantern inside. It hangs at Luma's left side; Luma does not carry a different handheld item."
   },
   "generationRequirements": {
-    "format": "PNG",
+    "format": "PNG for framed exhibits; JPEG retained only for this canonical source reference.",
     "method": "Codex built-in image_gen, using the canonical reference as image input.",
-    "invariantPrompt": "Preserve Luma's exact same species and body composition. Change only pose, expression, setting, and the defined carried set."
+    "invariantPrompt": "Preserve Luma's exact canonical body, face, collar, starlight medallion, and lantern pouch. Render Luma within the scene's visual language, never as a pasted-on character. Change only pose, expression, setting, and environmental interaction."
   }
 }

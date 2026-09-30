@@ -3,6 +3,9 @@ import './Scene.css'
 import SceneCanvas from './SceneCanvas'
 import manifest from './pavilion.manifest.json'
 
+// Pavilion-relative paths in the manifest are resolved against the hosting prefix.
+const BASE = import.meta.env.BASE_URL
+
 export default function App() {
   const [currentRoomId, setCurrentRoomId] = React.useState('threshold')
   const [showAgentTrail, setShowAgentTrail] = React.useState(false)
@@ -23,6 +26,14 @@ export default function App() {
       <div className="title-bar">
         <div className="title-bar-name">{manifest.building.name}</div>
         <div className="title-bar-note">{manifest.building.openingNote.split('\n')[0]}</div>
+      </div>
+
+      <div className="luma-presence" aria-label="Luma, the MUSE-UM guide, curator, and companion">
+        <img src={`${BASE}${manifest.building.guide.canonicalReference}`} alt="Luma, the MUSE-UM guide" />
+        <div>
+          <div className="luma-presence-name">{manifest.building.guide.name}</div>
+          <div className="luma-presence-role">{manifest.building.guide.role.join(' · ')}</div>
+        </div>
       </div>
 
       <article className="scene">

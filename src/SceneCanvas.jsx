@@ -1,16 +1,20 @@
 import React from 'react'
 
+// Paths are relative to the pavilion root; BASE_URL carries the hosting prefix
+// ('/muse-um/' on the Ousia Research org page, '/' anywhere else).
+const BASE = import.meta.env.BASE_URL
+
 const ART = {
-  threshold: '/art/threshold.svg',
-  fossil_wall: '/art/fossil-wall.svg',
-  keeper_room: '/art/keepers-room.svg',
+  threshold: `${BASE}art/threshold.png`,
+  fossil_wall: `${BASE}art/fossil-wall.png`,
+  keeper_room: `${BASE}art/keepers-room.png`,
+  matching_signal: `${BASE}art/matching-signal.png`,
+  lake_at_dawn: `${BASE}art/lake-at-dawn.png`,
+  porch_at_three_bells: `${BASE}art/porch-at-three-bells.png`,
+  observatory: `${BASE}art/observatory.png`,
+  broadcast_room: `${BASE}art/broadcast-room.png`,
 }
 
-/**
- * The exhibit image is authored by Codex as standalone vector artwork.
- * Kept as a component so later rooms can add WebGL/canvas spatial effects
- * without changing the human or agent traversal models.
- */
 export default function SceneCanvas({ room }) {
   return (
     <div className={`art-frame art-frame--${room.id}`}>

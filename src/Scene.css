@@ -204,6 +204,43 @@
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
 }
 
+.luma-presence {
+  position: absolute;
+  left: clamp(1.2rem, 4vw, 2.5rem);
+  top: clamp(3.7rem, 7vw, 5rem);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  pointer-events: none;
+  color: #e8e4dc;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+.luma-presence img {
+  width: 2.25rem;
+  height: 2.25rem;
+  object-fit: cover;
+  object-position: 50% 35%;
+  border-radius: 50%;
+  border: 1px solid rgba(224, 183, 91, 0.48);
+  box-shadow: 0 0 16px rgba(220, 170, 70, 0.18);
+}
+
+.luma-presence-name {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e7c86a;
+}
+
+.luma-presence-role {
+  margin-top: 0.12rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  color: #b8aec8;
+}
+
 @media (max-width: 640px) {
   .controls {
     flex-direction: column;
