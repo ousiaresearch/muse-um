@@ -48,5 +48,6 @@
   },
   "placement": {
     "note": "Stands at the room edge as a doorway. If it reads as a hole in the wall rather than a frame around one, it fails."
-  }
+  },
+  "viewSelection": "Sheet 1536x1024, magenta background as briefed. Two views, trimmed 677x919 and 575x941 — genuinely different angles. The first view keyed 28.2% of pixels to the studio backdrop, which is the through-hole showing magenta behind the masonry: the opening is real, not filled. Second view keyed 17.1%."
 }
