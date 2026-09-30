@@ -48,5 +48,6 @@
   },
   "placement": {
     "note": "Stands in the Lake at Dawn. The width-to-height ratio is the acceptance criterion, so the brief states the proportion explicitly: this is the widest, shallowest object in the kit."
-  }
+  },
+  "viewSelection": "Sheet 1536x1024, magenta (measured 247,4,249) as briefed. Two views trimmed 935x429 and 885x485 — wide and shallow, which is the object shape and not a slicing artefact; these are the widest views in the kit. Keyed 11.5% and 13.6%. Reviewed before submitting: proportion correct, mouth open with readable interior, no lettering."
 }

@@ -48,5 +48,7 @@
   },
   "placement": {
     "note": "Stands in the Matching Signal. Symmetry is the acceptance criterion here, so the brief states the mirror arrangement explicitly rather than trusting it to emerge."
-  }
+  },
+  "viewSelection": "Sheet magenta as briefed. Two views trimmed 813x725 and 763x755. Keyed 27.1% and 32.0% — high, consistent with an open assembly of plates on posts rather than a solid mass. Reviewed before submitting: two identical plates tilted inward, both posts and the cross-bar present, dished faces, bilaterally symmetric.",
+  "briefDeviation": "The generator added an eight-pointed star / compass-rose motif to the face of each plate, which the brief did not ask for. Accepted because it is simple geometric ornament rather than the invented lettering this pipeline rejects, it is identical on both plates so it does not break the matching criterion, and it reads as deliberate design. Recorded rather than treated as specified."
 }

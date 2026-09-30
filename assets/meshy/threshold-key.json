@@ -48,5 +48,6 @@
   },
   "placement": {
     "note": "Stands in the Threshold. The thin silhouette is this module's real risk — a key is the least volumetric object in the kit — so thickness is specified explicitly rather than left to the reconstruction."
-  }
+  },
+  "viewSelection": "Sheet 1536x1024, magenta background (measured 251,3,252) as briefed. Two views trimmed 375x975 and 355x985 — a tall narrow object, so the views are tall and narrow, and both key under 16%. Reviewed before submitting; the thin-silhouette risk did not materialise."
 }
