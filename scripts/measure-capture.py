@@ -81,11 +81,12 @@ def derive_canvas(a: Image.Image, b: Image.Image):
     return mask.getbbox()
 
 
-def gates(image: Image.Image, canvas, label: str) -> int:
-    with open(os.path.abspath(TOKENS_PATH)) as handle:
-        tokens = json.load(handle)
-    palette, contract = tokens["palette"], tokens["contract"]
+def metrics(image: Image.Image, canvas, palette) -> dict:
+    """Contract metrics for one capture region.
 
+    Shared by the single-capture CLI and the room sweep, so a number reported by
+    one cannot disagree with the number reported by the other.
+    """
     region = image.crop(canvas)
     small = region.resize((192, 192), RESAMPLE_LANCZOS)
 
@@ -95,9 +96,9 @@ def gates(image: Image.Image, canvas, label: str) -> int:
     edge_density = ImageStat.Stat(grey.filter(ImageFilter.FIND_EDGES)).mean[0]
 
     # Ink is a LINE, not a dark AREA. Counting pixels near the ink colour alone
-    # reported 20%+ for a room whose frame is mostly dark fog and shadow, against
-    # an exhibit range of 4-14%. What distinguishes a drawn line is that the dark
-    # pixel sits ON an edge — so both conditions are required.
+    # reported 20%+ for a room whose frame is mostly dark fog and shadow against
+    # an exhibit range of 4-14%. What makes a drawn line is that the dark pixel
+    # sits ON an edge, so both conditions are required.
     sampled = 192
     grey_small = grey.resize((sampled, sampled), RESAMPLE_LANCZOS)
     edge_small = grey.filter(ImageFilter.FIND_EDGES).resize((sampled, sampled), RESAMPLE_LANCZOS)
@@ -122,6 +123,32 @@ def gates(image: Image.Image, canvas, label: str) -> int:
         "#%02x%02x%02x" % rgb
         for _, rgb in sorted(quant.getcolors(192 * 192) or [], reverse=True)[:4]
     ]
+
+    return {
+        "luminance": luminance,
+        "saturation": saturation,
+        "edge_density": edge_density,
+        "ink_line_share": ink_line_share,
+        "ink_share": ink_share,
+        "palette_share": palette_share,
+        "dominant": dominant,
+        "canvas_pixels": region.size[0] * region.size[1],
+    }
+
+
+def gates(image: Image.Image, canvas, label: str) -> int:
+    with open(os.path.abspath(TOKENS_PATH)) as handle:
+        tokens = json.load(handle)
+    palette, contract = tokens["palette"], tokens["contract"]
+
+    m = metrics(image, canvas, palette)
+    luminance = m["luminance"]
+    saturation = m["saturation"]
+    edge_density = m["edge_density"]
+    ink_line_share = m["ink_line_share"]
+    ink_share = m["ink_share"]
+    palette_share = m["palette_share"]
+    dominant = m["dominant"]
 
     def row(key, low, high, value, as_percent=False):
         ok = low <= value <= high
@@ -148,7 +175,7 @@ def gates(image: Image.Image, canvas, label: str) -> int:
     print(f"  dominant tones: {' '.join(dominant)}")
     print(f"  edge density (informational, no gate): {edge_density:.1f}")
     print(f"  ink-area share (informational): {ink_share:.1%}")
-    print(f"  measured on {region.size[0] * region.size[1]:,} canvas pixels "
+    print(f"  measured on {m['canvas_pixels']:,} canvas pixels "
           f"of {image.size[0] * image.size[1]:,} in frame")
 
     failures = [line for ok, line in results if not ok]

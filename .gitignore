@@ -5,3 +5,4 @@ dist/
 .env.*
 !.env.example
 artifacts/meshy/
+artifacts/sweep/

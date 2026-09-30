@@ -90,7 +90,7 @@ function Inked({ children }) {
   return <Select enabled>{children}</Select>
 }
 
-function Exhibit({ room, variant }) {
+function Exhibit({ room, variant, exposure }) {
   const texture = useTexture(`${BASE}${ART[room.id]}`)
   const ratio = texture.image?.width && texture.image?.height
     ? texture.image.width / texture.image.height
@@ -122,7 +122,7 @@ function Exhibit({ room, variant }) {
       <pointLight
         position={[0, artHeight / 2 + 0.5, 1.2]}
         color={tokens.palette.glow_gold}
-        intensity={26 * variant.exposure}
+        intensity={26 * exposure}
         distance={5}
       />
     </group>
@@ -175,7 +175,7 @@ function GalleryProp({ path, variant, scale = 0.85, spin = 0.045 }) {
  * A spotlight needs its target object in the graph and its matrix updated
  * before assignment; a declarative `target-position` prop does not exist.
  */
-function PropSpot({ variant }) {
+function PropSpot({ exposure }) {
   const light = useRef()
   const target = useMemo(() => new THREE.Object3D(), [])
 
@@ -194,14 +194,14 @@ function PropSpot({ variant }) {
         angle={0.6}
         penumbra={0.9}
         color="#ffffff"
-        intensity={190 * variant.exposure}
+        intensity={190 * exposure}
         distance={18}
       />
     </>
   )
 }
 
-function Plinth({ variant, withProp = false }) {
+function Plinth({ variant, exposure, withProp = false }) {
   const stoneRamp = rampFor('dado', variant)
   return (
     <>
@@ -216,17 +216,21 @@ function Plinth({ variant, withProp = false }) {
       <pointLight
         position={[PROP_X, FLOOR_Y + (withProp ? 2.0 : 1.2), PROP_Z + 0.6]}
         color="#ffffff"
-        intensity={(withProp ? 46 : 14) * variant.exposure}
+        intensity={(withProp ? 46 : 14) * exposure}
         distance={withProp ? 7 : 3}
       />
-      {withProp && <PropSpot variant={variant} />}
+      {withProp && <PropSpot exposure={exposure} />}
     </>
   )
 }
 
 function Pavilion({ room, variant }) {
   const propPath = PROP[room.id]
-  const exposure = variant.exposure
+  // A room may carry its own exposure. Uniform lighting made room luminance
+  // track the displayed painting's own tone, because the painting is unlit and
+  // occupies much of the frame; two rooms fell under the band. Lighting a room
+  // on its own is ordinary museum practice and the contract is per-room.
+  const exposure = room.exposure ?? variant.exposure
 
   return (
     <>
@@ -271,15 +275,15 @@ function Pavilion({ room, variant }) {
         </mesh>
       </Inked>
 
-      <Exhibit room={room} variant={variant} />
+      <Exhibit room={room} variant={variant} exposure={exposure} />
 
       {propPath ? (
-        <Suspense fallback={<Plinth variant={variant} withProp />}>
+        <Suspense fallback={<Plinth variant={variant} exposure={exposure} withProp />}>
           <GalleryProp path={propPath} variant={variant} />
-          <Plinth variant={variant} withProp />
+          <Plinth variant={variant} exposure={exposure} withProp />
         </Suspense>
       ) : (
-        <Plinth variant={variant} />
+        <Plinth variant={variant} exposure={exposure} />
       )}
     </>
   )

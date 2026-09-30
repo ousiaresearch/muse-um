@@ -12,7 +12,8 @@
     "art:palette": "uv run --python 3.12 --with pillow --no-project python scripts/art-palette-report.py",
     "art:tokens": "uv run --python 3.12 --with pillow --no-project python scripts/assert-token-agreement.py",
     "capture": "node scripts/capture-cdp.mjs",
-    "measure": "uv run --python 3.12 --with pillow --no-project python scripts/measure-capture.py"
+    "measure": "uv run --python 3.12 --with pillow --no-project python scripts/measure-capture.py",
+    "sweep": "uv run --python 3.12 --with pillow --no-project python scripts/sweep-rooms.py"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.3",

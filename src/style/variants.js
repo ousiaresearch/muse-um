@@ -16,21 +16,21 @@ import tokens from '../style.tokens.json'
 export const VARIANTS = {
   painterly: {
     label: 'Painterly',
-    note: 'Smooth token ramp, restrained ink, moderate lock. The exhibits are painterly-with-ink rather than cel, so this is the preset the measurement argues for.',
+    note: 'CHOSEN 2026-09-30 by operator ruling. Smooth token ramp, restrained ink, moderate lock.',
     ramp: {
       stops: ['shadow_warm', 'mid_warm', 'brass_lit', 'highlight'],
       size: 48,
     },
-    outline: { width: 1.6, color: 'ink', strength: 2.2, blur: true },
+    outline: { width: 2.0, color: 'ink', strength: 2.8, blur: true },
     paletteLock: 0.45,
     grain: 0.10,
-    exposure: 2.05,
+    exposure: 2.55,
     vignette: { offset: 0.3, darkness: 0.55 },
   },
 
   'graphic-novel': {
     label: 'Graphic novel',
-    note: 'Four hard steps, firm pen line, stronger lock. Closer to cel than the artwork is, but the most legible silhouette read.',
+    note: 'Reference point only, not a candidate. Four hard steps, firm pen line, stronger lock.',
     ramp: {
       stops: ['shadow_warm', 'mid_warm', 'bone', 'highlight'],
       size: 4,
@@ -44,7 +44,7 @@ export const VARIANTS = {
 
   woodcut: {
     label: 'Woodcut',
-    note: 'Two steps, heavy line, full lock. Included as the upper bound: it shows what hard quantisation costs the mid-tones.',
+    note: 'Reference point only, not a candidate. Two steps, heavy line, full lock.',
     ramp: {
       stops: ['ink', 'mid_warm'],
       size: 2,

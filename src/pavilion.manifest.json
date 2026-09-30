@@ -27,7 +27,8 @@
         "atmosphere": "string",
         "visualHint": "string"
       }
-    }
+    },
+    "exposureNote": "Per-room photographic exposure override. Applies to the room lighting only; the framed exhibit is displayed unlit and is never graded."
   },
   "rooms": [
     {
@@ -72,7 +73,8 @@
         "keeper_room"
       ],
       "atmosphere": "warm light on stone, a single relic held by the wall, quiet gravity",
-      "visualHint": "stone wall with a brass plaque and one visible old line beneath the correction"
+      "visualHint": "stone wall with a brass plaque and one visible old line beneath the correction",
+      "exposure": 2.95
     },
     {
       "id": "keeper_room",
@@ -202,7 +204,8 @@
         "threshold"
       ],
       "atmosphere": "wires, warm light, voice held in the air, a room for sending and remembering",
-      "visualHint": "a broadcast room of stone and brass with wires, lanterns, and the kept sending"
+      "visualHint": "a broadcast room of stone and brass with wires, lanterns, and the kept sending",
+      "exposure": 2.85
     }
   ],
   "paths": [

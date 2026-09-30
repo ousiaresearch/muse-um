@@ -42,13 +42,14 @@
 
   "stylization": {
     "variant": "painterly",
-    "variantRuledBy": "Operator, 2026-09-29",
+    "variantStatus": "CHOSEN — operator ruling 2026-09-30. graphic-novel and woodcut are retained as reference points, not candidates.",
     "rampStops": ["shadow_warm", "mid_warm", "brass_lit", "highlight"],
     "outlineWidthPx": 2.0,
     "outlineColor": "ink",
-    "paletteLockStrength": 0.75,
+    "paletteLockStrength": 0.45,
     "grainOpacity": 0.08,
-    "lineBoilAmplitudePx": 0.6
+    "lineBoilAmplitudePx": 0.6,
+    "openGap": "Ink-line share measures 9.5% against an exhibit floor of 12.5%. This is NOT closed by widening the pen: a room of bare planes has nothing to draw. It closes in Phase 2, when the architecture gains timber framing, arches, shingle courses, and stone joints to ink."
   },
 
   "contract": {

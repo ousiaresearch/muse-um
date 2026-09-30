@@ -26,7 +26,12 @@ const cache = new Map()
  * colour that is not in the artwork.
  */
 export const SURFACE_RAMPS = {
-  floor: ['ink', 'shadow_warm', 'mid_warm', 'stone'],
+  // The top stop IS the surface's brightness ceiling. Under MeshToonMaterial,
+  // light intensity past the point where N·L saturates the top stop changes
+  // nothing, so a dark top stop cannot be brightened by turning the lights up —
+  // which is why two rooms stayed under the luminance band after a global
+  // exposure bump. The floor was the darkest large surface, so it moves up a stop.
+  floor: ['shadow_warm', 'mid_warm', 'stone', 'brass_mid'],
   wall: ['shadow_warm', 'stone', 'brass_mid', 'bone'],
   dado: ['stone', 'brass_mid', 'brass_lit'],
   frame: ['ink', 'brass_mid', 'brass_lit', 'highlight'],
