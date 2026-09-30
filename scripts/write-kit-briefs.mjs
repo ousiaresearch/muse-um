@@ -110,6 +110,48 @@ rim and no grille or mesh across its mouth.`,
     critical: `CRITICAL — the dish mouth: the large circular horn must be a solid brass surface with a smooth
 rolled rim. Do NOT draw any grille, mesh, cloth, or transparent covering across its opening.`,
   },
+  {
+    id: 'threshold-key',
+    thing: 'one large ceremonial key standing upright on a stone base',
+    anchor: 'public/art/threshold.png',
+    subject: `The object: a large hand-forged ceremonial key of dark iron and warm brass, standing upright on a
+small block of dark hand-cut stone as if displayed. The key has a heavy cast bow at the top — an open
+ring with a simple trefoil or clover outline — a thick straight shank running down from it, and a
+broad bit at the lower end with two or three bold square wards cut into its edge. The iron is dark and
+pitted with age, the bow and a collar band on the shank are warm brass, and the whole object is
+generously thick so its silhouette reads clearly.`,
+  },
+  {
+    id: 'keepers-ledger',
+    thing: 'one thick closed ledger book with brass clasps, on a low reading stand',
+    anchor: 'public/art/keepers-room.png',
+    subject: `The object: a thick closed ledger of dark aged leather, resting closed on a low sloped wooden
+reading stand. The book is a chunky rectangular volume with visibly thick boards and a many-layered
+page block visible along its fore-edge, its leather cover worn and scuffed with a simple blind-tooled
+border. Two warm brass clasps hold it shut across the fore-edge, and a small brass corner-piece sits
+at each visible corner. The stand beneath is a plain dark oak board on two short angled supports.`,
+  },
+  {
+    id: 'matching-pair',
+    thing: 'two identical brass signal plates standing face to face on one oak base',
+    anchor: 'public/art/matching-signal.png',
+    subject: `The object: a matched pair of polished warm brass signal plates, mounted on a single dark oak
+base so they stand facing one another. Each plate is a thick disc with a shallow dished face and a
+rolled rim, carried on a short brass post rising from the base, tilted slightly inward toward its
+twin. Between the two posts runs a single short horizontal brass bar. The base is a low rectangular
+oak block with a plain chamfered edge. The two plates are identical in size and finish, and the
+object is symmetric.`,
+  },
+  {
+    id: 'lake-basin',
+    thing: 'one wide shallow brass water basin on a low stone foot',
+    anchor: 'public/art/lake-at-dawn.png',
+    subject: `The object: a wide shallow basin of hammered warm brass, resting on a low foot of dark
+hand-cut stone. The basin is a broad open bowl with a gently flared rim and visible hammer marks
+across its outside, its proportions much wider than it is tall. A narrow band of simple repeated
+chevrons is engraved around the outside just below the rim. The stone foot is a short squat pedestal,
+wider at the base than at the top, with chipped edges.`,
+  },
 ]
 
 let written = 0
