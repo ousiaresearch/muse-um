@@ -21,6 +21,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
@@ -54,20 +55,33 @@ def room_ids() -> list[str]:
     return [room["id"] for room in manifest["rooms"]]
 
 
-def capture(room: str, out: str) -> bool:
-    result = subprocess.run(
-        ["node", "scripts/capture-cdp.mjs", room, out],
-        cwd=ROOT,
-        capture_output=True,
-        text=True,
-        timeout=600,
-    )
-    if result.returncode != 0:
-        print(f"  capture FAILED for {room}: {result.stderr.strip()[:200]}", file=sys.stderr)
-        return False
-    line = next((l for l in result.stdout.splitlines() if l.startswith("captured")), "")
-    print(f"  {line or 'captured ' + room}")
-    return True
+def capture(room: str, out: str, attempts: int = 3) -> bool:
+    """Capture a room, retrying transient failures.
+
+    A capture failure is indistinguishable from a real problem in the report, and the
+    harness spawns its own Chrome per room — so contention from anything else running
+    on the machine surfaces as a room silently missing its row. Observed once for real
+    when four generators were running at the same time.
+    """
+    for attempt in range(1, attempts + 1):
+        result = subprocess.run(
+            ["node", "scripts/capture-cdp.mjs", room, out],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=600,
+        )
+        if result.returncode == 0:
+            line = next((l for l in result.stdout.splitlines() if l.startswith("captured")), "")
+            print(f"  {line or 'captured ' + room}" + (f"  (attempt {attempt})" if attempt > 1 else ""))
+            return True
+        detail = result.stderr.strip().splitlines()[-1][:160] if result.stderr.strip() else "no stderr"
+        if attempt < attempts:
+            print(f"  attempt {attempt} failed for {room} ({detail}); retrying", file=sys.stderr)
+            time.sleep(3)
+        else:
+            print(f"  capture FAILED for {room} after {attempts} attempts: {detail}", file=sys.stderr)
+    return False
 
 
 def verdict(value, low, high) -> str:
